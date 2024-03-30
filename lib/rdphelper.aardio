@@ -4,7 +4,8 @@ namespace rdphelper{
     	"author": "kanadeblisst",
     	"description": "生成rdp文件，用于远程桌面管理",
     	"pType": "项目",
-    	"url": "https://github.com/kanadeblisst00/rdp_helper"
+    	"url": "https://github.com/kanadeblisst00/rdp_helper",
+    	"weight":100
 	}
     	
 }

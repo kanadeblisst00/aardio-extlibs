@@ -5,6 +5,7 @@ namespace FrpcManager{
     	"author": "kanadeblisst",
     	"description": "frpc的windows服务管理工具，可注册和自启frpc",
     	"pType": "项目",
-    	"url": "https://github.com/kanadeblisst00/FrpcManager"
+    	"url": "https://github.com/kanadeblisst00/FrpcManager",
+    	"weight":100
 	}
 }

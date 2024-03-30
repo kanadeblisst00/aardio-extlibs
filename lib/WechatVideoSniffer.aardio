@@ -6,5 +6,6 @@ libInfo = {
     "author": "kanadeblisst",
     "description": "微信视频号下载工具",
     "pType": "项目",
-    "url": "https://github.com/kanadeblisst00/WechatVideoSniffer2.0"
+    "url": "https://github.com/kanadeblisst00/WechatVideoSniffer2.0",
+    "weight":100
 }
