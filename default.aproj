@@ -2,7 +2,7 @@
 <project ver="10" name="publishExtlibs" libEmbed="true" icon="..." ui="win" output="publishExtlibs.exe" CompanyName="单位名称" FileDescription="publishExtlibs" LegalCopyright="Copyright (C) 作者 2024" ProductName="publishExtlibs" InternalName="publishExtlibs" FileVersion="0.0.0.1" ProductVersion="0.0.0.1" publishDir="/dist/" dstrip="false" local="false" ignored="false">
 	<file name="main.aardio" path="main.aardio" comment="main.aardio"/>
 	<folder name="资源文件" path="res" embed="true" local="false" ignored="false">
-		<folder name="goquery" path="res\goquery" comment="res\goquery">
+		<folder name="goquery" path="res\goquery" comment="res\goquery" local="false" embed="false" ignored="false">
 			<file name="MetalSucks.html" path="res\goquery\MetalSucks.html" comment="res\goquery\MetalSucks.html"/>
 			<file name="test.aardio" path="res\goquery\test.aardio" comment="res\goquery\test.aardio"/>
 		</folder>
@@ -30,5 +30,6 @@
 	</folder>
 	<folder name="窗体文件" path="dlg" comment="目录" embed="true" local="false" ignored="false">
 		<file name="extlibs.aardio" path="dlg\extlibs.aardio" comment="dlg\extlibs.aardio"/>
+		<file name="rdphelper.aardio" path="dlg\rdphelper.aardio" comment="dlg\rdphelper.aardio"/>
 	</folder>
 </project>

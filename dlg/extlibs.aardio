@@ -40,7 +40,6 @@ var showLibs = function(libs){
     
     var libs = libs : winform.libTables;
 	if( libs ){ 
-		console.dump(libs)
 		var installedLibs = ide.getExtLibs(); 
 		var data = { fields={"name","version","installedVersion","Dependency","pType","modifyTime","author","description"}}
 		for(libName,libInfo in libs){
@@ -128,16 +127,21 @@ var installLib = function(libName, libInfo, installedLibs){
 }
 
 var installLibs = function(libNames){
+	var thisInstalledLibs = table.array();
 	var installedLibs = ide.getExtLibs(); 
 	for i, libName in libNames{
 		var libInfo = winform.libTables[libName];
 		var dependency = type(libInfo.Dependency) == type.string ? string.split(libInfo.Dependency,",") : libInfo.Dependency;
 		if(dependency){
 			for j,dependencyLibName in dependency{
+				if(table.find(thisInstalledLibs,dependencyLibName)) continue;
 				installedLibs = installLib(dependencyLibName, libInfo, installedLibs);
+				table.push(thisInstalledLibs,dependencyLibName);
 			}
 		}
+		if(table.find(thisInstalledLibs,libName)) continue;
 		installedLibs = installLib(libName, libInfo, installedLibs);
+		table.push(thisInstalledLibs,libName);
 	}
 }
 

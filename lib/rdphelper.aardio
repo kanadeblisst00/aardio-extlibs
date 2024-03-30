@@ -1,0 +1,10 @@
+namespace rdphelper{
+    libInfo = {
+    	"version": "1.0.0.1",
+    	"author": "kanadeblisst",
+    	"description": "生成rdp文件，用于远程桌面管理",
+    	"pType": "项目",
+    	"url": "https://github.com/kanadeblisst00/rdp_helper"
+	}
+    	
+}

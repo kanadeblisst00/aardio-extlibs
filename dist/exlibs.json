@@ -1,4 +1,14 @@
 {
+    "FrpcManager":{
+        "author":"kanadeblisst",
+        "description":"frpc的windows服务管理工具，可注册和自启frpc",
+        "lastModifyTime":"2024-03-30",
+        "pType":"项目",
+        "sampleZipUrl":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/samples/FrpcManager.zip",
+        "url":"https://github.com/kanadeblisst00/FrpcManager",
+        "version":"1.0.0.1",
+        "weight":1
+    },
     "WechatVideoSniffer":{
         "author":"kanadeblisst",
         "description":"微信视频号下载工具",
@@ -51,6 +61,16 @@
         "lastModifyTime":"2024-03-26",
         "sampleZipUrl":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/samples/kisunny.zip",
         "url":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/package/kisunny.tar.lzma",
+        "version":"1.0.0.1",
+        "weight":1
+    },
+    "rdphelper":{
+        "author":"kanadeblisst",
+        "description":"生成rdp文件，用于远程桌面管理",
+        "lastModifyTime":"2024-03-30",
+        "pType":"项目",
+        "sampleZipUrl":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/samples/rdphelper.zip",
+        "url":"https://github.com/kanadeblisst00/rdp_helper",
         "version":"1.0.0.1",
         "weight":1
     },

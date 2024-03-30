@@ -52,8 +52,7 @@ var getLibInfo = function(libpath){
 var packLib = function(libname){ 
 	console.log("正在打包库: ", libname);
     var libpath,libdir = io.libpath(libname);
-    console.log("libdir: ",libpath,libdir)
-    
+     
     var libInfo = getLibInfo(libpath);
     
     var setupFile;
@@ -92,7 +91,9 @@ var packLib = function(libname){
    	fsys.delete(tarFilePath);  
    	console.log("已打包完成，路径: ", tarFilePath+".lzma");
    	libInfo["url"] = libInfo["url"] : thread.get("GithubRepo") + "/raw/branch/master/dist/package/" + libname + ".tar.lzma";
-   	libInfo["sampleZipUrl"] = libInfo["sampleZipUrl"] : thread.get("GithubRepo") + "/raw/branch/master/dist/samples/" + libname + ".zip"
+   	if(io.exist("\res\"+libname)){
+   		libInfo["sampleZipUrl"] = libInfo["sampleZipUrl"] : thread.get("GithubRepo") + "/raw/branch/master/dist/samples/" + libname + ".zip"
+   	}
    	return libInfo;
 }
 
@@ -112,14 +113,13 @@ var packSamples = function(libInfos){
 			lastModifyTimeTable = ..web.json.tryParse(fileStr) : {};
 		}
 	}
-	
 	fsys.enum( "\res", "*.*",function(dir,filename,fullpath,findData){ 
 		if(filename) return;
 		var mTime = getPathModifyTime(fullpath);
-		if(lastModifyTimeTable[dir] && mTime == lastModifyTimeTable[dir]) return;
+		var zipPath = io.fullpath("/dist/samples/"+dir+".zip");
+		if(lastModifyTimeTable[dir] && mTime == lastModifyTimeTable[dir] && io.exist(zipPath)) return;
 		lastModifyTimeTable[dir] = mTime;
 		console.log("正在打包库案例，库: ", dir)
-		var zipPath = io.fullpath("/dist/samples/"+dir+".zip");
 		fsys.delete(zipPath);
 		win.delay(100)
 		ZipFile.CreateFromDirectory (
@@ -136,8 +136,6 @@ var packSamples = function(libInfos){
 var main = function(){
 	fsys.delete(tmpPath);
 	fsys.createDir(tmpPath);
-	fsys.delete("\dist\package");
-	fsys.delete("\dist\samples");
 	fsys.createDir("\dist\package");
 	fsys.createDir("\dist\samples");
 	var lastModifyTimePath = "\dist\package_lasttime.json";
@@ -164,7 +162,7 @@ var main = function(){
 		var libname = filename ? string.slice(filename,1,-8,true) : dir;
 		if(string.startWith(libname,"_")) return;
 		var mTime = getPathModifyTime(fullpath);
-		if(lastModifyTimeTable[libname] && mTime == lastModifyTimeTable[libname]) {
+		if(lastModifyTimeTable[libname] && mTime == lastModifyTimeTable[libname] && io.exist("/dist/package/" + libname + ".tar.lzma")) {
 			libInfos[libname] = exlibsInfos[libname];
 			return;
 		}
