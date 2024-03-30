@@ -1,0 +1,72 @@
+﻿//软链接
+import fsys;
+namespace kilink;
+
+var CreateSymbolicLinkW = ::Kernel32.api("CreateSymbolicLinkW","int(ustring a,ustring b,int c)");
+
+var CreateFileW = ::Kernel32.api("CreateFileW","pointer(ustring path,int access,int sharemode,struct secAttrib,int creationDisposition,int flagsAndAttributes,pointer template)")
+
+var GetFinalPathNameByHandle = ::Kernel32.api("GetFinalPathNameByHandleW","int(pointer a,pointer b,int c,int d)");
+var GetFinalPathNameByHandleW = ::Kernel32.api("GetFinalPathNameByHandleW","int(pointer a,ustring& b,int c,int d)");
+
+var GENERIC_READ = 0x80000000; 
+var FILE_SHARE_READ = 0x1;
+var OPEN_EXISTING = 0x3;
+var FILE_FLAG_BACKUP_SEMANTICS = 0x2000000;
+var FILE_NAME_NORMALIZED = 0;
+
+var SYMBOLIC_LINK_FLAG_DIRECTORY = 0x1;
+
+libInfo = {
+    "version": "1.0.0.1",
+    "author": "kanadeblisst",
+    "description": "windows下给目录创建软链接"
+}
+
+createSymbolicLink = function(linkPath,srcPath,dwFlags){
+	if(dwFlags === null) dwFlags = SYMBOLIC_LINK_FLAG_DIRECTORY;
+	if(!..io.exist(srcPath)) error("建立软链接的源路径不能为空！");
+	if(..io.exist(linkPath)) error("目录已存在，无法作为软链接创建!");
+	srcPath = ..io.fullpath(srcPath) : srcPath;
+	linkPath = ..io.fullpath(linkPath) : linkPath;
+	var ret = CreateSymbolicLinkW(linkPath,srcPath,dwFlags);
+	return ret == 1;
+}
+
+getSymbolLinkRealPath = function(path){
+	if(!..io.exist(path)) return;
+	path = ..io.fullpath(path) : path;
+	var hFile = CreateFileW(path, GENERIC_READ, FILE_SHARE_READ, {}, OPEN_EXISTING,FILE_FLAG_BACKUP_SEMANTICS);
+	var pathLen = GetFinalPathNameByHandle(hFile, NULL, 0, FILE_NAME_NORMALIZED);
+	if(pathLen == 0){
+		..raw.closehandle(hFile);
+		return;
+	}
+	var realPathBuffer = ..raw.buffer(pathLen+1);
+	var ret,realPath = GetFinalPathNameByHandleW(hFile, realPathBuffer, pathLen, FILE_NAME_NORMALIZED);
+	if(..string.startWith(realPath,"\\?\",)){
+		realPath = ..string.slice(realPath,5,,true);
+	}
+	..raw.closehandle(hFile);
+	if(..fsys.path.cmp(realPath,path) == 0) return;
+	return realPath;
+}
+
+isSymbolLink = function(path){
+	return getSymbolLinkRealPath(path);
+}
+																																		   
+deleteSymbolLink = function(path){
+	return ..fsys.delete(path);
+}
+
+/**details(入门教程)
+创建windows软链接，和获取软链接指向的真实路径，用的是CreateSymbolicLinkW这个API
+end details**/
+
+/**intellisense()
+kilink.createSymbolicLink(.(软链接路径,指向的目录) = 创建目录软链接
+kilink.getSymbolLinkRealPath(.(软链接路径) = 获取软链接指向的真实路径，如果给定的路径不是软链接，返回null
+kilink.isSymbolLink(.(软链接路径) = 判断路径是否是软链接
+kilink.deleteSymbolLink(.(软链接路径) = 删除软链接，它不会删除指向的路径
+end intellisense**/

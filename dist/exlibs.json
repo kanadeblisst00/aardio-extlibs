@@ -46,6 +46,14 @@
         "version":"1.0.0.1",
         "weight":1
     },
+    "kilink":{
+        "author":"kanadeblisst",
+        "description":"windows下给目录创建软链接",
+        "lastModifyTime":"2024-03-30",
+        "url":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/package/kilink.tar.lzma",
+        "version":"1.0.0.1",
+        "weight":1
+    },
     "kiredis":{
         "author":"aardio论坛",
         "description":"redis客户端",
