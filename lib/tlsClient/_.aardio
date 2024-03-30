@@ -1,0 +1,283 @@
+﻿import win.guid;
+import web.json;
+import crypt.bin;
+import inet.url;
+
+class tlsClient{
+	ctor(proxy,cookies,client_identifier){
+		this._session_id = ..win.guid.create(); 
+		this.default_headers = {
+            "Accept-Encoding": "gzip, deflate, br",
+            "Accept": "*/*",
+            "Connection": "keep-alive"
+        };
+        this.proxy = proxy : "";
+        this.allow_redirects = true;
+        this.insecure_skip_verify = false;
+        this.cookies = tlsClient.cookies();
+        this.cookies.setCookies(cookies);
+        this.default_timeout_seconds = 30;
+        this.certificate_pinning = null;
+        this.client_identifier = client_identifier ? "chrome_120";
+        this.tls_client = null;
+        this.random_tls_extension_order = false;
+        this.additional_decode = null;
+        this.force_http1 = true; //是否使用http2.0
+        this.catch_panics = false;
+        this.header_order = null;
+        this.debug = null;
+        ..table.gc(this, "release");
+	}
+	
+	set_tls_client = function(...){
+		this.tls_client = {...};
+		this.client_identifier = null;
+		/*{
+            "ja3String": self.ja3_string,
+            "h2Settings": self.h2_settings,
+            "h2SettingsOrder": self.h2_settings_order,
+            "pseudoHeaderOrder": self.pseudo_header_order,
+            "connectionFlow": self.connection_flow,
+            "priorityFrames": self.priority_frames,
+            "headerPriority": self.header_priority,
+            "certCompressionAlgo": self.cert_compression_algo,
+            "supportedVersions": self.supported_versions,
+            "supportedSignatureAlgorithms": self.supported_signature_algorithms,
+            "supportedDelegatedCredentialsAlgorithms": self.supported_delegated_credentials_algorithms ,
+            "keyShareCurves": self.key_share_curves,
+        }*/
+	}
+	
+	
+	release = function(){
+		var destroy_session_payload = {
+			"sessionId": this._session_id
+		}
+		var destroy_session_response = destroySession(..web.json.stringify(destroy_session_payload));
+		var destroy_session_response_string = ..raw.tostring(destroy_session_response);
+		var destroy_session_response_object = ..web.json.tryParse(destroy_session_response_string);
+		freeMemory(destroy_session_response_object['id']);
+		return destroy_session_response_object;
+	}
+	
+	execute_request = function(method,url,params,data,headers,json,timeout_seconds,is_byte_request=false){
+		if(params){
+			url = url + "?" + ..inet.url.stringifyParameters(params);
+		}
+		var content_type, request_body;
+		if(!data && json){
+			if(type(json) == type.table){
+				json = ..web.json.stringify(json);
+			}
+			request_body = json
+			content_type = "application/json"
+		}elseif(data && type(data) == type.table){
+			request_body = ..inet.url.stringifyParameters(data);
+			content_type = "application/x-www-form-urlencoded";
+		}else{
+			request_body = data;
+		}
+		var req_headers = tlsClient.structures(this.default_headers);
+		req_headers.update(headers);
+		if(content_type && !req_headers.find_key("content-type")){
+			req_headers["Content-Type"] = content_type;
+		}
+		var domian = getDomainFromUrl(url);
+		var request_cookies = this.cookies.getCookiesArray(domian);
+		if(!..table.count(request_cookies)) request_cookies = ..web.json.parse('[]');
+		timeout_seconds = timeout_seconds : this.default_timeout_seconds;
+		var request_payload = {
+			"sessionId": this._session_id,
+			"followRedirects": this.allow_redirects,
+            "forceHttp1": this.force_http1,
+            "withDebug": this.debug,
+            "catchPanics": this.catch_panics,
+            "headers": req_headers.raw_items(),
+            "headerOrder": this.header_order,
+            "insecureSkipVerify": this.insecure_skip_verify,
+            "isByteRequest": is_byte_request,
+            "additionalDecode": this.additional_decode,
+            "proxyUrl": this.proxy,
+            "requestUrl": url,
+            "requestMethod": method,
+            "requestBody": is_byte_request ? crypt.bin.encodeBase64(data) : request_body,
+            "requestCookies": request_cookies,
+            "timeoutSeconds": timeout_seconds,
+		}
+		if(this.certificate_pinning){
+			request_payload["certificatePinningHosts"] = this.certificate_pinning
+		}
+		if(!this.client_identifier){
+			request_payload["customTlsClient"] = this.tls_client;
+		}else{
+			request_payload["tlsClientIdentifier"] = this.client_identifier
+            request_payload["withRandomTLSExtensionOrder"] = this.random_tls_extension_order
+		}
+		var response = request(..web.json.stringify(request_payload));
+		var response_string = ..raw.tostring(response);
+		var response_object = ..web.json.tryParse(response_string);
+		freeMemory(response_object['id']);
+		if(response_object["status"] == 0){
+			return null, response_object["body"];
+		}
+		// 提取响应头cookie
+		this.update_cookies(response_object["headers"], response_object["cookies"]);
+		return this.build_response(request_payload, response_object);
+	}
+	
+	update_cookies = function(response_headers, response_cookies){
+		this.cookies.setCookies(response_cookies);
+		var set_cookie_array = response_headers["Set-Cookie"];
+		if(!set_cookie_array) return;
+		for(i=1;#set_cookie_array;1){
+			this.cookies.parseSetCookieStr(set_cookie_array[i]);
+		}
+	}
+	
+	build_response = function(request_payload, response_object){
+		return tlsClient.response(request_payload, response_object);
+	}
+	
+	get = function(url, params, headers, timeout_seconds){
+		return this.execute_request("GET",url,params,,headers,,timeout_seconds);
+	}
+	
+	options = function(url, params, headers, timeout_seconds){
+		return this.execute_request("OPTIONS",url,params,,headers,,timeout_seconds);
+	}
+	
+	head = function(url, params, headers, timeout_seconds){
+		return this.execute_request("HEAD",url,params,,headers,,timeout_seconds);
+	}
+	
+	post = function(url, params, data, json, headers, timeout_seconds, is_byte_request){
+		return this.execute_request("POST",url,params,data,headers,json,timeout_seconds,is_byte_request);
+	}
+	
+	put = function(url, params, data, json, headers, timeout_seconds, is_byte_request){
+		return this.execute_request("PUT",url,params,data,headers,json,timeout_seconds,is_byte_request);
+	}
+	
+	patch = function(url, params, data, json, headers, timeout_seconds, is_byte_request){
+		return this.execute_request("PATCH",url,params,data,headers,json,timeout_seconds,is_byte_request);
+	}
+	
+	delete = function(url, params, data, json, headers, timeout_seconds, is_byte_request){
+		return this.execute_request("DELETE",url,params,data,headers,json,timeout_seconds,is_byte_request);
+	}
+	
+}
+
+
+namespace tlsClient{
+	import tlsClient.structures;
+	import tlsClient.cookies;
+	import tlsClient.response;
+	
+	libInfo = {
+    	"version": "1.0.0.1",
+    	"author": "kanadeblisst",
+    	"description": "tls-client封装库，用于http请求"
+	}
+	
+	
+	var dllpath = DEBUG ? "\lib\tlsClient\.res\tls-client-32.dll" : $"~\lib\tlsClient\.res\tls-client-32.dll";
+	::HttpClient = ..raw.loadDll(dllpath,,"cdecl");
+	
+	request = ::HttpClient.api("request","pointer(string a)" );
+	
+	freeMemory = ::HttpClient.api("freeMemory","void(string a)" );
+	
+	destroySession = ::HttpClient.api("destroySession","pointer(string a)" );
+	
+	getDomainFromUrl = function(url){
+		var t = ..inet.url.split(url);
+		var t1 = ..string.split(t.host, '.');
+		return "." + t1[#t1-1] + "." + t1[#t1];
+	}
+}
+
+/**details(入门教程)
+该库封装自Python的tls-client模块,用于做http请求库，支持http2.0和过tls指纹
+
+github地址: https://github.com/FlorianREGAZ/Python-Tls-Client
+end details**/
+
+/**intellisense()
+tlsClient( = 创建请求对象
+tlsClient(.(代理,cookies,client_identifier) = client_identifier默认是"chrome_120"
+!tlsClientObj.get(.(url,params,headers,timeout_seconds) = 发送GET请求\ntimeout_seconds为超时时间，单位秒
+!tlsClientObj.options(.(url,params,headers,timeout_seconds) = 发送OPTIONS请求
+!tlsClientObj.head(.(url,params,headers,timeout_seconds) = 发送HEAD请求
+!tlsClientObj.post(.(url,params,data,json,headers,timeout_seconds,is_byte_request) = 发送POST请求\n如果传json参数，会将该参数的表转为json字符串\n如果data对象是表，则会做URL编码组成a=1&b=2的格式\n如果是字符串则不做更改\n如果是二进制类型的字符串，is_byte_request参数需传true
+!tlsClientObj.put(.(url,params,data,json,headers,timeout_seconds,is_byte_request) = 发送PUT请求
+!tlsClientObj.patch(.(url,params,data,json,headers,timeout_seconds,is_byte_request) = 发送PATCH请求
+!tlsClientObj.delete(.(url,params,data,json,headers,timeout_seconds,is_byte_request) = 发送DELETE请求
+tlsClient() = !tlsClientObj.
+end intellisense**/
+
+
+/**intellisense()
+所有的client_identifier列表
+# Chrome
+"chrome_103",
+"chrome_104",
+"chrome_105",
+"chrome_106",
+"chrome_107",
+"chrome_108",
+"chrome_109",
+"chrome_110",
+"chrome_111",
+"chrome_112",
+"chrome_116_PSK",
+"chrome_116_PSK_PQ",
+"chrome_117",
+"chrome_120",
+# Safari
+"safari_15_6_1",
+"safari_16_0",
+# iOS (Safari)
+"safari_ios_15_5",
+"safari_ios_15_6",
+"safari_ios_16_0",
+# iPadOS (Safari)
+"safari_ios_15_6",
+# FireFox
+"firefox_102",
+"firefox_104",
+"firefox_105",
+"firefox_106",
+"firefox_108",
+"firefox_110",
+"firefox_117",
+"firefox_120",
+# Opera
+"opera_89",
+"opera_90",
+"opera_91",
+# OkHttp4
+"okhttp4_android_7",
+"okhttp4_android_8",
+"okhttp4_android_9",
+"okhttp4_android_10",
+"okhttp4_android_11",
+"okhttp4_android_12",
+"okhttp4_android_13",
+# Custom
+"zalando_ios_mobile",
+"zalando_android_mobile",
+"nike_ios_mobile",
+"nike_android_mobile",
+"mms_ios",
+"mms_ios_2",
+"mms_ios_3",
+"mesh_ios",
+"mesh_ios_2",
+"mesh_android",
+"mesh_android_2",
+"confirmed_ios",
+"confirmed_android",
+"confirmed_android_2"
+
+end intellisense**/

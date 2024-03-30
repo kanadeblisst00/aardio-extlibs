@@ -1,0 +1,498 @@
+﻿import util.metaProperty;
+namespace goquery;
+
+var dllpath = DEBUG ? "\lib\goquery\.res\goquery.dll" : $"~\lib\goquery\.res\goquery.dll";
+::GoqueryDll = ..raw.loadDll(dllpath,,"cdecl");
+
+class Matcher{
+	ctor(mIndex){
+		this.mIndex = mIndex;
+		..table.gc(this, "release")
+	}
+	
+	@_metaProperty;
+	
+}
+
+namespace Matcher{
+    ReleaseMatcher = ::GoqueryDll.api("ReleaseMatcher", "void(int i)");
+    
+     _metaProperty = ..util.metaProperty( 
+    	release = function(){
+			ReleaseMatcher(owner.mIndex)
+		};
+		_type = "goqeury.Matcher"
+	)	
+}
+
+class Selection{
+	ctor(sIndex, html){
+		this.sIndex = sIndex;
+		this.html = html;
+		..table.gc(this, "release")
+	}
+	
+	@_metaProperty;
+	
+}
+
+namespace Selection{
+	
+	ReleaseSelection = ::GoqueryDll.api("ReleaseSelection", "void(int i)");	
+    
+    Find = ::GoqueryDll.api("Selection_Find", "int(int sIndex,string selector)");
+    Add = ::GoqueryDll.api("Selection_Add", "int(int sIndex,string selector)");	
+    AddBack = ::GoqueryDll.api("Selection_AddBack", "int(int sIndex)");
+    AddBackFiltered = ::GoqueryDll.api("Selection_AddBackFiltered", "int(int sIndex,string selector)");	
+    AddBackMatcher = ::GoqueryDll.api("Selection_AddBackMatcher", "int(int sIndex,int mIndex)");
+    AddMatcher = ::GoqueryDll.api("Selection_AddMatcher", "int(int sIndex,int mIndex)");
+    AddSelection = ::GoqueryDll.api("Selection_AddSelection", "int(int sIndex,int sIndex2)");
+    After = ::GoqueryDll.api("Selection_After", "int(int sIndex,string selector)");	
+    AfterHtml = ::GoqueryDll.api("Selection_AfterHtml", "int(int sIndex,string html)");
+    AfterMatcher = ::GoqueryDll.api("Selection_AfterMatcher", "int(int sIndex,int mIndex)");
+    AfterSelection = ::GoqueryDll.api("Selection_AfterSelection", "int(int sIndex,int sIndex2)");
+    Append = ::GoqueryDll.api("Selection_Append", "int(int sIndex,string selector)");
+    AppendHtml = ::GoqueryDll.api("Selection_AppendHtml", "int(int sIndex,string html)");
+    AppendMatcher = ::GoqueryDll.api("Selection_AppendMatcher", "int(int sIndex,int mIndex)");	
+    AppendSelection = ::GoqueryDll.api("Selection_AppendSelection", "int(int sIndex,int sIndex2)");
+    Before = ::GoqueryDll.api("Selection_Before", "int(int sIndex,string selector)");
+    BeforeHtml = ::GoqueryDll.api("Selection_BeforeHtml", "int(int sIndex,string html)");
+    BeforeMatcher = ::GoqueryDll.api("Selection_BeforeMatcher", "int(int sIndex,int mIndex)");
+    BeforeSelection = ::GoqueryDll.api("Selection_BeforeSelection", "int(int sIndex,int sIndex2)");	
+    Children = ::GoqueryDll.api("Selection_Children", "int(int sIndex)");
+    ChildrenFiltered = ::GoqueryDll.api("Selection_ChildrenFiltered", "int(int sIndex,string selector)");
+    ChildrenMatcher = ::GoqueryDll.api("Selection_ChildrenMatcher", "int(int sIndex,int mIndex)");
+    Clone = ::GoqueryDll.api("Selection_Clone", "int(int sIndex)");	
+    Closest = ::GoqueryDll.api("Selection_Closest", "int(int sIndex,string selector)");
+    ClosestMatcher = ::GoqueryDll.api("Selection_ClosestMatcher", "int(int sIndex,int mIndex)");
+    ClosestSelection = ::GoqueryDll.api("Selection_ClosestSelection", "int(int sIndex,int sIndex2)");
+    Contents = ::GoqueryDll.api("Selection_Contents", "int(int sIndex)");
+    ContentsFiltered = ::GoqueryDll.api("Selection_ContentsFiltered", "int(int sIndex,string selector)");		
+    ContentsMatcher = ::GoqueryDll.api("Selection_ContentsMatcher", "int(int sIndex,int mIndex)");
+    Empty = ::GoqueryDll.api("Selection_Empty", "int(int sIndex)");	
+    End = ::GoqueryDll.api("Selection_End", "int(int sIndex)");	
+    Eq = ::GoqueryDll.api("Selection_Eq", "int(int sIndex,int index)");
+    Filter = ::GoqueryDll.api("Selection_Filter", "int(int sIndex,string selector)");
+    FilterMatcher = ::GoqueryDll.api("Selection_FilterMatcher", "int(int sIndex,int mIndex)");
+    FilterSelection = ::GoqueryDll.api("Selection_FilterSelection", "int(int sIndex,int sIndex2)");
+    FindMatcher = ::GoqueryDll.api("Selection_FindMatcher", "int(int sIndex,int mIndex)");
+    FindSelection = ::GoqueryDll.api("Selection_FindSelection", "int(int sIndex,int sIndex2)");
+    First = ::GoqueryDll.api("Selection_First", "int(int sIndex)");	
+    Has = ::GoqueryDll.api("Selection_Has", "int(int sIndex,string selector)");
+    HasClass = ::GoqueryDll.api("Selection_HasClass", "int(int sIndex,string c)");
+    HasMatcher = ::GoqueryDll.api("Selection_HasMatcher", "int(int sIndex,int mIndex)");
+    HasSelection = ::GoqueryDll.api("Selection_HasSelection", "int(int sIndex,int sIndex2)");
+    Index = ::GoqueryDll.api("Selection_Index", "int(int sIndex)");	
+    IndexMatcher = ::GoqueryDll.api("Selection_IndexMatcher", "int(int sIndex,int mIndex)");
+    IndexOfSelection = ::GoqueryDll.api("Selection_IndexOfSelection", "int(int sIndex,int sIndex2)");
+    IndexSelector = ::GoqueryDll.api("Selection_IndexSelector", "int(int sIndex,string selector)");
+    Is = ::GoqueryDll.api("Selection_Is", "bool(int sIndex,string selector)");
+    IsMatcher = ::GoqueryDll.api("Selection_IsMatcher", "int(int sIndex,int mIndex)");
+    IsSelection = ::GoqueryDll.api("Selection_IsSelection", "int(int sIndex,int sIndex2)");
+    Last = ::GoqueryDll.api("Selection_Last", "int(int sIndex)");
+    Length = ::GoqueryDll.api("Selection_Length", "int(int sIndex)");	
+    Next = ::GoqueryDll.api("Selection_Next", "int(int sIndex)");
+    NextAll = ::GoqueryDll.api("Selection_NextAll", "int(int sIndex)");	
+    NextAllFiltered = ::GoqueryDll.api("Selection_NextAllFiltered", "int(int sIndex,string selector)");
+    NextAllMatcher = ::GoqueryDll.api("Selection_NextAllMatcher", "int(int sIndex,int mIndex)");
+    NextFiltered = ::GoqueryDll.api("Selection_NextFiltered", "int(int sIndex,string selector)");
+    NextFilteredUntil = ::GoqueryDll.api("Selection_NextFilteredUntil", "int(int sIndex,string s1,string s2)");
+    NextFilteredUntilMatcher = ::GoqueryDll.api("Selection_NextFilteredUntilMatcher", "int(int sIndex,int m1,string m2)");
+    NextFilteredUntilSelection = ::GoqueryDll.api("Selection_NextFilteredUntilSelection", "int(int sIndex,string s,string s2)");
+    NextMatcher = ::GoqueryDll.api("Selection_NextMatcher", "int(int sIndex,int mIndex)");
+    NextMatcherUntilSelection = ::GoqueryDll.api("Selection_NextMatcherUntilSelection", "int(int sIndex,int mIndex,int sIndex2)");
+    NextUntil = ::GoqueryDll.api("Selection_NextUntil", "int(int sIndex,string selector)");
+    NextUntilMatcher = ::GoqueryDll.api("Selection_NextUntilMatcher", "int(int sIndex,int mIndex)");
+    NextUntilSelection = ::GoqueryDll.api("Selection_NextUntilSelection", "int(int sIndex,int sIndex2)");
+    Not = ::GoqueryDll.api("Selection_Not", "int(int sIndex,string selector)");
+    NotMatcher = ::GoqueryDll.api("Selection_NotMatcher", "int(int sIndex,int mIndex)");
+    NotSelection = ::GoqueryDll.api("Selection_NotSelection", "int(int sIndex,int sIndex2)");
+    Parent = ::GoqueryDll.api("Selection_Parent", "int(int sIndex,int sIndex2)");
+    ParentFiltered = ::GoqueryDll.api("Selection_ParentFiltered", "int(int sIndex,string selector)");
+    ParentMatcher = ::GoqueryDll.api("Selection_ParentMatcher", "int(int sIndex,int mIndex)");
+    Parents = ::GoqueryDll.api("Selection_Parents", "int(int sIndex)");
+    ParentsFiltered = ::GoqueryDll.api("Selection_ParentsFiltered", "int(int sIndex,string selector)");
+    ParentsFilteredUntil = ::GoqueryDll.api("Selection_ParentsFilteredUntil", "int(int sIndex,string s1,string s2)");
+    ParentsFilteredUntilMatcher = ::GoqueryDll.api("Selection_ParentsFilteredUntilMatcher", "int(int sIndex,int mIndex,int mIndex2)");
+    ParentsFilteredUntilSelection = ::GoqueryDll.api("Selection_ParentsFilteredUntilSelection", "int(int sIndex,string s,int mIndex)");
+    ParentsMatcher = ::GoqueryDll.api("Selection_ParentsMatcher", "int(int sIndex,int mIndex)");
+    ParentsMatcherUntilSelection = ::GoqueryDll.api("Selection_ParentsMatcherUntilSelection", "int(int sIndex,int mIndex,int sIndex2)");
+    ParentsUntil = ::GoqueryDll.api("Selection_ParentsUntil", "int(int sIndex,string selector)");
+    ParentsUntilMatcher = ::GoqueryDll.api("Selection_ParentsUntilMatcher", "int(int sIndex,int mIndex)");
+    ParentsUntilSelection = ::GoqueryDll.api("Selection_ParentsUntilSelection", "int(int sIndex,int sIndex2)");
+    Prepend = ::GoqueryDll.api("Selection_Prepend", "int(int sIndex,string selector)");
+    PrependHtml = ::GoqueryDll.api("Selection_PrependHtml", "int(int sIndex,string html)");
+    PrependMatcher = ::GoqueryDll.api("Selection_PrependMatcher", "int(int sIndex,int mIndex)");
+    PrependSelection = ::GoqueryDll.api("Selection_PrependSelection", "int(int sIndex,int sIndex2)");
+    Prev = ::GoqueryDll.api("Selection_Prev", "int(int sIndex)");
+    PrevAll = ::GoqueryDll.api("Selection_PrevAll", "int(int sIndex)");
+    PrevAllFiltered = ::GoqueryDll.api("Selection_PrevAllFiltered", "int(int sIndex,string selector)");
+    PrevAllMatcher = ::GoqueryDll.api("Selection_PrevAllMatcher", "int(int sIndex,int mIndex)");
+    PrevFiltered = ::GoqueryDll.api("Selection_PrevFiltered", "int(int sIndex,string selector)");
+    PrevFilteredUntil = ::GoqueryDll.api("Selection_PrevFilteredUntil", "int(int sIndex,string s1,string s2)");
+    PrevFilteredUntilMatcher = ::GoqueryDll.api("Selection_PrevAllMatcher", "int(int sIndex,int m1,int m2)");
+    PrevFilteredUntilSelection = ::GoqueryDll.api("Selection_PrevFilteredUntilSelection", "int(int sIndex,string s1,int sIndex2)");
+    PrevMatcher = ::GoqueryDll.api("Selection_PrevMatcher", "int(int sIndex,int mIndex)");
+    PrevMatcherUntilSelection = ::GoqueryDll.api("Selection_PrevMatcherUntilSelection", "int(int sIndex,int mIndex,int sIndex2)");
+    PrevUntil = ::GoqueryDll.api("Selection_PrevUntil", "int(int sIndex,string selector)");
+    PrevUntilMatcher = ::GoqueryDll.api("Selection_PrevUntilMatcher", "int(int sIndex,int mIndex)");
+    PrevUntilSelection = ::GoqueryDll.api("Selection_PrevUntilSelection", "int(int sIndex,int sIndex2)");
+    Remove = ::GoqueryDll.api("Selection_Remove", "int(int sIndex)");
+    RemoveAttr = ::GoqueryDll.api("Selection_RemoveAttr", "int(int sIndex,string attr)");
+    RemoveFiltered = ::GoqueryDll.api("Selection_RemoveFiltered", "int(int sIndex,string selector)");
+    RemoveMatcher = ::GoqueryDll.api("Selection_RemoveMatcher", "int(int sIndex,int mIndex)");
+    ReplaceWith = ::GoqueryDll.api("Selection_ReplaceWith", "int(int sIndex,string selector)");
+    ReplaceWithHtml = ::GoqueryDll.api("Selection_ReplaceWithHtml", "int(int sIndex,string html)");
+    ReplaceWithMatcher = ::GoqueryDll.api("Selection_ReplaceWithMatcher", "int(int sIndex,int mIndex)");
+    ReplaceWithSelection = ::GoqueryDll.api("Selection_ReplaceWithSelection", "int(int sIndex,int sIndex2)");
+    SetAttr = ::GoqueryDll.api("Selection_SetAttr", "int(int sIndex,string attr,string value)");
+    SetHtml = ::GoqueryDll.api("Selection_SetHtml", "int(int sIndex,string html)");
+    SetText = ::GoqueryDll.api("Selection_SetText", "int(int sIndex,string html)");
+    Siblings = ::GoqueryDll.api("Selection_Siblings", "int(int sIndex)");
+    SiblingsFiltered = ::GoqueryDll.api("Selection_SiblingsFiltered", "int(int sIndex,string selector)");
+    SiblingsMatcher = ::GoqueryDll.api("Selection_SiblingsMatcher", "int(int sIndex,int mIndex)");
+    Size = ::GoqueryDll.api("Selection_Size", "int(int sIndex)");
+    Slice = ::GoqueryDll.api("Selection_Slice", "int(int sIndex,int start,int end)");
+    Union = ::GoqueryDll.api("Selection_Union", "int(int sIndex,int sIndex2)");
+    Unwrap = ::GoqueryDll.api("Selection_Unwrap", "int(int sIndex)");
+    Wrap = ::GoqueryDll.api("Selection_Wrap", "int(int sIndex,string selector)");
+    WrapAll = ::GoqueryDll.api("Selection_WrapAll", "int(int sIndex,string selector)");
+    WrapAllHtml = ::GoqueryDll.api("Selection_WrapAllHtml", "int(int sIndex,string html)");
+    WrapAllMatcher = ::GoqueryDll.api("Selection_WrapAllMatcher", "int(int sIndex,int mIndex)");
+    WrapAllSelection = ::GoqueryDll.api("Selection_WrapAllSelection", "int(int sIndex,int sIndex2)");
+    WrapHtml = ::GoqueryDll.api("Selection_WrapHtml", "int(int sIndex,string html)");
+    WrapInner = ::GoqueryDll.api("Selection_WrapInner", "int(int sIndex,string selector)");
+    WrapInnerHtml = ::GoqueryDll.api("Selection_WrapInnerHtml", "int(int sIndex,string html)");
+    WrapInnerMatcher = ::GoqueryDll.api("Selection_WrapInnerMatcher", "int(int sIndex,int mIndex)");
+    WrapInnerSelection = ::GoqueryDll.api("Selection_WrapInnerSelection", "int(int sIndex,int sIndex2)");
+    WrapMatcher = ::GoqueryDll.api("Selection_WrapMatcher", "int(int sIndex,int mIndex)");
+    WrapSelection = ::GoqueryDll.api("Selection_WrapSelection", "int(int sIndex,int sIndex2)");
+    
+    xcall = function(name, oldSelection){
+		var func = self[name];
+		if(!func) error("不支持的函数!");
+		function proxyFunc(...){
+			var newSelection = ..table.clone(oldSelection);
+			newSelection.sIndex = func(oldSelection.sIndex, ...);
+			return newSelection;
+		}
+		return proxyFunc;
+	}
+    
+    _metaProperty = ..util.metaProperty( 
+    	release = function(){
+			ReleaseSelection(owner.sIndex)
+		};
+		
+    	Text = function(){
+			var Selection_Text = ::GoqueryDll.api("Selection_Text", "void(int i, string result)");	
+			var stringBuf = ..raw.buffer(#owner.html * 3);
+			Selection_Text(owner.sIndex, stringBuf);
+			var s = ..raw.str(stringBuf);
+			return s;
+		};
+		
+		Attr = function(attrName){
+			var Selection_Attr = ::GoqueryDll.api("Selection_Attr", "bool(int i, string a,string r)");
+			var stringBuf = ..raw.buffer(1000);
+			var exists = Selection_Attr(owner.sIndex, attrName, stringBuf);
+			var s;
+			if(exists) s = ..raw.str(stringBuf);
+			return s;
+		};
+		
+		AttrOr = function(attrName, defaultValue){
+			var Selection_Attr = ::GoqueryDll.api("Selection_Attr", "bool(int i, string a,string r)");
+			var stringBuf = ..raw.buffer(1000);
+			var exists = Selection_Attr(owner.sIndex, attrName, stringBuf);
+			var s;
+			if(exists) s = ..raw.str(stringBuf);
+			else s = defaultValue;
+			return s;
+		};
+		
+		Each = function(callback){
+			var thisSelection = owner;
+			var Callback = function(i, sIndex){
+				var newSelection = ..table.clone(thisSelection);
+				newSelection.sIndex = sIndex;
+				callback(i, newSelection);
+			}
+			var cCallback = ..raw.tostdcall(Callback, "void(int i, int j)");
+			var sIndex = ::GoqueryDll.Selection_Each(owner.sIndex, cCallback);
+		};
+		
+		EachWithBreak = function(callback){
+			var thisSelection = owner;
+			var Callback = function(i, sIndex){
+				var newSelection = ..table.clone(thisSelection);
+				newSelection.sIndex = sIndex;
+				return callback(i, newSelection);
+			}
+			var cCallback = ..raw.tostdcall(Callback, "void(int i, int j)");
+			var sIndex = ::GoqueryDll.Selection_EachWithBreak(owner.sIndex, cCallback);
+		};
+		
+		FilterFunction = function(callback){
+			var thisSelection = owner;
+			var Callback = function(i, sIndex){
+				var newSelection = ..table.clone(thisSelection);
+				newSelection.sIndex = sIndex;
+				return callback(i, newSelection);
+			}
+			var cCallback = ..raw.tostdcall(Callback, "void(int i, int j)");
+			var newIndex = ::GoqueryDll.Selection_EachWithBreak(owner.sIndex, cCallback);
+			var newSelection = ..table.clone(thisSelection);
+			newSelection.sIndex = newIndex;
+			return newSelection;
+		};
+		
+		Html = function(){
+			var Selection_Html = ::GoqueryDll.api("Selection_Html", "bool(int i, string result)");	
+			var stringBuf = ..raw.buffer(#owner.html * 3);
+			var sus = Selection_Html(owner.sIndex, stringBuf);
+			var s;
+			if(sus) s = ..raw.str(stringBuf);
+			return s;
+		};
+		
+		IsFunction = function(callback){
+			var thisSelection = owner;
+			var Callback = function(i, sIndex){
+				var newSelection = ..table.clone(thisSelection);
+				newSelection.sIndex = sIndex;
+				return callback(i, newSelection);
+			}
+			var cCallback = ..raw.tostdcall(Callback, "void(int i, int j)");
+			var ret = ::GoqueryDll.Selection_IsFunction(owner.sIndex, cCallback);
+			return ret;
+		};
+		
+		NotFunction = function(callback){
+			var thisSelection = owner;
+			var Callback = function(i, sIndex){
+				var newSelection = ..table.clone(thisSelection);
+				newSelection.sIndex = sIndex;
+				return callback(i, newSelection);
+			}
+			var cCallback = ..raw.tostdcall(Callback, "void(int i, int j)");
+			var ret = ::GoqueryDll.Selection_NotFunction(owner.sIndex, cCallback);
+			return ret;
+		};
+		
+		Map = function(callback){
+			var thisSelection = owner;
+			var results = ..table.array();
+			var Callback = function(i, sIndex){
+				var newSelection = ..table.clone(thisSelection);
+				newSelection.sIndex = sIndex;
+				var s = callback(i, newSelection);
+				..table.push(results, ..string.trim(s));
+			}
+			var cCallback = ..raw.tostdcall(Callback, "void(int i, int j)");
+			var sIndex = ::GoqueryDll.Selection_Each(owner.sIndex, cCallback);
+			return results;
+		};
+		
+		
+		__get = function(k){
+			return xcall(k, owner);
+		};
+		
+		_type = "goqeury.Selection"
+    )
+}
+
+libInfo = {
+    "version": "1.0.0.1",
+    "author": "kanadeblisst",
+    "description": "goquery封装库，用于解析HTML"
+}
+
+
+NewDocumentFromReader = function(html){
+	var sIndex = ::GoqueryDll.NewDocumentFromReader(html);
+	return Selection(sIndex, html);
+}
+
+nodeName = function(selection){
+	var resultBuf = ..raw.buffer(1000);
+	var nodeName = ::GoqueryDll.api("NodeName", "void(int i, string r)");
+	nodeName(selection.sIndex, resultBuf);
+	var result = ..raw.str(resultBuf);
+	return result;
+}
+
+OuterHtml = function(selection){
+	var htmlLen = #selection.html;
+	if(!htmlLen) error("outerHtml获取原始html长度失败");
+	var bufSize = htmlLen * 4;
+	var resultBuf = ..raw.buffer(bufSize);
+	var outerHtml = ::GoqueryDll.api("OuterHtml", "bool(int i, string r)");
+	outerHtml(selection.sIndex, resultBuf);
+	var result = ..raw.str(resultBuf);
+	return result;
+}
+
+Single = function(selector){
+	var single = ::GoqueryDll.api("Single", "int(string r)");
+	var mIndex = single(selector);
+	return Matcher(mIndex);
+}
+
+/**details(入门教程)
+该库封装自go语言的goquery模块,用css选择器语法解析HTML,封装后的用法几乎和golang的用法一样
+
+github地址: https://github.com/PuerkitoBio/goquery
+end details**/
+
+/**intellisense()
+goquery.NewDocumentFromReader(.(__/*html*/) = 用HTML文本创建doc对象\n!selectionObj.
+goquery.NewDocumentFromReader() = !selectionObj.
+goquery.nodeName(__/*selection*/) = 获取当前selection的节点名称
+goquery.OuterHtml(__/*selection*/) = 获取当前selection的html
+goquery.Single("__/*selector*/") = 创建Matcher对象
+end intellisense**/
+
+/**intellisense()
+!selectionObj.Text() = 获取文本内容
+!selectionObj.Attr("__/*属性名称*/") = 获取某个属性值
+!selectionObj.AttrOr(.(属性名,默认值) = 获取某个属性值，如果不存在返回默认值
+!selectionObj.Each(回调函数) =  @.Each(\n	function(i,newSelection){\n		__/*newSelection也是Selection对象*/	\n	}\n)
+!selectionObj.EachWithBreak(回调函数) = @.EachWithBreak(\n	function(i,newSelection){\n		__/*newSelection也是Selection对象*/	\n	}\n)
+!selectionObj.FilterFunction(回调函数) = @.FilterFunction(\n	function(i,newSelection){\n		__/*newSelection也是Selection对象*/	\n	}\n)
+!selectionObj.Html() = 获取html
+!selectionObj.IsFunction(回调函数) = @.IsFunction(\n	function(i,newSelection){\n		__/*newSelection也是Selection对象*/	\n	}\n)
+!selectionObj.NotFunction(回调函数) = @.NotFunction(\n	function(i,newSelection){\n		__/*newSelection也是Selection对象*/	\n	}\n)
+!selectionObj.Map(回调函数) = @.Map(\n	function(i,newSelection){\n		__/*newSelection也是Selection对象*/	\n	}\n)
+!selectionObj.Size() = 看goquery官方文档
+!selectionObj.Find(.(selector) = 查找选择器\n!selectionObj.
+!selectionObj.Find() = !selectionObj.
+!selectionObj.Filter(.(selector) = 过滤选择器\n!selectionObj.
+!selectionObj.Filter() = !selectionObj.
+!selectionObj.Add() = 看goquery官方文档\n!selectionObj.
+!selectionObj.AddBack() = 看goquery官方文档\n!selectionObj.
+!selectionObj.AddBackFiltered() = 看goquery官方文档\n!selectionObj.
+!selectionObj.AddBackMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.AddMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.AddSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.After() = 看goquery官方文档\n!selectionObj.
+!selectionObj.AfterHtml() = 看goquery官方文档\n!selectionObj.
+!selectionObj.AfterMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.AfterSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Append() = 看goquery官方文档\n!selectionObj.
+!selectionObj.AppendHtml() = 看goquery官方文档\n!selectionObj.
+!selectionObj.AppendMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.AppendSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Before() = 看goquery官方文档\n!selectionObj.
+!selectionObj.BeforeHtml() = 看goquery官方文档\n!selectionObj.
+!selectionObj.BeforeMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.BeforeSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Children() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ChildrenFiltered() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ChildrenMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Clone() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Closest() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ClosestMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ClosestSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Contents() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ContentsFiltered() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ContentsMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Empty() = 看goquery官方文档\n!selectionObj.
+!selectionObj.End() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Eq() = 看goquery官方文档\n!selectionObj.
+!selectionObj.FilterMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.FilterSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.FindMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.FindSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.First() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Has() = 看goquery官方文档\n!selectionObj.
+!selectionObj.HasClass() = 看goquery官方文档\n!selectionObj.
+!selectionObj.HasMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.HasSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Index() = 看goquery官方文档\n!selectionObj.
+!selectionObj.IndexMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.IndexOfSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.IndexSelector() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Is() = 看goquery官方文档\n!selectionObj.
+!selectionObj.IsMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.IsSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Last() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Length() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Next() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NextAll() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NextAllFiltered() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NextAllMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NextFiltered() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NextFilteredUntil() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NextFilteredUntilMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NextFilteredUntilSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NextMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NextMatcherUntilSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NextUntil() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NextUntilMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NextUntilSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Not() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NotMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.NotSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Parent() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ParentFiltered() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ParentMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Parents() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ParentsFiltered() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ParentsFilteredUntil() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ParentsFilteredUntilMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ParentsFilteredUntilSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ParentsMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ParentsMatcherUntilSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ParentsUntil() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ParentsUntilMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ParentsUntilSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Prepend() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrependHtml() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrependMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrependSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Prev() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrevAll() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrevAllFiltered() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrevAllMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrevFiltered() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrevFilteredUntil() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrevFilteredUntilMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrevFilteredUntilSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrevMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrevMatcherUntilSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrevUntil() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrevUntilMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.PrevUntilSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Remove() = 看goquery官方文档\n!selectionObj.
+!selectionObj.RemoveAttr() = 看goquery官方文档\n!selectionObj.
+!selectionObj.RemoveFiltered() = 看goquery官方文档\n!selectionObj.
+!selectionObj.RemoveMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ReplaceWith() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ReplaceWithHtml() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ReplaceWithMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.ReplaceWithSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.SetAttr() = 看goquery官方文档\n!selectionObj.
+!selectionObj.SetHtml() = 看goquery官方文档\n!selectionObj.
+!selectionObj.SetText() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Siblings() = 看goquery官方文档\n!selectionObj.
+!selectionObj.SiblingsFiltered() = 看goquery官方文档\n!selectionObj.
+!selectionObj.SiblingsMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Size() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Slice() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Union() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Unwrap() = 看goquery官方文档\n!selectionObj.
+!selectionObj.Wrap() = 看goquery官方文档\n!selectionObj.
+!selectionObj.WrapAll() = 看goquery官方文档\n!selectionObj.
+!selectionObj.WrapAllHtml() = 看goquery官方文档\n!selectionObj.
+!selectionObj.WrapAllMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.WrapAllSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.WrapHtml() = 看goquery官方文档\n!selectionObj.
+!selectionObj.WrapInner() = 看goquery官方文档\n!selectionObj.
+!selectionObj.WrapInnerHtml() = 看goquery官方文档\n!selectionObj.
+!selectionObj.WrapInnerMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.WrapInnerSelection() = 看goquery官方文档\n!selectionObj.
+!selectionObj.WrapMatcher() = 看goquery官方文档\n!selectionObj.
+!selectionObj.WrapSelection() = 看goquery官方文档\n!selectionObj.
+end intellisense**/

@@ -1,0 +1,192 @@
+﻿import util.metaProperty;
+namespace xmlquery;
+
+var dllpath = DEBUG ? "\lib\xmlquery\.res\xmlquery.dll" : $"~\lib\xmlquery\.res\xmlquery.dll";
+var dll = ..raw.loadDll(dllpath,,"cdecl");
+
+class Node{
+	ctor(nIndex, xmlSize){
+		this.nIndex = nIndex;
+		this.xmlSize = xmlSize;
+		..table.gc(this, "release")
+	}
+	
+	@_metaProperty;
+}
+
+namespace Node{
+	ReleaseNode = dll.api("ReleaseNode", "void(int i)");	
+    
+    _metaProperty = ..util.metaProperty( 
+    	release = function(){
+			ReleaseNode(owner.nIndex)
+		};
+		
+		InnerText = function(){
+			if(!owner.xmlSize) return;
+			var InnerTextFunc = dll.api("InnerText", "bool(int i, string a)");
+			var stringBuf = ..raw.buffer(owner.xmlSize*4);
+			var exists = InnerTextFunc(owner.nIndex, stringBuf);
+			var s;
+			if(exists) s = ..raw.str(stringBuf);
+			return s;
+		};
+		
+		OutputXML = function(b=true){
+			if(!owner.xmlSize) return;
+			var OutputXMLFunc = dll.api("OutputXML", "bool(int i, bool b,string a)");
+			var stringBuf = ..raw.buffer(owner.xmlSize*4);
+			var exists = OutputXMLFunc(owner.nIndex, b, stringBuf);
+			var s;
+			if(exists) s = ..raw.str(stringBuf);
+			return s;
+		};
+		
+		RemoveAttr = function(key){
+			var RemoveAttrFunc = dll.api("RemoveAttr", "bool(int nIndex,string key)");
+			var ret = RemoveAttrFunc(owner.nIndex, key);
+			return ret;
+		};
+		
+		SelectAttr = function(name){
+			var SelectAttrFunc = dll.api("SelectAttr", "bool(int i, string b,string a)");
+			var stringBuf = ..raw.buffer(10240);
+			var exists = SelectAttrFunc(owner.nIndex, name, stringBuf);
+			var s;
+			if(exists) s = ..raw.str(stringBuf);
+			return s;
+		};
+		
+		SelectElement = function(name){
+			var SelectElementFunc = dll.api("SelectElement", "int(int i, string b)");
+			var nIndex2 = SelectElementFunc(owner.nIndex, name);
+			var newNode = ..table.clone(owner);
+			newNode.nIndex = nIndex2;
+			return newNode;
+		};
+		
+		SelectElements = function(name){
+			var SelectElementsFunc = dll.api("SelectElements", "bool(int nIndex,string name,POINTER callback)");
+			var results = ..table.array();
+			var thisNode = owner;
+			var Callback = function(i, nIndex2){
+				var newNode = ..table.clone(thisNode);
+				newNode.nIndex = nIndex2;
+				..table.push(results, newNode);
+			}
+			var cCallback = ..raw.tostdcall(Callback, "void(int i, int j)");
+			var ret = SelectElementsFunc(owner.nIndex, name, cCallback);
+			return results;
+		}
+		
+		SetAttr = function(key, val){
+			var SetAttrFunc = dll.api("SetAttr", "bool(int i, string b,string a)");
+			var ret = SetAttrFunc(owner.nIndex, key, val);
+			return ret;
+		};
+	)
+	
+}
+
+libInfo = {
+    "version": "1.0.0.1",
+    "author": "kanadeblisst",
+    "description": "xmlquery封装库，用于解析XML"
+}
+
+
+AddAttr = function(node, key, val){
+	var AddAttrFunc = dll.api("AddAttr", "bool(int nIndex,string key,string val)");
+	var ret = AddAttrFunc(node.nIndex, key, val);
+	return ret;
+}
+
+AddChild = function(node, node1){
+	var AddChildFunc = dll.api("AddChild", "bool(int nIndex,int nIndex2)");
+	var ret = AddChildFunc(node.nIndex, node1.nIndex);
+	return ret;
+}
+
+AddSibling = function(node, node1){
+	var AddSiblingFunc = dll.api("AddSibling", "bool(int nIndex,int nIndex2)");
+	var ret = AddSiblingFunc(node.nIndex, node1.nIndex);
+	return ret;
+}
+
+RemoveFromTree = function(node){
+	var RemoveFromTreeFunc = dll.api("RemoveFromTree", "bool(int nIndex)");
+	var ret = RemoveFromTreeFunc(node.nIndex);
+	return ret;
+}
+
+Find = function(node, expr){
+	var Find_Each = dll.api("Find_Each", "bool(int nIndex,string name,POINTER callback)");
+	var results = ..table.array();
+	var Callback = function(i, nIndex2){
+		..table.push(results, Node(nIndex2, node.xmlSize));
+	}
+	var cCallback = ..raw.tostdcall(Callback, "void(int i, int j)");
+	var ret = Find_Each(node.nIndex, expr, cCallback);
+	return results;
+}
+
+FindOne = function(node, expr){
+	var FindOneFunc = dll.api("FindOne", "int(int nIndex,string expr)");
+	var nIndex2 = FindOneFunc(node.nIndex, expr);
+	if(nIndex2 == 0) return;
+	return Node(nIndex2, node.xmlSize);
+}
+
+Parse = function(xml){
+	var ParseFunc = dll.api("Parse", "int(string a)");
+	var nIndex = ParseFunc(xml);
+	if(nIndex == 0) return;
+	return Node(nIndex, #xml);
+}
+
+Query = function(node, expr){
+	var QueryFunc = dll.api("Query", "bool(int i, string a)");
+	var nIndex2 = QueryFunc(node.nIndex, expr);
+	if(nIndex2 == 0) return;
+	return Node(nIndex2, node.xmlSize);
+}
+
+QueryAll = function(node, expr){
+	var QueryAll_Each = dll.api("QueryAll_Each", "bool(int nIndex,string name,POINTER callback)");
+	var results = {};
+	var Callback = function(i, nIndex2){
+		..table.push(results, Node(nIndex2, node.xmlSize));
+	}
+	var cCallback = ..raw.tostdcall(Callback, "void(int i, int j)");
+	var ret = QueryAll_Each(node.nIndex, expr, cCallback);
+	return results;
+}
+
+
+/**details(入门教程)
+该库封装自go语言的xmlquery模块,用xpath解析xml,封装后的用法几乎和golang的用法一样
+
+github地址: https://github.com/antchfx/xmlquery
+end details**/
+
+/**intellisense()
+xmlquery.AddAttr(.(node,key,val) = 添加属性
+xmlquery.AddChild(.(node,node1) = 添加节点
+xmlquery.AddSibling(.(node,node1) = ***
+xmlquery.RemoveFromTree(.(node) = ***
+xmlquery.Find(.(node,xpath表达式) = 查找节点，返回节点列表
+xmlquery.FindOne(.(node,xpath表达式) = 查找节点，返回第一个找到的节点
+xmlquery.FindOne() = !nodeObj.
+xmlquery.Parse(.(XML) = 从字符串解析
+xmlquery.Parse() = !nodeObj.
+xmlquery.Query(.(node,xpath表达式) = 查找节点，返回第一个找到的节点
+xmlquery.Query() = !nodeObj.
+xmlquery.QueryAll(.(node,xpath表达式) = 查找节点，返回节点列表
+!nodeObj.InnerText() = 看官方文档
+!nodeObj.OutputXML() = 看官方文档
+!nodeObj.RemoveAttr() = 看官方文档
+!nodeObj.SelectAttr() = 看官方文档
+!nodeObj.SelectElement() = 看官方文档
+!nodeObj.SelectElements() = 看官方文档
+!nodeObj.SetAttr() = 看官方文档
+end intellisense**/

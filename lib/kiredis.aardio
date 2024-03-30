@@ -1,0 +1,302 @@
+﻿//redis客户端
+class kiredis{
+    ctor(host,port){
+        this._context=wsock.tcp.client();
+        if(null===this._context.connect(host,port)) 
+                        return null,"Connection server failed";
+        this.is_read = true;        
+        ..table.add_gc( this,"close");
+    };
+    @_meta;
+    
+    close = function(){
+        this._context.close();
+    }   
+    _read_str=function(redis_str){
+        return string.slice(redis_str,2,#redis_str); 
+    }
+    _read_int=function(redis_str){
+        return tonumber(string.slice(redis_str,2,#redis_str));
+    }
+    _read_bulk=function(redis_str){
+        var pos= string.indexOf(redis_str,'\r\n');
+        if(!pos) return ; 
+        var data_num = tonumber(string.slice(redis_str,2,pos-1));
+        if( !data_num or data_num === -1) return ; 
+        return string.slice(redis_str,pos+2,pos+2+data_num-1);
+    }
+    _read_err=function(redis_str){
+    	return string.slice(redis_str,2,#redis_str);
+    }
+    _redis_read=function(socket_data){
+        socket_data =string.trimleft(socket_data);
+        var first_char= string.left(socket_data,1)
+        
+        select(first_char) { 
+            case "+" {
+            	return this._read_str(socket_data);
+            }
+            case "-" {
+            	return this._read_err(socket_data);
+            }
+            case ":" {
+            	return this._read_int(socket_data);
+            }
+            case "$" {
+            	return this._read_bulk(socket_data);
+            }
+            case "*" {
+                var pos= string.indexOf(socket_data,'\r\n');
+                if(!pos) return ;
+                var tab={}
+                
+                var remove = pos + 2;
+                while(1){
+                    socket_data = string.slice(socket_data,remove,#socket_data);
+                    if(type(socket_data) !== type.string) break ;
+                    pos= string.indexOf(socket_data,'\r\n');
+                    if(!pos) break ;
+                    
+                    var ret;
+                    var line_data=string.slice(socket_data,1,pos);
+                    var line_type = string.left(line_data,1)
+                    
+                    ret = this._redis_read( line_data );
+                	if(line_type==="$"){
+                    
+                        var line_num = tonumber(string.slice(line_data,2,#line_data));
+                    
+                        if(line_num === -1){
+                                ret = this._redis_read(line_data );
+                        }else {
+                                //多行
+                                line_data = string.left(socket_data,#line_data+2+line_num)
+                                ret = this._redis_read( line_data );
+                        }
+                    }else {
+                    	ret = this._redis_read( line_data );
+                    }
+                    remove = #line_data+2;
+                    if(ret) table.push(tab,ret);
+                }
+                return tab:{};
+            }
+            else {
+            	return null;
+            }
+        }
+    }
+    
+    commands=function(...){
+        var t={...};
+        var r = '\r\n';
+        var num = #t
+        
+        var cmdtxt = "*"++num++r;
+        for(i=1;num;1){
+            t[i] = tostring(t[i])
+            cmdtxt += "$"++#t[i]++r;
+            cmdtxt += t[i]++r 
+        }
+        this._context.send(cmdtxt,#cmdtxt)
+        if( this.is_read ) return this._redis_read(this._context.recv());
+    }
+    
+    get_array =function(redis_array,sn=0,dn=-1) {
+    	return this.commands("LRANGE",redis_array,sn,dn); 
+    }
+    
+    set_array=function (redis_array,redis_array_val) {
+        this.is_read =false;
+        this.commands("DEL",redis_array);
+        for(i=1;#redis_array_val;1){
+        	this.commands("RPUSH",redis_array,redis_array_val[i]);
+        }
+        this.is_read = true;
+        return this._context.recv();
+    }
+}
+
+namespace kiredis { 
+    import wsock.tcp.client;
+    string = ..string;
+    table = ..table;
+    
+    libInfo = {
+        "version": "1.0.0.1",
+        "author": "aardio论坛",
+        "description": "redis客户端"
+    }
+    
+    _meta = {
+        _get = function( k ){
+            if( type(k) == "string" && k[1]=='_'# ) return;
+            if(!k) return;
+            if(!owner[['commands']]) return ;
+             
+            var api = {
+                _cmd = k;
+                _cmdfunc=owner[['commands']];
+                @_meta;
+            }
+            owner[[k]] = api;
+            return api;
+        }
+        _call = function( ... ){ 
+        	return owner._cmdfunc(owner._cmd,...)
+        }
+    }
+}
+
+/**details(入门教程)
+该库来源于aardio论坛：https://bbs.aardio.com/forum.php?mod=viewthread&tid=22469
+
+其实官方有个hiredis库作为redis客户端，使用该库的原因只是因为轻量，不需要dll。
+所有命令可以看: http://doc.redisfans.com/
+end details**/
+
+
+/**intellisense()
+kiredis() = !redisClient.
+!redisClient.del() = 参考上面的文档
+!redisClient.dump() = 参考上面的文档
+!redisClient.exists() = 参考上面的文档
+!redisClient.expire() = 参考上面的文档
+!redisClient.expireat() = 参考上面的文档
+!redisClient.keys() = 参考上面的文档
+!redisClient.migrate() = 参考上面的文档
+!redisClient.move() = 参考上面的文档
+!redisClient.object() = 参考上面的文档
+!redisClient.persist() = 参考上面的文档
+!redisClient.pexpire() = 参考上面的文档
+!redisClient.pexpireat() = 参考上面的文档
+!redisClient.pttl() = 参考上面的文档
+!redisClient.randomkey() = 参考上面的文档
+!redisClient.rename() = 参考上面的文档
+!redisClient.renamenx() = 参考上面的文档
+!redisClient.restore() = 参考上面的文档
+!redisClient.sort() = 参考上面的文档
+!redisClient.ttl() = 参考上面的文档
+!redisClient.type() = 参考上面的文档
+!redisClient.scan() = 参考上面的文档
+!redisClient.append() = 参考上面的文档
+!redisClient.bitcount() = 参考上面的文档
+!redisClient.bitop() = 参考上面的文档
+!redisClient.decr() = 参考上面的文档
+!redisClient.decrby() = 参考上面的文档
+!redisClient.get() = 参考上面的文档
+!redisClient.getbit() = 参考上面的文档
+!redisClient.getrange() = 参考上面的文档
+!redisClient.getset() = 参考上面的文档
+!redisClient.incr() = 参考上面的文档
+!redisClient.incrby() = 参考上面的文档
+!redisClient.incrbyfloat() = 参考上面的文档
+!redisClient.mget() = 参考上面的文档
+!redisClient.mset() = 参考上面的文档
+!redisClient.msetnx() = 参考上面的文档
+!redisClient.psetex() = 参考上面的文档
+!redisClient.set() = 参考上面的文档
+!redisClient.setbit() = 参考上面的文档
+!redisClient.setex() = 参考上面的文档
+!redisClient.setnx() = 参考上面的文档
+!redisClient.setrange() = 参考上面的文档
+!redisClient.strlen() = 参考上面的文档
+!redisClient.hdel() = 参考上面的文档
+!redisClient.hexists() = 参考上面的文档
+!redisClient.hget() = 参考上面的文档
+!redisClient.hgetall() = 参考上面的文档
+!redisClient.hincrby() = 参考上面的文档
+!redisClient.hincrbyfloat() = 参考上面的文档
+!redisClient.hkeys() = 参考上面的文档
+!redisClient.hlen() = 参考上面的文档
+!redisClient.hmget() = 参考上面的文档
+!redisClient.hmset() = 参考上面的文档
+!redisClient.hset() = 参考上面的文档
+!redisClient.hsetnx() = 参考上面的文档
+!redisClient.hvals() = 参考上面的文档
+!redisClient.hscan() = 参考上面的文档
+!redisClient.blpop() = 参考上面的文档
+!redisClient.brpop() = 参考上面的文档
+!redisClient.brpoplpush() = 参考上面的文档
+!redisClient.lindex() = 参考上面的文档
+!redisClient.linsert() = 参考上面的文档
+!redisClient.llen() = 参考上面的文档
+!redisClient.lpop() = 参考上面的文档
+!redisClient.lpush() = 参考上面的文档
+!redisClient.lpushx() = 参考上面的文档
+!redisClient.lrange() = 参考上面的文档
+!redisClient.lrem() = 参考上面的文档
+!redisClient.lset() = 参考上面的文档
+!redisClient.ltrim() = 参考上面的文档
+!redisClient.rpop() = 参考上面的文档
+!redisClient.rpoplpush() = 参考上面的文档
+!redisClient.rpush() = 参考上面的文档
+!redisClient.rpushx() = 参考上面的文档
+!redisClient.sadd() = 参考上面的文档
+!redisClient.scard() = 参考上面的文档
+!redisClient.sdiff() = 参考上面的文档
+!redisClient.sdiffstore() = 参考上面的文档
+!redisClient.sinter() = 参考上面的文档
+!redisClient.sinterstore() = 参考上面的文档
+!redisClient.sismember() = 参考上面的文档
+!redisClient.smembers() = 参考上面的文档
+!redisClient.smove() = 参考上面的文档
+!redisClient.spop() = 参考上面的文档
+!redisClient.srandmember() = 参考上面的文档
+!redisClient.srem() = 参考上面的文档
+!redisClient.sunion() = 参考上面的文档
+!redisClient.sunionstore() = 参考上面的文档
+!redisClient.sscan() = 参考上面的文档
+!redisClient.zadd() = 参考上面的文档
+!redisClient.zcard() = 参考上面的文档
+!redisClient.zcount() = 参考上面的文档
+!redisClient.zincrby() = 参考上面的文档
+!redisClient.zrange() = 参考上面的文档
+!redisClient.zrangebyscore() = 参考上面的文档
+!redisClient.zrank() = 参考上面的文档
+!redisClient.zrem() = 参考上面的文档
+!redisClient.zremrangebyrank() = 参考上面的文档
+!redisClient.zremrangebyscore() = 参考上面的文档
+!redisClient.zrevrange() = 参考上面的文档
+!redisClient.zrevrangebyscore() = 参考上面的文档
+!redisClient.zrevrank() = 参考上面的文档
+!redisClient.zscore() = 参考上面的文档
+!redisClient.zunionstore() = 参考上面的文档
+!redisClient.zinterstore() = 参考上面的文档
+!redisClient.zscan() = 参考上面的文档
+!redisClient.psubscribe() = 参考上面的文档
+!redisClient.publish() = 参考上面的文档
+!redisClient.pubsub() = 参考上面的文档
+!redisClient.punsubscribe() = 参考上面的文档
+!redisClient.subscribe() = 参考上面的文档
+!redisClient.unsubscribe() = 参考上面的文档
+!redisClient.discard() = 参考上面的文档
+!redisClient.exec() = 参考上面的文档
+!redisClient.multi() = 参考上面的文档
+!redisClient.unwatch() = 参考上面的文档
+!redisClient.watch() = 参考上面的文档
+end intellisense**/
+
+/**
+import console; 
+import kiredis;
+io.open()
+r = kiredis("127.0.0.1", 6379);
+if (r.auth("123456") == 'OK\r\n'){//验证密码
+	io.print(r.select(1)) //选择数据库
+	io.print(r.set("aaaaa", "fdsdfsf")) //设置键
+}
+console.pause(true);
+**/
+
+/**
+import console; 
+import hiredis;
+io.open()
+r = hiredis('127.0.0.1',6379);
+r.setTimeout(10,)
+r.command({"AUTH";"123456"})
+io.print(r.command({"SELECT";"1"}))
+io.print(r.command({"SET";"aaa";"dsd"}))
+console.pause(true);
+**/

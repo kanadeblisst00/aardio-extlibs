@@ -1,0 +1,20 @@
+import console; 
+import htmlquery;
+io.open()
+
+var htmlPath = "T:\Code\aardio_code\extlibs\res\htmlquery\你好_百度搜索.html"
+var doc = htmlquery.LoadDoc(htmlPath)
+
+//var doc = htmlquery.Parse(string.load(htmlPath))
+var nodeList = htmlquery.Find(doc, '//h3[@class="c-title t t tts-title"]')
+for i,node in nodeList{
+	var aNode = htmlquery.FindOne(node, './a[@tabindex="0"]');
+	var classValue = htmlquery.SelectAttr(aNode, "href")
+	var text = htmlquery.InnerText(aNode)
+	var oHtml = htmlquery.OutputHTML(aNode)
+	console.log("classValue: ", classValue)
+	console.log("text: ", text)
+	console.log("oHtml: ", oHtml)
+}
+
+console.pause(true);

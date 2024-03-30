@@ -1,0 +1,52 @@
+﻿import web.json;
+namespace tlsClient;
+	
+class response{
+	ctor(request_payload, response_object){
+		this.request = request_payload;
+		this.protocol = response_object.usedProtocol;
+		this.url = response_object.target;
+		this.status_code = response_object.status;
+		this.status = response_object.status;
+		this.cookies = response_object.cookies;
+		this.body = response_object.body;
+		this.text = response_object.body;
+		this.headers = {};
+		for k,v in response_object["headers"]{
+			if(#v == 1){
+				this.headers[k] = v[1];
+			}
+		}
+		this.json = function(){
+			return ..web.json.tryParse(owner.body);
+		}
+		
+		this.encoding = "utf-8";
+	}
+}
+
+namespace response{
+	ENCODINGS = {
+		["gbk"] = 936;
+		["gb2312"] = 936;
+		["utf-8"] = 65001;
+		["utf8"] = 65001;
+		[936] = "gbk";
+		[65001]= "utf-8";
+	}
+	
+}
+
+/**intellisense()
+tlsClient.response( = 创建响应对象
+tlsClient.response(.(request_payload,response_object) = 参数为请求时的数据，和响应的原始对象
+!tlsClientResponse.protocol = 请求使用的http协议，如果没有设置，\n默认是1.1
+!tlsClientResponse.url = 请求的URL链接
+!tlsClientResponse.status = 响应的状态码
+!tlsClientResponse.cookies = 响应的cookies
+!tlsClientResponse.body = 响应的二进制数据
+!tlsClientResponse.text = 响应的文本数据，不过aardio中不区分字节和字符串，\n所以跟body是同一个值
+!tlsClientResponse.headers = 响应头
+!tlsClientResponse.json() = 将响应作为json解析成aardio对象
+tlsClient.response() = !tlsClientResponse.
+end intellisense**/

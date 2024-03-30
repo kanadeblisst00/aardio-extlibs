@@ -1,0 +1,562 @@
+﻿
+namespace pyaardio;
+
+class str{
+	ctor(s){
+		this.rawStr = s;
+	}
+	@_metaProperty;
+}
+
+namespace str{
+	string = ..string;
+	table = ..table;
+	math = ..math;
+	
+	formatSlice = function(i,j, len){
+		if(i>=len || j === 0) return ;
+		if(i === null) i=0;
+		if(j === null || j > len) j = len;
+		if(i<0) i = math.max(0, len+i);
+    	if(j<0) j = math.min(len, len+j+1);
+    	return i,j;
+	}
+	
+	splitString = function(s){
+		var t = {};
+		for(i=1;string.len(s);1){
+			table.push(t, string.slice(s,i,i,true))
+		}
+		return t;
+	}
+	
+	_metaProperty = ..util.metaProperty(
+    	_tostring = function(...){
+    		return owner.rawStr;
+    	};
+    	
+    	_mul = function(b) {
+			if(type(b) != type.number) b = 1;
+			var ss = ""; 
+			for(i=1;b;1){
+				ss = ss ++ owner.rawStr;
+			}
+			var newStr = table.clone(owner);
+    		newStr.rawStr = ss;
+			return newStr;
+		}
+		
+		_eq = function(b) {
+			if(type(b) != type(owner)) return;
+			return string.cmp(owner.rawStr, b.rawStr) == 0;
+		}
+		
+		_lt = function(b) {
+			if(type(b) != type(owner)){
+				return;
+			}
+			var s1 = owner.rawStr;
+			var s2 = b.rawStr;
+			var l = math.min(#s1, #s2);
+			for(i=1;l*3;1){
+				if(!s1[i] && s2[i]) return true;
+				if(!s2[i] && s1[i]) return false;
+				if(!s2[i] && !s2[i]) return false;
+				if(s1[i] < s2[i]) return true;
+				elseif(s1[i] == s2[i]) continue;
+				else return false;
+			}
+		};
+		
+		_len = function() {
+			return string.len(owner.rawStr);
+		};
+		
+		__get = function(k,ownerCall) {
+			if(type(k) != type.string) return;
+			if(string.find(k, "@:")){
+				var t = string.split(k,":");
+				var i = t[1];
+				var j = t[2];
+				return string.slice(owner.rawStr,i+1,j,true); 
+			}else{
+				var index = tonumber(k);
+				return string.slice(owner.rawStr,index+1,index+1,true); 
+			}
+		};
+		
+		_concat = function(b) {
+			return owner + b;
+		}
+		
+		_type = "pyaardio.str";
+		
+		_add = function(b) {
+			if(type(b) == type(owner)){
+				var newStr = table.clone(owner);
+    			newStr.rawStr = owner.rawStr + b.rawStr;
+    			return newStr;
+			}elseif(type(b) == type.string){
+				var newStr = table.clone(owner);
+    			newStr.rawStr = owner.rawStr + b;
+    			return newStr;
+			}else{
+				return owner;
+			}
+		}
+    	
+    	capitalize = function(){
+    		var ss = string.trimleft(owner.rawStr);
+    		var s1 = string.slice(ss,1,1);
+    		var s0 = string.slice(ss,2);
+    		var ns = string.upper(s1) + string.lower(s0);
+    		var newStr = table.clone(owner);
+    		newStr.rawStr = ns;
+    		return newStr;
+    	};
+    	
+    	casefold = function(){
+    	    var newStr = table.clone(owner);
+    		newStr.rawStr = string.lower(owner.rawStr);
+    		return newStr;
+    	};
+    	
+    	center = function(width, fillchar=" "){
+    	    var ss = owner.rawStr;
+    	    var len = string.len(ss);
+    	    if(type(fillchar) != type.string || string.len(fillchar) != 1) return;
+    	    if(!len){
+    	         var newStr = table.clone(owner);
+    	         newStr.rawStr = fillchar;
+    	         return newStr*width; 
+    	    }
+    	    if(width <= len){
+    		    return owner;
+    		}
+    		var paddingSize = width - len;
+    		var leftPaddingSize = ..math.floor(paddingSize/2);
+    		var rightPaddingSize = paddingSize - leftPaddingSize;
+    		var leftStr = table.clone(owner);
+    	    leftStr.rawStr = fillchar;
+    	    var rightStr = table.clone(owner);
+    	    rightStr.rawStr = fillchar;
+    		return leftStr*leftPaddingSize + owner + rightStr*rightPaddingSize;
+    	};
+    	
+    	find = function(sub,i,j){
+    	    if(type(sub) == type(owner)) sub = sub.rawStr;
+    	    var s = owner.rawStr;
+    	    var len = string.len(s);
+    	    i,j = formatSlice(i,j,len);
+    	    if(!j) return -1;
+    		s = string.slice(s,1,j,true); 
+    		if(i+string.len(sub) > len) return -1;
+    	    var si,sj = string.find(s,"@"+sub,i+1,true);
+    		if(!si) si = 0;
+    		return si-1;
+    	};
+    	
+    	count = function(sub,i,j){
+    		if(type(sub) == type(owner)) sub = sub.rawStr;
+    		var len = string.len(owner.rawStr);
+    		i,j = formatSlice(i,j,len);
+    		if(!j) return 0;
+    		var count = 0;
+    		var pos;
+    		var subLen = string.len(sub);
+    		while(i<j){
+    		    pos = owner.find(sub,i,j);
+    		    if(pos == -1) break;
+    		    count += 1;
+    		    i = pos + subLen;
+    		    if(i+subLen>len) break;
+    		}
+    		return count;
+    	};
+    	
+    	encode = function(encoding="utf-8"){
+    		
+    	};
+    	
+    	endswith = function(suffix,i,j){
+    	    var len = string.len(owner.rawStr);
+    		i,j = formatSlice(i,j,len);
+    		if(!j) return false;
+    		var s = string.slice(owner.rawStr, i+1,j,true);
+    		return string.endWith(s,suffix);
+    	};
+    	
+    	expandtabs = function(tabsize=8){
+    	    var spaceStr = table.clone(owner);
+    	    spaceStr.rawStr = " ";
+    	    var space = spaceStr*tabsize;
+    	    ..console.dump({"":spaceStr})
+    		return string.replace(owner.rawStr,"\t",space.rawStr);
+    	};
+    	
+    	format = function(...){
+    	    var kwargs = {...};
+    	    if(type(kwargs[1]) == type.table) kwargs = kwargs[1];
+    	    return owner.format_map(kwargs);
+    	    
+    	};
+    	
+    	format_map = function(kwargs){
+    		if(table.isArray(kwargs)){	
+    	        kwargs = table.map(kwargs,function(v,k,result){
+    	        	result[tostring(k-1)] = v;
+    	    	})
+    	    }
+    	    var s = owner.rawStr;
+    		var cc = function(){
+				var count = 0;
+				var func = function(b){
+					var r = "{" ++ count ++"}";
+					count += 1;
+					return r
+				}
+				return func
+			}
+			if(owner.find("{}")  != -1){
+				formatStr = string.replace(s,"\{\}",cc())
+			}else{
+				formatStr = s;
+			}
+			var newStr = table.clone(owner);
+			newStr.rawStr = ..string.replace(formatStr,"\{(.+?)\}",kwargs );
+			return newStr;
+    	};
+    	
+    	index = function(...){
+    		return owner.find(...)
+    	};
+    	
+    	isalpha = function(){
+    		var s = string.match(owner.rawStr,"[a-zA-Z]+");
+    		return s == owner.rawStr;
+    	};
+    	
+    	isascii = function(){
+    	    var s = owner.rawStr;
+    	    if(#s != string.len(s)){
+    	        return false;
+    	    }
+    		var r = true;
+    		for(i=1;#s;1){
+    		    if(s[i] > 127){
+    		        r = false;
+    		        break;
+    		    }
+    		}
+    		return r;
+    	};
+    	
+    	isdecimal = function(){
+    		var s = string.match(owner.rawStr,"[0-9]+");
+    		return s == owner.rawStr;
+    	};
+    	
+    	isdigit = function(){
+    		return owner.isdecimal();
+    	};
+    	
+    	isidentifier = function(){
+    		var s = string.match(owner.rawStr,"[0-9a-zA-Z_]+");
+    		return s == owner.rawStr;
+    	};
+    	
+    	islower = function(){
+    		if(!string.match(owner.rawStr,"[a-z]+")) return false; 
+    		if(string.match(owner.rawStr,"[A-Z]+")) return false; 
+    		return true;
+    	};
+    	
+    	isnumeric = function(){
+    		return owner.isdecimal();
+    	};
+    	
+    	isprintable = function(){
+    		return true;
+    	};
+    	
+    	isspace = function(){
+    		var s = string.match(owner.rawStr,"[ \t\n\r\v\f]+");
+    		return s == owner.rawStr;
+    	};
+    	
+    	istitle = function(){
+    	    var s = owner.rawStr;
+    		if(!#s) return false;
+    		var t = string.splitEx(s,"[^a-zA-Z]");
+    		for(i=1;#t;1){
+    		    var s0 = t[1];
+    		    if(!#s0) continue;
+     		    if(s0[1]<64 || s0[1]>91){
+    		         return false;
+    		    }
+    		    var newStr = table.clone(owner);
+    		    newStr.rawStr = string.slice(s0,2,,true);
+    		    if(!newStr.islower()){
+    		        return false;
+    		    }
+    		}
+    		return true;
+    	};
+    	
+    	isupper = function(){
+    		if(!string.match(owner.rawStr,"[A-Z]+")) return false; 
+    		if(string.match(owner.rawStr,"[a-z]+")) return false; 
+    		return true;
+    	};
+    	
+    	join = function(t){
+    	    var newStr = table.clone(owner);
+    		newStr.rawStr = string.join(t,owner.rawStr);
+    		return newStr;
+    	};
+    	
+    	ljust = function(width, fillchar=" "){
+    		var ss = owner.rawStr;
+    	    var len = string.len(ss);
+    	    if(type(fillchar) != type.string || string.len(fillchar) != 1) return;
+    	    if(!len){
+    	         var newStr = table.clone(owner);
+    	         newStr.rawStr = fillchar;
+    	         return newStr*width; 
+    	    }
+    	    if(width <= len){
+    		    return owner;
+    		}
+    		var paddingSize = width - len;
+    		var rightStr = table.clone(owner);
+    	    rightStr.rawStr = fillchar;
+    	    return owner + rightStr*paddingSize;
+    	};
+    	
+    	lower = function(){
+    		var newStr = table.clone(owner);
+    	    newStr.rawStr = string.lower(owner.rawStr);
+    	    return newStr;
+    	};
+    	
+    	lstrip = function(chars){
+    		if(!chars){
+    		    var newStr = table.clone(owner);
+    	   		newStr.rawStr = string.trimleft(owner.rawStr," \r\n\t\f\v");
+    	   		return newStr;
+    		}
+    		if(type(chars) == type(owner)) chars = chars.rawStr;
+    		if(#chars == string.len(chars)){
+    			var newStr = table.clone(owner);
+    	   		newStr.rawStr = string.trimleft(owner.rawStr, chars);
+    	   		return newStr;
+    		}else{
+    		    var newStr = table.clone(owner);
+    	   		newStr.rawStr = string.replace(owner.rawStr,"^["++chars++"]+","");
+    		    return newStr;
+    		}
+    		
+    	};
+    	
+    	maketrans = function(intab, outtab){
+    		if(type(intab) == type.string){
+    		   intab = splitString(intab);
+    		}
+    		if(type(outtab) == type.string){
+    		   outtab = splitString(outtab);
+    		}
+    		var min = math.min(#intab,#outtab);
+    		var r = {};
+    		for(i=1;min;1){
+    		    r[intab[i]] = outtab[i];
+    		}
+    		return r;
+    	};
+    	
+    	partition = function(sep){
+    	    if(type(sep) == type(owner)) sep = sep.rawStr;
+    	    var t = string.split(owner.rawStr, "<"+sep+">",2);
+    	    if(!t[2]){
+    	        return {owner.rawStr;"";""};
+    	    }
+    	    return {t[1];sep;t[2]};
+    	};
+    	
+    	replace = function(old, new, count){
+    	    if(type(old) == type(owner)) old = old.rawStr;
+    	    if(type(new) == type(owner)) new = new.rawStr;
+    	    var newStr = table.clone(owner);
+    	   	newStr.rawStr = string.replace(owner.rawStr,"@"+old,new,count);
+    	   	return newStr;
+    	};
+    	
+    	rfind = function(sub,i,j){
+    		if(type(sub) == type(owner)) sub = sub.rawStr;
+    	    var s = owner.rawStr;
+    	    var len = string.len(s);
+    	    i,j = formatSlice(i,j,len);
+    	    if(!j) return -1;
+    		s = string.slice(s,i,j,true); 
+    		var subLen = string.len(sub);
+    		for(i=-1;-string.len(s);-1){
+    		    if(string.slice(s,i-subLen+1,i,true) == sub){
+    		        return len+i-subLen+1;
+    		    }
+    		}
+    		
+    		return -1;
+    	};
+    	
+    	rindex = function(sub,i,j){
+    		return owner.rfind(sub,i,j);
+    	};
+    	
+    	rjust = function(width, fillchar=" "){
+    		var ss = owner.rawStr;
+    	    var len = string.len(ss);
+    	    if(type(fillchar) != type.string || string.len(fillchar) != 1) return;
+    	    if(!len){
+    	         var newStr = table.clone(owner);
+    	         newStr.rawStr = fillchar;
+    	         return newStr*width; 
+    	    }
+    	    if(width <= len){
+    		    return owner;
+    		}
+    		var paddingSize = width - len;
+    		var rightStr = table.clone(owner);
+    	    rightStr.rawStr = fillchar;
+    	    return rightStr*paddingSize+owner;
+    	};
+    	
+    	rpartition = function(sub){
+    		var rindex = owner.rfind(sub);
+    		var s = owner.rawStr;
+    		if(rindex == -1) return {"";"";s};
+    		var t1 = string.slice(s,1,rindex,true);
+    		var t3 = string.slice(s,rindex+1+string.len(sub),,true)
+    		var t = {t1;sub;t3};
+    		return t;
+    	};
+    	
+    	rsplit = function(sep,count){
+    		var t = owner.split(sep);
+    		if(!count) return t;
+    		var t1 = table.slice(t,1,#t-count);
+    		var t2 = table.slice(t,#t-count+1);
+    		return table.concat({string.join(t1,sep)},t2);
+    	};
+    	
+    	rstrip = function(chars){
+    		if(!chars){
+    		    var newStr = table.clone(owner);
+    	   		newStr.rawStr = string.trimright(owner.rawStr," \r\n\t\f\v");
+    	   		return newStr;
+    		}
+    		if(type(chars) == type(owner)) chars = chars.rawStr;
+    		if(#chars == string.len(chars)){
+    			var newStr = table.clone(owner);
+    	   		newStr.rawStr = string.trimright(owner.rawStr, chars);
+    	   		return newStr;
+    		}else{
+    		    var newStr = table.clone(owner);
+    	   		newStr.rawStr = string.trimright(owner.rawStr,"["++chars++"]+$","");
+    		    return newStr;
+    		}
+    	};
+    	
+    	split = function(sep,count){
+    	    if(type(sep) == type(owner)) sep = sep.rawStr;
+    	    if(sep === null){
+    	        var t;
+    	    	if(count) t = string.splitEx(owner.rawStr,"[ \r\n\t\f\v]",count);
+    	    	else t = string.splitEx(owner.rawStr,"[ \r\n\t\f\v]");
+    	        return t;
+    	    }
+    	    var t;
+    	    if(count) t = string.split(owner.rawStr,"<"++sep++">",count+1);
+    	    else t = string.split(owner.rawStr,"<"++sep++">")
+    		return t;
+    	};
+    	
+    	splitlines = function(){
+    		var t = string.splitEx(owner.rawStr,"\n");
+    		var r = table.map(t,function(v,k,result){
+    			result[k] = string.trimright(v,"\r");
+    		})
+    		return r;
+    	};
+    	
+    	startswith = function(prefix,i,j){
+    		var len = string.len(owner.rawStr);
+    		i,j = formatSlice(i,j,len);
+    		if(!j) return false;
+    		var s = string.slice(owner.rawStr, i+1,j,true);
+    		return string.endWith(s,suffix);
+    	};
+    	
+    	swapcase = function(){
+    		var t0 = splitString(owner.rawStr);
+    		var r = table.array();
+    		for(i=1;#t0;1){
+    		    var c = t0[i];
+    		    if(c[1]> 65 && c[1] < 91){
+    		        table.push(r, string.lower(c));
+    		    }elseif(c[1]> 96 && c[1] < 123){
+    		    	table.push(r, string.upper(c));
+    		    }else{
+    		        table.push(r,c);
+    		    }
+    		}
+    		var newStr = table.clone(owner);
+    	   	newStr.rawStr = string.join(r,"");
+    		return newStr;
+    	};
+    	
+    	title = function(){
+    		var r = string.replace(owner.rawStr,"[^a-zA-Z][a-zA-Z]",function(s){
+    			return string.upper(s);
+    		})
+    		var r = string.replace(owner.rawStr,"^[a-zA-Z]",function(s){
+    			return string.upper(s);
+    		})
+    		var newStr = table.clone(owner);
+    	   	newStr.rawStr = r;
+    		return newStr;
+    	};
+    	
+    	translate = function(t){
+    	    var regx = "["+string.join(table.keys(t))+"]"
+    	    var r = string.replace(owner.rawStr,regx,t)
+    		var newStr = table.clone(owner);
+    	   	newStr.rawStr = r;
+    		return newStr;
+    	};
+    	
+    	upper = function(){
+    		var newStr = table.clone(owner);
+    	    newStr.rawStr = string.upper(owner.rawStr);
+    	    return newStr;
+    	};
+    	
+    	zfill = function(width){
+    		return owner.rjust(width, "0");
+    	};
+    	
+    )
+    	
+}
+
+
+/**details(入门教程)
+用aardio实现Python的str类型
+
+end details**/
+
+/**intellisense(pyaardio)
+str() = !strObj.
+!strObj.capitalize() = 将字符串的第一个字符转换为大写，其余字符转换为小写
+!strObj.casefold() = 将字符串转换为小写，用于不区分大小写的匹配\n(Python实现较复杂，这里只实现lower的功能)
+!strObj.center(.(长度,填充字符) = 将字符串转换为小写，用于不区分大小写的匹配\n(Python实现较复杂，这里只实现lower的功能)
+
+end intellisense**/

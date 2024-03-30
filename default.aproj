@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project ver="10" name="publishExtlibs" libEmbed="true" icon="..." ui="win" output="publishExtlibs.exe" CompanyName="单位名称" FileDescription="publishExtlibs" LegalCopyright="Copyright (C) 作者 2024" ProductName="publishExtlibs" InternalName="publishExtlibs" FileVersion="0.0.0.1" ProductVersion="0.0.0.1" publishDir="/dist/" dstrip="false" local="false" ignored="false">
+	<file name="main.aardio" path="main.aardio" comment="main.aardio"/>
+	<folder name="资源文件" path="res" embed="true" local="false" ignored="false">
+		<folder name="goquery" path="res\goquery" comment="res\goquery">
+			<file name="MetalSucks.html" path="res\goquery\MetalSucks.html" comment="res\goquery\MetalSucks.html"/>
+			<file name="test.aardio" path="res\goquery\test.aardio" comment="res\goquery\test.aardio"/>
+		</folder>
+		<folder name="htmlquery" path="res\htmlquery" comment="res\htmlquery">
+			<file name="golang - 搜索.html" path="res\htmlquery\golang - 搜索.html" comment="res\htmlquery\golang - 搜索.html"/>
+			<file name="test.aardio" path="res\htmlquery\test.aardio" comment="res\htmlquery\test.aardio"/>
+			<file name="test2.aardio" path="res\htmlquery\test2.aardio" comment="res\htmlquery\test2.aardio"/>
+			<file name="你好_百度搜索.html" path="res\htmlquery\你好_百度搜索.html" comment="res\htmlquery\你好_百度搜索.html"/>
+		</folder>
+		<folder name="jsonquery" path="res\jsonquery" comment="res\jsonquery">
+			<file name="test.aardio" path="res\jsonquery\test.aardio" comment="res\jsonquery\test.aardio"/>
+		</folder>
+		<folder name="kiredis" path="res\kiredis" comment="res\kiredis">
+			<file name="test.aardio" path="res\kiredis\test.aardio" comment="res\kiredis\test.aardio"/>
+		</folder>
+		<folder name="kisunny" path="res\kisunny" comment="res\kisunny" local="false" embed="false" ignored="false">
+			<file name="test.aardio" path="res\kisunny\test.aardio" comment="res\kisunny\test.aardio"/>
+		</folder>
+		<folder name="tlsClient" path="res\tlsClient" comment="res\tlsClient">
+			<file name="test.aardio" path="res\tlsClient\test.aardio" comment="res\tlsClient\test.aardio"/>
+		</folder>
+		<folder name="xmlquery" path="res\xmlquery" comment="res\xmlquery">
+			<file name="test.aardio" path="res\xmlquery\test.aardio" comment="res\xmlquery\test.aardio"/>
+		</folder>
+	</folder>
+	<folder name="窗体文件" path="dlg" comment="目录" embed="true" local="false" ignored="false">
+		<file name="extlibs.aardio" path="dlg\extlibs.aardio" comment="dlg\extlibs.aardio"/>
+	</folder>
+</project>

@@ -1,0 +1,185 @@
+//扩展库发布工具
+import console
+import fsys;
+import string.template;
+import fsys.tar;
+import web.json;
+import fsys.file;
+import sevenZip.lzma;
+import System.IO.Compression.ZipFile;
+
+
+var ZipFile = System.IO.Compression.ZipFile;
+// https://github.com/kanadeblisst00/aardio-extlibs
+thread.set("GithubRepo", "http://git.pygrower.cn/kanadeblisst/aardio-extlibs");
+
+::DEBUG = true;
+
+io.open()
+setupCode = /*
+import fsys; 
+fsys.createDir("~\lib\${LIBDIR}");
+fsys.copy( "\${FILENAME}","~\lib\${LIBDIR}" ); 
+${LOADPRIVATEFONT}
+
+import ide;
+ide.refreshStdLib();
+
+import win;
+win.msgboxTimeout("${LIBNAME} 扩展库已安装成功!","aardio- ${LIBNAME}扩展库安装程序")
+*/
+
+var tmpPath = "\.temp";
+
+var getLibInfo = function(libpath){
+	var code = string.load(libpath);
+	var s = string.match(code, "libInfo = (\{[\s\S]+?\})");
+	var libInfo = {
+    	"version": "1.0.0.1",
+    	"author": "kanadeblisst",
+    	"description": "...",
+    	"weight": 1
+	}
+	if(s){
+		libInfo = eval(s);
+		if(!libInfo["weight"]) libInfo["weight"] = 1;
+	}
+	return libInfo;
+}
+
+
+
+var packLib = function(libname){ 
+	console.log("正在打包库: ", libname);
+    var libpath,libdir = io.libpath(libname);
+    console.log("libdir: ",libpath,libdir)
+    
+    var libInfo = getLibInfo(libpath);
+    
+    var setupFile;
+    var libfilename = fsys.getFileName(libpath);
+    
+    if( libfilename == "_.aardio" ){ 
+        libfilename = fsys.getFileName(libdir)
+        libpath = libdir;
+        libdir = fsys.getParentDir(libdir);..io.print(libpath)
+        setupFile = ..io.exist( ..fsys.joinpath(libpath,"setup.dl.aardio") );
+    } 
+	// 获取/lib/下的相对路径
+	libdir = fsys.path.relative(libdir,"~/lib/",false) : fsys.path.relative(libdir,"/lib/",false);
+    var libTmpPath = tmpPath + "\" + libname;
+    fsys.createDir(libTmpPath);
+    fsys.copy(libpath,libTmpPath);
+    var tarFilePath = "\dist\package\"+ libname + ".tar";
+    if( ! setupFile ){
+    	var tmp = string.template(setupCode)
+    	var setupCode = tmp.format(
+        	LIBNAME = libname;
+        	LIBDIR = libdir;
+        	FILENAME = libfilename;
+        	LOADPRIVATEFONT = "";
+    	)
+    	string.save(io.joinpath(libTmpPath,"setup.dl.aardio"),setupCode )
+    }
+    
+    ..fsys.delete(tarFilePath);
+    var tarFile = fsys.tar(tarFilePath);
+    tarFile.pack(libTmpPath,,false)
+    tarFile.close();
+
+	sevenZip.lzma.encodeFile(tarFilePath,tarFilePath+".lzma");
+	fsys.delete(libTmpPath);
+   	fsys.delete(tarFilePath);  
+   	console.log("已打包完成，路径: ", tarFilePath+".lzma");
+   	libInfo["url"] = libInfo["url"] : thread.get("GithubRepo") + "/raw/branch/master/dist/package/" + libname + ".tar.lzma";
+   	libInfo["sampleZipUrl"] = libInfo["sampleZipUrl"] : thread.get("GithubRepo") + "/raw/branch/master/dist/samples/" + libname + ".zip"
+   	return libInfo;
+}
+
+var getPathModifyTime = function(path){
+	var writeTime = fsys.file(path).getTime().write.addhour(8)
+	return tostring(writeTime,"%Y-%m-%d %H:%M:%S");
+}
+
+var packSamples = function(libInfos){
+	import win;
+	
+	var lastModifyTimePath = "\dist\sample_lasttime.json";
+	var lastModifyTimeTable = {};
+	if(io.exist(lastModifyTimePath)){
+		var fileStr = string.load(lastModifyTimePath);
+		if(#fileStr){
+			lastModifyTimeTable = ..web.json.tryParse(fileStr) : {};
+		}
+	}
+	
+	fsys.enum( "\res", "*.*",function(dir,filename,fullpath,findData){ 
+		if(filename) return;
+		var mTime = getPathModifyTime(fullpath);
+		if(lastModifyTimeTable[dir] && mTime == lastModifyTimeTable[dir]) return;
+		lastModifyTimeTable[dir] = mTime;
+		console.log("正在打包库案例，库: ", dir)
+		var zipPath = io.fullpath("/dist/samples/"+dir+".zip");
+		fsys.delete(zipPath);
+		win.delay(100)
+		ZipFile.CreateFromDirectory (
+			fullpath,
+			zipPath,
+			0,false )
+		
+	},false);
+	string.save(lastModifyTimePath, ..web.json.stringify(lastModifyTimeTable,true))
+	console.log("打包案例完成 ")
+}
+
+
+var main = function(){
+	fsys.delete(tmpPath);
+	fsys.createDir(tmpPath);
+	fsys.delete("\dist\package");
+	fsys.delete("\dist\samples");
+	fsys.createDir("\dist\package");
+	fsys.createDir("\dist\samples");
+	var lastModifyTimePath = "\dist\package_lasttime.json";
+	var extlibsJsonPath = "\dist\exlibs.json";
+	var lastModifyTimeTable = {};
+	if(io.exist(lastModifyTimePath)){
+		var fileStr = string.load(lastModifyTimePath);
+		if(#fileStr){
+			lastModifyTimeTable = ..web.json.tryParse(fileStr) : {};
+		}
+	}
+	var exlibsInfos = {};
+	if(io.exist(extlibsJsonPath)){
+		var fileStr = string.load(extlibsJsonPath);
+		if(#fileStr){
+			exlibsInfos = ..web.json.tryParse(fileStr) : {};
+		}
+	}
+	var libInfos = {};
+	fsys.enum( "\lib", "*.*",function(dir,filename,fullpath,findData){ 
+		if(filename == "config.aardio") return;
+		if(dir == "fonts") return ;
+		
+		var libname = filename ? string.slice(filename,1,-8,true) : dir;
+		if(string.startWith(libname,"_")) return;
+		var mTime = getPathModifyTime(fullpath);
+		if(lastModifyTimeTable[libname] && mTime == lastModifyTimeTable[libname]) {
+			libInfos[libname] = exlibsInfos[libname];
+			return;
+		}
+		lastModifyTimeTable[libname] = mTime;
+		var libInfo = packLib(libname);
+		libInfo["lastModifyTime"] = string.split(mTime," ")[1];
+		libInfos[libname] = libInfo;
+	},false);
+	fsys.delete(tmpPath);
+	string.save(extlibsJsonPath, ..web.json.stringify(libInfos,true));
+	string.save(lastModifyTimePath, ..web.json.stringify(lastModifyTimeTable,true))
+	packSamples(libInfos);
+}
+
+main()
+
+
+console.pause(true)

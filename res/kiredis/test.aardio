@@ -1,0 +1,9 @@
+import console; 
+import kiredis;
+io.open()
+r = kiredis("127.0.0.1", 6379);
+if (r.auth("123456") == 'OK\r\n'){//验证密码
+	io.print(r.select(1)) //选择数据库
+	io.print(r.set("aaaaa", "fdsdfsf")) //设置键
+}
+console.pause(true);

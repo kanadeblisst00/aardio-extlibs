@@ -1,0 +1,141 @@
+﻿import util.metaProperty;
+namespace htmlquery;
+
+var dllpath = DEBUG ? "\lib\htmlquery\.res\htmlquery.dll" : $"~\lib\htmlquery\.res\htmlquery.dll";
+var dll = ..raw.loadDll(dllpath,,"cdecl");
+
+class Node{
+	ctor(nIndex, htmlSize){
+		this.nIndex = nIndex;
+		this.htmlSize = htmlSize;
+		..table.gc(this, "release")
+	}
+	
+	@_metaProperty;
+}
+
+namespace Node{
+	ReleaseNode = dll.api("ReleaseNode", "void(int i)");	
+    
+    _metaProperty = ..util.metaProperty( 
+    	release = function(){
+			ReleaseNode(owner.nIndex)
+		};
+		_type="htmlquery.Node"
+	)
+	
+}
+
+libInfo = {
+    "version": "1.0.0.1",
+    "author": "kanadeblisst",
+    "description": "htmlquery封装库，用于解析HTML"
+}
+
+ExistsAttr = function(node, name){
+	var ExistsAttrFunc = dll.api("ExistsAttr", "bool(int nIndex,string name)");
+	var ret = ExistsAttrFunc(node.nIndex, name);
+	return ret;
+}
+
+Find = function(node, expr){
+	var Find_Each = dll.api("Find_Each", "bool(int nIndex,string name,POINTER callback)");
+	var results = ..table.array();
+	var Callback = function(i, nIndex2){
+		..table.push(results, Node(nIndex2, node.htmlSize));
+	}
+	var cCallback = ..raw.tostdcall(Callback, "void(int i, int j)");
+	var ret = Find_Each(node.nIndex, expr, cCallback);
+	return results;
+}
+
+FindOne = function(node, expr){
+	var FindOneFunc = dll.api("FindOne", "int(int nIndex,string expr)");
+	var nIndex2 = FindOneFunc(node.nIndex, expr);
+	if(nIndex2 == 0) return;
+	return Node(nIndex2, node.htmlSize);
+}
+
+InnerText = function(node){
+	if(!node.htmlSize) return;
+	var InnerTextFunc = dll.api("InnerText", "bool(int i, string a)");
+	var stringBuf = ..raw.buffer(node.htmlSize*4);
+	var exists = InnerTextFunc(node.nIndex, stringBuf);
+	var s;
+	if(exists) s = ..raw.str(stringBuf);
+	return s;
+}
+
+LoadDoc = function(path){
+	path = ..io.localpath(path) : path;
+	if(!..io.exist(path)) return;
+	var html = ..string.load(path);
+	var LoadDocFunc = dll.api("LoadDoc", "int(string a)");
+	var nIndex = LoadDocFunc(path);
+	if(nIndex == 0) return;
+	return Node(nIndex, #html);
+}
+
+OutputHTML = function(node, b=true){
+	if(!node.htmlSize) return;
+	var OutputHTMLFunc = dll.api("OutputHTML", "bool(int i, bool b,string a)");
+	var stringBuf = ..raw.buffer(node.htmlSize*4);
+	var exists = OutputHTMLFunc(node.nIndex, b, stringBuf);
+	var s;
+	if(exists) s = ..raw.str(stringBuf);
+	return s;
+}
+
+Parse = function(html){
+	var ParseFunc = dll.api("Parse", "int(string a)");
+	var nIndex = ParseFunc(html);
+	if(nIndex == 0) return;
+	return Node(nIndex, #html);
+}
+
+Query = function(node, expr){
+	var QueryFunc = dll.api("Query", "int(int i, string a)");
+	var nIndex2 = QueryFunc(node.nIndex, expr);
+	if(nIndex2 == 0) return;
+	return Node(nIndex2, node.htmlSize);
+}
+
+QueryAll = function(node, expr){
+	var QueryAll_Each = dll.api("QueryAll_Each", "bool(int nIndex,string name,POINTER callback)");
+	var results = {};
+	var Callback = function(i, nIndex2){
+		..table.push(results, Node(nIndex2, node.htmlSize));
+	}
+	var cCallback = ..raw.tostdcall(Callback, "void(int i, int j)");
+	var ret = QueryAll_Each(node.nIndex, expr, cCallback);
+	return results;
+}
+
+SelectAttr = function(node, name){
+	var SelectAttrFunc = dll.api("SelectAttr", "bool(int i, string b,string a)");
+	var stringBuf = ..raw.buffer(10240);
+	var exists = SelectAttrFunc(node.nIndex, name, stringBuf);
+	var s;
+	if(exists) s = ..raw.str(stringBuf);
+	return s;
+}
+
+/**details(入门教程)
+该库封装自go语言的htmlquery模块,用xpath解析HTML,封装后的用法几乎和golang的用法一样
+
+github地址: https://github.com/antchfx/htmlquery
+end details**/
+
+/**intellisense()
+htmlquery.ExistsAttr(.(node,属性名) = 判断属性是否存在
+htmlquery.Find(.(node,xpath表达式) = 查找节点，返回节点列表
+htmlquery.FindOne(.(node,xpath表达式) = 查找节点，返回第一个找到的节点
+htmlquery.InnerText(.(node) = 获取节点的文本内容
+htmlquery.LoadDoc(.(HTML所在路径) = 从文件加载HTML
+htmlquery.OutputHTML(.(node) = 获取节点的HTML文本
+htmlquery.Parse(.(HTML) = 从字符串解析
+htmlquery.Query(.(node,xpath表达式) = 查找节点，返回第一个找到的节点
+htmlquery.QueryAll(.(node,xpath表达式) = 查找节点，返回节点列表
+htmlquery.SelectAttr(.(node,name) = 获取属性的值
+end intellisense**/
+

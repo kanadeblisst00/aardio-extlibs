@@ -1,0 +1,10 @@
+﻿
+namespace WechatVideoSniffer;
+
+libInfo = {
+    "version": "2.1.0.236",
+    "author": "kanadeblisst",
+    "description": "微信视频号下载工具",
+    "pType": "项目",
+    "url": "https://github.com/kanadeblisst00/WechatVideoSniffer2.0"
+}

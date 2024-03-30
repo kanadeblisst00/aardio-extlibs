@@ -1,0 +1,30 @@
+import goquery;
+import console;
+
+/*
+
+doc, err := goquery.NewDocumentFromReader(res.Body)
+if err != nil {
+log.Fatal(err)
+}
+
+// Find the review items
+doc.Find(".left-content article .post-title").Each(func(i int, s *goquery.Selection) {
+	// For each item found, get the title
+	title := s.Find("a").Text()
+	fmt.Printf("Review %d: %s\n", i, title)
+})
+*/
+
+//上面的go代码翻译成aardio如下
+var htmlPath = "T:\Code\aardio_code\extlibs\res\goquery\MetalSucks.html"
+var doc = goquery.NewDocumentFromReader(string.load(htmlPath))
+if(doc){
+	doc.Find(".left-content article .post-title").Each(
+		function(i,s){
+			var title = s.Find("a").Text();
+			console.log(string.format("Review %d: %s\n", i, tostring(title) ));
+		}
+	)
+}
+console.pause(true);

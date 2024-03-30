@@ -1,0 +1,103 @@
+﻿import util.metaProperty;
+import web.json;
+namespace tlsClient;
+	
+class structures{
+	ctor(data){
+		// k:string v: {k;string}
+		this._data = {};
+		if(data && type(data) == type.table){
+			for k,v in data{
+				this._data[..string.lower(k)] = {k;v};
+			}
+		}
+	}
+	
+	@_metaProperty
+}
+
+
+namespace structures{
+	_metaProperty = ..util.metaProperty(
+		find_key = function(k){
+			var keys = ..table.keys(owner._data);
+			var index = ..table.find(keys, ..string.lower(k));
+			return keys[index];
+		};
+		
+		update = function(data){
+			if(!data || type(data) != type.table) return;
+			for k,v in data{
+				owner[k] = v;
+			}
+		}
+		
+		ench_lower_items = function(){
+			var keys = ..table.keys(owner._data);
+			var index = 0;
+			return function(i){
+				index = index + 1;
+				if(index <= #keys) {
+					return keys[index], owner._data[keys[index]][2];
+				}
+				
+			}
+			
+		};
+		
+		raw_items = function(){
+			var raw_data = {};
+			for k, v in owner._data{
+				raw_data[v[1]] = v[2];
+			}
+			return raw_data;
+		};
+		
+		copy = function(){
+			return ..table.clone(owner)
+		};
+		__get = function(k,ownerCall){ 
+			return owner._data[..string.lower(k)][2];
+		};
+		
+		__set = function(k,v){
+			owner._data[..string.lower(k)] = {k;v};
+		};
+		
+		_len = function(){
+			return ..table.count(owner._data);
+		};
+		
+		_json = function(){
+			return owner.raw_items();
+		}
+		
+		_tostring = function(){
+			return ..web.json.stringify(owner._data);
+		};
+		
+		_eq = function(b) {
+			if(type(b) != type.table) return false;
+			var data = owner._data;
+			if(..table.count(b) != ..table.count(data)) return false;
+			for k,v in data{
+				if(!b[k] || v[2] != b[k]){
+					return false;
+				}
+			}
+			return true;
+		};
+		_type = "tlsClient.structures";
+	)
+}
+
+/**intellisense()
+tlsClient.structures( = 该结构主要的功能用于headers忽略键的大小写
+tlsClient.structures(.(键值对组成的表) = 创建新的结构
+!tlsClientStructures.find_key("__/*忽略大小写的键*/") = 忽略大小写查找是否包含这个键\n找到返回找到的键名\n否则返回null
+!tlsClientStructures.update(__/*headers*/) = 将headers保存到当前对象
+!tlsClientStructures.ench_lower_items() = @for lowerKey,value in ??.ench_lower_items() { \n//遍历小写key和值\n	\n}
+!tlsClientStructures.raw_items() = 返回原始存入的headers
+!tlsClientStructures.copy() = 拷贝当前对象
+tlsClient.structures() = !tlsClientStructures.
+end intellisense**/

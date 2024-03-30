@@ -1,0 +1,56 @@
+import console; 
+import jsonquery;
+
+/*
+s := `{
+        "person":{
+           "name":"John",
+           "age":31,
+           "female":false,
+           "city":null,
+           "hobbies":[
+              "coding",
+              "eating",
+              "football"
+           ]
+        }
+     }`
+doc, err := jsonquery.Parse(strings.NewReader(s))
+if err != nil {
+	panic(err)
+}
+// xpath query
+age := jsonquery.FindOne(doc, "age")
+// or
+age = jsonquery.FindOne(doc, "person/age")
+fmt.Printf("%#v[%T]\n", age.Value(), age.Value()) // prints 31[float64]
+
+hobbies := jsonquery.FindOne(doc, "//hobbies")
+fmt.Printf("%#v\n", hobbies.Value()) // prints []interface {}{"coding", "eating", "football"}
+firstHobby := jsonquery.FindOne(doc, "//hobbies/*[1]")
+fmt.Printf("%#v\n", firstHobby.Value()) // "coding"
+*/
+
+s = `{
+    "person":{
+       "name":"John",
+       "age":31,
+       "female":false,
+       "city":null,
+       "hobbies":[
+          "coding",
+          "eating",
+          "football"
+       ]
+    }
+ }`
+
+doc = jsonquery.Parse(s);
+if(doc){
+	console.dump(doc)
+	//age = jsonquery.FindOne(doc, "age")
+	age = jsonquery.FindOne(doc, "person/age")
+	// go中Value方法返回的值是接口，也就是说它是任意类型的值，这无法作为导出函数的返回值
+	console.log(string.format("%s", age.InnerText()))
+}
+console.pause(true);

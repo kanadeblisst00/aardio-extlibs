@@ -1,0 +1,77 @@
+﻿
+namespace kisunny;
+
+class response{
+	ctor(messageId){
+		this.messageId = messageId;
+	}
+	@_meta;
+}
+
+namespace response{
+    Free = ::SunnyDLL.api("Free","void(pointer p)");
+    // 获取响应数据
+	GetResponseBody = ::SunnyDLL.api("GetResponseBody","pointer(int i)");
+	
+	GetResponseHeader = ::SunnyDLL.api("GetResponseHeader","pointer(int i, str k)");
+	
+	GetResponseAllHeader = ::SunnyDLL.api("GetResponseAllHeader","pointer(int i)");
+	
+	DelResponseHeader = ::SunnyDLL.api("DelResponseHeader","void(int i, str k)");
+	
+	SetResponseHeader = ::SunnyDLL.api("SetResponseHeader","void(int i, str k, str v)");
+	
+	SetResponseAllHeader = ::SunnyDLL.api("SetResponseAllHeader","void(int i, str h)");
+	
+	SetResponseStatus = ::SunnyDLL.api("SetResponseStatus","void(int i, int s)");
+	
+	GetResponseStatusCode = ::SunnyDLL.api("GetResponseStatusCode","int(int i)");
+	
+	GetResponseStatus = ::SunnyDLL.api("GetResponseStatus","pointer(int i)");
+	
+	GetResponseBodyLen = ::SunnyDLL.api("GetResponseBodyLen","int(int i)");
+	
+	SetResponseData = ::SunnyDLL.api("SetResponseData","void(int i, string s, int l)");
+	
+	xcall = function(name, messageId, len){
+		var func = self[name];
+		if(!func) error("不支持的函数!");
+		function proxyFunc(...){
+			var v = func(messageId, ...);
+			var result;
+			if(type(v) == type.pointer){
+				if(len) result = ..raw.tostring(v,1,len);
+				else result = ..raw.tostring(v);
+				Free(v);
+			}else{
+				result = v;
+			}
+			return result;
+		}
+		
+		return proxyFunc;
+	}
+	
+	_meta = {
+		_get = function(k){
+			return xcall(k, owner.messageId);
+		}
+		
+	}
+}
+
+
+/**intellisense()
+kisunny.response(.(messageId) = 参数是回调函数中的参数传入的
+kisunny.response() = !sunnyResponse.
+!sunnyResponse.GetResponseBody() = 获取响应的二进制数据
+!sunnyResponse.GetResponseHeader(.(__/*name*/) = 获取某个响应头的值
+!sunnyResponse.GetResponseAllHeader() = 获取所有的响应头
+!sunnyResponse.DelResponseHeader(.(__/*name*/) = 删除某个响应头
+!sunnyResponse.SetResponseHeader(.(key,val) = 设置响应头的值
+!sunnyResponse.SetResponseAllHeader(.(headers) = 设置整个响应头
+!sunnyResponse.SetResponseStatus(.(status) = 设置响应状态码
+!sunnyResponse.GetResponseStatusCode() = 获取响应状态码
+!sunnyResponse.GetResponseBodyLen() = 获取响应长度
+!sunnyResponse.SetResponseData(.(s,len) = 设置响应体
+end intellisense**/

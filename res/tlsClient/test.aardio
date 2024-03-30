@@ -1,0 +1,9 @@
+import console; 
+import tlsClient
+io.open()
+t = tlsClient()
+
+resp = t.get("https://www.httpbin.org/get")
+console.dump(resp)
+console.dump(resp.json())
+console.pause(true);

@@ -1,0 +1,74 @@
+﻿//测试sunny组件
+import console; 
+import win;
+import kisunny;
+
+
+// 线程函数
+defaultHttpCallback = function(SunnyContext, requestId, messageId, messageType, method, url, err, pid){
+    // 注意需先导入sunny初始化dll对象
+	import kisunny;
+	import kisunny.request;
+	import kisunny.response;
+	
+	var req = kisunny.request(messageId);
+	var resp = kisunny.response(messageId);
+	
+	io.print(SunnyContext, requestId, messageId, messageType, method, url, err, pid)
+	select(messageType) {
+		
+		case 1 {// 发起请求
+		    // 如果链接包含.js，就删除压缩头
+			if(string.find(url, "@.js")){
+			    // 删除压缩标记，不删除的话处理比较麻烦
+			    req.DelRequestHeader("Accept-Encoding");
+		    }
+		    var bodyLen = req.GetRequestBodyLen();
+		    if(bodyLen){
+		        var body = req.GetRequestBody();
+		        if(body) io.print(body);
+		    }
+		    // 如果调用了SetResponseHeader，则请求不会发送并立即返回给客户端
+			// req.SetResponseHeader("Connection", "Close");
+			// req.SetResponseHeader("Access-Control-Allow-Origin", "*");
+			// req.SetResponseHeader("Access-Control-Allow-Headers", "*");
+			// req.SetResponseHeader("Access-Control-Allow-Methods", "OPTIONS,POST,GET");
+		}
+		case 2 {// 请求完成
+			var bodyLen = resp.GetResponseBodyLen();
+			if(bodyLen){
+                // 替换响应
+			    var body = resp.GetResponseBody();
+			    var regex = "(\s+)";
+			    var replaceStr = " "
+			    var newBody = string.replace(body, regex, replaceStr);
+			    resp.SetResponseData(newBody, #newBody);
+			}
+			
+		}
+		case 3 {// 请求失败
+		}
+	}
+}
+
+io.open()
+
+var port = 42721;
+sunnyObj = kisunny(port);
+// 指定http的回调函数
+sunnyObj.HttpCallback = defaultHttpCallback;
+// 指定回调函数的owner对象，可以在回调函数里使用owner使用该对象。一般指定为mainForm用来操作界面
+sunnyObj.callbackOwner = null;
+// 启动sunny监听服务并加载驱动监听processName的数据
+var processName = "chrome.exe"
+if(!sunnyObj.start(processName)){
+	console.log("启动失败")
+}else{
+	console.log("启动成功")
+}
+
+while(true){
+	..win.delay(100)
+}
+console.log()
+console.pause(true);

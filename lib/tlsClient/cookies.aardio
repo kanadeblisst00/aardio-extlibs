@@ -1,0 +1,134 @@
+﻿
+namespace tlsClient;
+	
+class cookies{
+	ctor(){
+		this._cookies = {};
+	}
+	
+	@_meta;
+}
+
+namespace cookies{
+    _meta = {
+		_tostring = function(){
+			return owner.stringify();
+		};
+		
+		_get = {
+			parseSetCookieStr = function(SetCookie){
+				if(type(SetCookie) != type.string) error("需传字符串参数!");
+				var t = ..string.split(SetCookie,';')
+				var tmp = ..string.split(t[1], '=', 2)
+				var cookie0 = {name=tmp[1];value=tmp[2]}
+				for(i=2;#t;1){
+					tmp = ..string.split(..string.trim(t[i]),'=', 2);
+					cookie0[tmp[1]] = tmp[2];
+				}
+				var cookie = {
+    				domain = cookie0.domain : "";
+    				path = cookie0.path : "/";
+    				expires = cookie0.expires;
+    				name = cookie0.name;
+    				value = cookie0.value;
+				}
+				owner.updateCookie(cookie);
+			}
+			
+			updateCookiesArray = function(cookiesArray){
+				if(type(cookiesArray) != type.table) return;
+				for(i=1;#cookiesArray;1){
+					owner.updateCookie(cookiesArray[i]);
+				}
+			}
+			
+			updateCookie = function(cookie){
+				if(!cookie) return;
+				if(!cookie.domain) cookie.domain = "";
+				var domainCookies = owner._cookies[cookie.domain];
+				if(!domainCookies){
+					owner._cookies[cookie.domain] = {cookie};
+					return;
+				}
+				for(i=1;#domainCookies;1){
+					if(domainCookies[i].name == cookie.name){
+						domainCookies[i].value = cookie.value;
+						if(cookie.expires){
+							domainCookies[i].expires = cookie.expires 
+						}
+						return;
+					}
+				}
+				..table.push(owner._cookies[cookie.domain], cookie);
+			}
+			
+			getCookiesArray = function(domain){
+				if(!domain) return;
+				if(domain[1] != '.'#) domain = "." + domain;
+				var domainCookies = owner._cookies[domian] : {};
+				var otherCookies = owner._cookies[""] : {};
+				return ..table.concat(domainCookies, otherCookies);
+			}
+			
+			stringify = function(domain){
+				if(domain && domain[1] != '.'#) domain = "." + domain;
+				if(domain){
+					var t = ..table.array();
+					for(i=1;owner._cookies[domian];1){
+						var c = owner._cookies[domian][i].name + "=" + owner._cookies[domian][i].value;
+						..table.push(t, c);
+					}
+					return ..string.join(t, "; ");
+				}else{
+					return ..table.tostring(owner._cookies);
+				}
+			}
+			
+			setCookies = function(cookies){
+				if(type(cookies) == type.string){
+					var t = ..string.split(cookies,';')
+					for(i=1;#t;1){
+						var tmp = ..string.split(..string.trim(t[i]),'=', 2);
+						var cookie = {
+    						domain = "";
+    						path = "/";
+    						expires = null;
+    						name = tmp[1];
+    						value = tmp[2];
+						}
+						owner.updateCookie(cookie);
+					}
+				}elseif(type(cookies) == type.table){
+					if(..table.isArray(cookies)){
+						owner.updateCookiesArray(cookies);
+					}else{
+						for k,v in cookies{
+							var cookie = {
+    							domain = "";
+    							path = "/";
+    							expires = null;
+    							name = k;
+    							value = v;
+							}
+							owner.updateCookie(cookie)
+						}
+					}
+				}
+				
+			}
+		}
+	};
+    
+	
+}
+
+/**intellisense()
+tlsClient.cookies( = 创建和解析请求需要的cookie
+!tlsClientCookies.parseSetCookieStr("__/*cookie值*/") = 解析响应头返回的Set-Cookie的值\n如果返回多个则需要调用多次
+!tlsClientCookies.updateCookiesArray() = 将cookie的数组解析到当前对象
+!tlsClientCookies.updateCookie() = 将cookie解析到当前对象\n参数为至少包含name和value的字典
+!tlsClientCookies.getCookiesArray() = 返回cookie组成的数组
+!tlsClientCookies.stringify("__/*domain*/") = 返回指定domain下的所有cookie组成的字符串\n格式为a=1; b=2\ndomain为一级域名
+!tlsClientCookies.setCookies() = cookies可以是抓包获取的字符串\n也可以是cookie组成的数组\n或者是name/value组成的字典
+tlsClient.cookies() = !tlsClientCookies.
+end intellisense**/

@@ -1,0 +1,13 @@
+import fsys;
+import ide; 
+
+var publisDir = ide.getPublisDir();
+if(!#publisDir) return; 
+
+var py3PubDir =  fsys.joinpath(publisDir,"\Sunny.dll" ); 
+if( ! io.exist(py3PubDir) ){ 
+	var libPath,libDir = io.libpath("kisunny");
+	..fsys.copy( fsys.joinpath(libDir,"\.res\Sunny.dll") ,py3PubDir,0x10/*_FOF_NOCONFIRMATION*/  | 0x200/*_FOF_NOCONFIRMMKDIR*/); 
+}
+
+

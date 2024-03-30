@@ -1,0 +1,30 @@
+import console; 
+import htmlquery;
+io.open()
+/*
+// Find all news item.
+list, err := htmlquery.QueryAll(doc, "//ol/li")
+if err != nil {
+	panic(err)
+}
+for i, n := range list {
+	a := htmlquery.FindOne(n, "//a")
+	if a != nil {
+		fmt.Printf("%d %s(%s)\n", i, htmlquery.InnerText(a), htmlquery.SelectAttr(a, "href"))
+	}
+}
+*/
+var htmlPath = "T:\Code\aardio_code\extlibs\res\htmlquery\golang - 搜索.html"
+var doc = htmlquery.LoadDoc(htmlPath)
+
+//var doc = htmlquery.Parse(string.load(htmlPath))
+var list = htmlquery.QueryAll(doc, '//ol/li')
+for i,n in list{
+	var a = htmlquery.Query(n, '//a');
+	if(a){
+		var s = string.format("%d %s(%s)\n", i, tostring(htmlquery.InnerText(a)), tostring(htmlquery.SelectAttr(a, "href")) )
+		console.log(s)
+	}
+}
+
+console.pause(true);

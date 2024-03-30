@@ -1,0 +1,1976 @@
+<!DOCTYPE HTML>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 7 ]><html class="no-js ie6" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if IE 9 ]><html lang="en" class="ie9"> <![endif]-->
+<!--[if (gte IE 10)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html lang="en"><!--<![endif]-->
+<head>
+
+	
+
+
+	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><script type="text/javascript">(window.NREUM||(NREUM={})).init={privacy:{cookies_enabled:true},ajax:{deny_list:["bam.nr-data.net"]},distributed_tracing:{enabled:true}};(window.NREUM||(NREUM={})).loader_config={agentID:"1588728279",accountID:"2111766",trustKey:"1101773",xpid:"VgcGUFFVDhABUVlXBAUHU10I",licenseKey:"a55408e999",applicationID:"1585340599"};;/*! For license information please see nr-loader-spa-1.253.0.min.js.LICENSE.txt */
+(()=>{var e,t,r={234:(e,t,r)=>{"use strict";r.d(t,{P_:()=>m,Mt:()=>b,C5:()=>s,DL:()=>x,OP:()=>N,lF:()=>C,Yu:()=>w,Dg:()=>v,CX:()=>c,GE:()=>E,sU:()=>O});var n=r(8632),o=r(9567);const i={beacon:n.ce.beacon,errorBeacon:n.ce.errorBeacon,licenseKey:void 0,applicationID:void 0,sa:void 0,queueTime:void 0,applicationTime:void 0,ttGuid:void 0,user:void 0,account:void 0,product:void 0,extra:void 0,jsAttributes:{},userAttributes:void 0,atts:void 0,transactionName:void 0,tNamePlain:void 0},a={};function s(e){if(!e)throw new Error("All info objects require an agent identifier!");if(!a[e])throw new Error("Info for ".concat(e," was never set"));return a[e]}function c(e,t){if(!e)throw new Error("All info objects require an agent identifier!");a[e]=(0,o.D)(t,i);const r=(0,n.ek)(e);r&&(r.info=a[e])}const d=e=>{if(!e||"string"!=typeof e)return!1;try{document.createDocumentFragment().querySelector(e)}catch{return!1}return!0};var u=r(7056),l=r(50);const f="[data-nr-mask]",h=()=>{const e={mask_selector:"*",block_selector:"[data-nr-block]",mask_input_options:{color:!1,date:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:!1,search:!1,tel:!1,text:!1,time:!1,url:!1,week:!1,textarea:!1,select:!1,password:!0}};return{feature_flags:[],proxy:{assets:void 0,beacon:void 0},privacy:{cookies_enabled:!0},ajax:{deny_list:void 0,block_internal:!0,enabled:!0,harvestTimeSeconds:10,autoStart:!0},distributed_tracing:{enabled:void 0,exclude_newrelic_header:void 0,cors_use_newrelic_header:void 0,cors_use_tracecontext_headers:void 0,allowed_origins:void 0},session:{domain:void 0,expiresMs:u.oD,inactiveMs:u.Hb},ssl:void 0,obfuscate:void 0,jserrors:{enabled:!0,harvestTimeSeconds:10,autoStart:!0},metrics:{enabled:!0,autoStart:!0},page_action:{enabled:!0,harvestTimeSeconds:30,autoStart:!0},page_view_event:{enabled:!0,autoStart:!0},page_view_timing:{enabled:!0,harvestTimeSeconds:30,long_task:!1,autoStart:!0},session_trace:{enabled:!0,harvestTimeSeconds:10,autoStart:!0},harvest:{tooManyRequestsDelay:60},session_replay:{autoStart:!0,enabled:!1,harvestTimeSeconds:60,preload:!1,sampling_rate:10,error_sampling_rate:100,collect_fonts:!1,inline_images:!1,inline_stylesheet:!0,mask_all_inputs:!0,get mask_text_selector(){return e.mask_selector},set mask_text_selector(t){d(t)?e.mask_selector="".concat(t,",").concat(f):""===t||null===t?e.mask_selector=f:(0,l.Z)("An invalid session_replay.mask_selector was provided. '*' will be used.",t)},get block_class(){return"nr-block"},get ignore_class(){return"nr-ignore"},get mask_text_class(){return"nr-mask"},get block_selector(){return e.block_selector},set block_selector(t){d(t)?e.block_selector+=",".concat(t):""!==t&&(0,l.Z)("An invalid session_replay.block_selector was provided and will not be used",t)},get mask_input_options(){return e.mask_input_options},set mask_input_options(t){t&&"object"==typeof t?e.mask_input_options={...t,password:!0}:(0,l.Z)("An invalid session_replay.mask_input_option was provided and will not be used",t)}},spa:{enabled:!0,harvestTimeSeconds:10,autoStart:!0},soft_navigations:{enabled:!0,harvestTimeSeconds:10,autoStart:!0}}},p={},g="All configuration objects require an agent identifier!";function m(e){if(!e)throw new Error(g);if(!p[e])throw new Error("Configuration for ".concat(e," was never set"));return p[e]}function v(e,t){if(!e)throw new Error(g);p[e]=(0,o.D)(t,h());const r=(0,n.ek)(e);r&&(r.init=p[e])}function b(e,t){if(!e)throw new Error(g);var r=m(e);if(r){for(var n=t.split("."),o=0;o<n.length-1;o++)if("object"!=typeof(r=r[n[o]]))return;r=r[n[n.length-1]]}return r}const y={accountID:void 0,trustKey:void 0,agentID:void 0,licenseKey:void 0,applicationID:void 0,xpid:void 0},A={};function x(e){if(!e)throw new Error("All loader-config objects require an agent identifier!");if(!A[e])throw new Error("LoaderConfig for ".concat(e," was never set"));return A[e]}function E(e,t){if(!e)throw new Error("All loader-config objects require an agent identifier!");A[e]=(0,o.D)(t,y);const r=(0,n.ek)(e);r&&(r.loader_config=A[e])}const w=(0,n.mF)().o;var _=r(385),S=r(6818);const T={buildEnv:S.Re,customTransaction:void 0,disabled:!1,distMethod:S.gF,isolatedBacklog:!1,loaderType:void 0,maxBytes:3e4,offset:Math.floor(_._A?.performance?.timeOrigin||_._A?.performance?.timing?.navigationStart||Date.now()),onerror:void 0,origin:""+_._A.location,ptid:void 0,releaseIds:{},session:void 0,xhrWrappable:"function"==typeof _._A.XMLHttpRequest?.prototype?.addEventListener,version:S.q4,denyList:void 0},R={};function N(e){if(!e)throw new Error("All runtime objects require an agent identifier!");if(!R[e])throw new Error("Runtime for ".concat(e," was never set"));return R[e]}function O(e,t){if(!e)throw new Error("All runtime objects require an agent identifier!");R[e]=(0,o.D)(t,T);const r=(0,n.ek)(e);r&&(r.runtime=R[e])}function C(e){return function(e){try{const t=s(e);return!!t.licenseKey&&!!t.errorBeacon&&!!t.applicationID}catch(e){return!1}}(e)}},9567:(e,t,r)=>{"use strict";r.d(t,{D:()=>o});var n=r(50);function o(e,t){try{if(!e||"object"!=typeof e)return(0,n.Z)("Setting a Configurable requires an object as input");if(!t||"object"!=typeof t)return(0,n.Z)("Setting a Configurable requires a model to set its initial properties");const r=Object.create(Object.getPrototypeOf(t),Object.getOwnPropertyDescriptors(t)),i=0===Object.keys(r).length?e:r;for(let a in i)if(void 0!==e[a])try{Array.isArray(e[a])&&Array.isArray(t[a])?r[a]=Array.from(new Set([...e[a],...t[a]])):"object"==typeof e[a]&&"object"==typeof t[a]?r[a]=o(e[a],t[a]):r[a]=e[a]}catch(e){(0,n.Z)("An error occurred while setting a property of a Configurable",e)}return r}catch(e){(0,n.Z)("An error occured while setting a Configurable",e)}}},6818:(e,t,r)=>{"use strict";r.d(t,{Re:()=>o,gF:()=>i,lF:()=>a,q4:()=>n});const n="1.253.0",o="PROD",i="CDN",a="2.0.0-alpha.11"},385:(e,t,r)=>{"use strict";r.d(t,{FN:()=>c,IF:()=>l,LW:()=>a,Nk:()=>h,Tt:()=>d,_A:()=>i,cv:()=>p,iS:()=>s,il:()=>n,ux:()=>u,v6:()=>o,w1:()=>f});const n="undefined"!=typeof window&&!!window.document,o="undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self.navigator instanceof WorkerNavigator||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis.navigator instanceof WorkerNavigator),i=n?window:"undefined"!=typeof WorkerGlobalScope&&("undefined"!=typeof self&&self instanceof WorkerGlobalScope&&self||"undefined"!=typeof globalThis&&globalThis instanceof WorkerGlobalScope&&globalThis),a="complete"===i?.document?.readyState,s=Boolean("hidden"===i?.document?.visibilityState),c=""+i?.location,d=/iPad|iPhone|iPod/.test(i.navigator?.userAgent),u=d&&"undefined"==typeof SharedWorker,l=(()=>{const e=i.navigator?.userAgent?.match(/Firefox[/\s](\d+\.\d+)/);return Array.isArray(e)&&e.length>=2?+e[1]:0})(),f=Boolean(n&&window.document.documentMode),h=!!i.navigator?.sendBeacon,p=Math.floor(i?.performance?.timeOrigin||i?.performance?.timing?.navigationStart||Date.now())},9907:(e,t,r)=>{"use strict";r.d(t,{A:()=>n});class n{constructor(e){this.contextId=e}}},4938:(e,t,r)=>{"use strict";r.d(t,{v:()=>a});var n=r(8632),o=r(3117),i=r(9907);class a{static contextId="nr@context:".concat(o.a);static contextOriginalId="nr@original:".concat(o.a);static contextWrappedId="nr@wrapped:".concat(a.contextId);static getObservationContextByAgentIdentifier(e){const t=(0,n.fP)();return Object.keys(t?.initializedAgents||{}).indexOf(e)>-1?t.initializedAgents[e].observationContext:void 0}#e=new WeakMap;getCreateContext(e){return this.#e.has(e)||this.#e.set(e,new i.A),this.#e.get(e)}setContext(e,t){return this.#e.set(e,t),this.#e.get(e)}}},1117:(e,t,r)=>{"use strict";r.d(t,{w:()=>i});var n=r(50);const o={agentIdentifier:"",ee:void 0};class i{constructor(e){try{if("object"!=typeof e)return(0,n.Z)("shared context requires an object as input");this.sharedContext={},Object.assign(this.sharedContext,o),Object.entries(e).forEach((e=>{let[t,r]=e;Object.keys(o).includes(t)&&(this.sharedContext[t]=r)}))}catch(e){(0,n.Z)("An error occured while setting SharedContext",e)}}}},8e3:(e,t,r)=>{"use strict";r.d(t,{L:()=>u,R:()=>c});var n=r(2177),o=r(1284),i=r(4322),a=r(3325);const s={};function c(e,t){const r={staged:!1,priority:a.p[t]||0};d(e),s[e].get(t)||s[e].set(t,r)}function d(e){e&&(s[e]||(s[e]=new Map))}function u(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"feature",r=arguments.length>2&&void 0!==arguments[2]&&arguments[2];if(d(e),!e||!s[e].get(t)||r)return c(t);s[e].get(t).staged=!0;const a=[...s[e]];function c(t){const r=e?n.ee.get(e):n.ee,a=i.X.handlers;if(r.backlog&&a){var s=r.backlog[t],c=a[t];if(c){for(var d=0;s&&d<s.length;++d)l(s[d],c);(0,o.D)(c,(function(e,t){(0,o.D)(t,(function(t,r){r[0].on(e,r[1])}))}))}delete a[t],r.backlog[t]=null,r.emit("drain-"+t,[])}}a.every((e=>{let[t,r]=e;return r.staged}))&&(a.sort(((e,t)=>e[1].priority-t[1].priority)),a.forEach((t=>{let[r]=t;s[e].delete(r),c(r)})))}function l(e,t){var r=e[1];(0,o.D)(t[r],(function(t,r){var n=e[0];if(r[0]===n){var o=r[1],i=e[3],a=e[2];o.apply(i,a)}}))}},2177:(e,t,r)=>{"use strict";r.d(t,{ee:()=>c});var n=r(8632),o=r(2210),i=r(234),a=r(9907),s=r(4938);const c=function e(t,r){var n={},d={},l={},f=!1;try{f=16===r.length&&(0,i.OP)(r).isolatedBacklog}catch(e){}var h={on:g,addEventListener:g,removeEventListener:function(e,t){var r=n[e];if(!r)return;for(var o=0;o<r.length;o++)r[o]===t&&r.splice(o,1)},emit:function(e,r,n,o,i){!1!==i&&(i=!0);if(c.aborted&&!o)return;t&&i&&t.emit(e,r,n);for(var a=p(n),s=m(e),u=s.length,l=0;l<u;l++)s[l].apply(a,r);var f=b()[d[e]];f&&f.push([h,e,r,a]);return a},get:v,listeners:m,context:p,buffer:function(e,t){const r=b();if(t=t||"feature",h.aborted)return;Object.entries(e||{}).forEach((e=>{let[n,o]=e;d[o]=t,t in r||(r[t]=[])}))},abort:u,aborted:!1,isBuffering:function(e){return!!b()[d[e]]},debugId:r,backlog:f?{}:t&&"object"==typeof t.backlog?t.backlog:{},observationContextManager:null};return h;function p(e){return e&&e instanceof a.A?e:e?(0,o.X)(e,s.v.contextId,(()=>h.observationContextManager?h.observationContextManager.getCreateContext(e):new a.A(s.v.contextId))):h.observationContextManager?h.observationContextManager.getCreateContext({}):new a.A(s.v.contextId)}function g(e,t){n[e]=m(e).concat(t)}function m(e){return n[e]||[]}function v(t){const r=l[t]=l[t]||e(h,t);return!r.observationContextManager&&h.observationContextManager&&(r.observationContextManager=h.observationContextManager),r}function b(){return h.backlog}}(void 0,"globalEE"),d=(0,n.fP)();function u(){c.aborted=!0,Object.keys(c.backlog).forEach((e=>{delete c.backlog[e]}))}d.ee||(d.ee=c)},5546:(e,t,r)=>{"use strict";r.d(t,{E:()=>n,p:()=>o});var n=r(2177).ee.get("handle");function o(e,t,r,o,i){i?(i.buffer([e],o),i.emit(e,t,r)):(n.buffer([e],o),n.emit(e,t,r))}},4322:(e,t,r)=>{"use strict";r.d(t,{X:()=>i});var n=r(5546);i.on=a;var o=i.handlers={};function i(e,t,r,i){a(i||n.E,o,e,t,r)}function a(e,t,r,o,i){i||(i="feature"),e||(e=n.E);var a=t[i]=t[i]||{};(a[r]=a[r]||[]).push([e,o])}},3239:(e,t,r)=>{"use strict";r.d(t,{bP:()=>s,iz:()=>c,m$:()=>a});var n=r(385);let o=!1,i=!1;try{const e={get passive(){return o=!0,!1},get signal(){return i=!0,!1}};n._A.addEventListener("test",null,e),n._A.removeEventListener("test",null,e)}catch(e){}function a(e,t){return o||i?{capture:!!e,passive:o,signal:t}:!!e}function s(e,t){let r=arguments.length>2&&void 0!==arguments[2]&&arguments[2],n=arguments.length>3?arguments[3]:void 0;window.addEventListener(e,t,a(r,n))}function c(e,t){let r=arguments.length>2&&void 0!==arguments[2]&&arguments[2],n=arguments.length>3?arguments[3]:void 0;document.addEventListener(e,t,a(r,n))}},3117:(e,t,r)=>{"use strict";r.d(t,{a:()=>n});const n=(0,r(4402).Rl)()},4402:(e,t,r)=>{"use strict";r.d(t,{Ht:()=>d,M:()=>c,Rl:()=>a,ky:()=>s});var n=r(385);const o="xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx";function i(e,t){return e?15&e[t]:16*Math.random()|0}function a(){const e=n._A?.crypto||n._A?.msCrypto;let t,r=0;return e&&e.getRandomValues&&(t=e.getRandomValues(new Uint8Array(30))),o.split("").map((e=>"x"===e?i(t,r++).toString(16):"y"===e?(3&i()|8).toString(16):e)).join("")}function s(e){const t=n._A?.crypto||n._A?.msCrypto;let r,o=0;t&&t.getRandomValues&&(r=t.getRandomValues(new Uint8Array(e)));const a=[];for(var s=0;s<e;s++)a.push(i(r,o++).toString(16));return a.join("")}function c(){return s(16)}function d(){return s(32)}},7056:(e,t,r)=>{"use strict";r.d(t,{Bq:()=>n,Hb:()=>a,IK:()=>d,K4:()=>o,oD:()=>i,uT:()=>c,wO:()=>s});const n="NRBA",o="SESSION",i=144e5,a=18e5,s={PAUSE:"session-pause",RESET:"session-reset",RESUME:"session-resume",UPDATE:"session-update"},c={SAME_TAB:"same-tab",CROSS_TAB:"cross-tab"},d={OFF:0,FULL:1,ERROR:2}},7894:(e,t,r)=>{"use strict";function n(){return Math.floor(performance.now())}r.d(t,{z:()=>n})},7243:(e,t,r)=>{"use strict";r.d(t,{e:()=>o});var n=r(385);function o(e){if(0===(e||"").indexOf("data:"))return{protocol:"data"};try{const t=new URL(e,location.href),r={port:t.port,hostname:t.hostname,pathname:t.pathname,search:t.search,protocol:t.protocol.slice(0,t.protocol.indexOf(":")),sameOrigin:t.protocol===n._A?.location?.protocol&&t.host===n._A?.location?.host};return r.port&&""!==r.port||("http:"===t.protocol&&(r.port="80"),"https:"===t.protocol&&(r.port="443")),r.pathname&&""!==r.pathname?r.pathname.startsWith("/")||(r.pathname="/".concat(r.pathname)):r.pathname="/",r}catch(e){return{}}}},50:(e,t,r)=>{"use strict";function n(e,t){"function"==typeof console.warn&&(console.warn("New Relic: ".concat(e)),t&&console.warn(t))}r.d(t,{Z:()=>n})},2825:(e,t,r)=>{"use strict";r.d(t,{N:()=>u,T:()=>l});var n=r(2177),o=r(5546),i=r(3325),a=r(385);const s="newrelic";const c={stn:[i.D.sessionTrace],err:[i.D.jserrors,i.D.metrics],ins:[i.D.pageAction],spa:[i.D.spa,i.D.softNav],sr:[i.D.sessionReplay,i.D.sessionTrace]},d=new Set;function u(e,t){const r=n.ee.get(t);e&&"object"==typeof e&&(d.has(t)||(Object.entries(e).forEach((e=>{let[t,n]=e;c[t]?c[t].forEach((e=>{n?(0,o.p)("feat-"+t,[],void 0,e,r):(0,o.p)("block-"+t,[],void 0,e,r),(0,o.p)("rumresp-"+t,[Boolean(n)],void 0,e,r)})):n&&(0,o.p)("feat-"+t,[],void 0,void 0,r),l[t]=Boolean(n)})),Object.keys(c).forEach((e=>{void 0===l[e]&&(c[e]?.forEach((t=>(0,o.p)("rumresp-"+e,[!1],void 0,t,r))),l[e]=!1)})),d.add(t),function(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};try{a._A.dispatchEvent(new CustomEvent(s,{detail:e}))}catch(e){}}({loaded:!0})))}const l={}},2210:(e,t,r)=>{"use strict";r.d(t,{X:()=>o});var n=Object.prototype.hasOwnProperty;function o(e,t,r){if(n.call(e,t))return e[t];var o=r();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:o,writable:!0,enumerable:!1}),o}catch(e){}return e[t]=o,o}},7872:(e,t,r)=>{"use strict";function n(e){var t=this;let r=arguments.length>1&&void 0!==arguments[1]?arguments[1]:500,n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};const o=n?.leading||!1;let i;return function(){for(var n=arguments.length,a=new Array(n),s=0;s<n;s++)a[s]=arguments[s];o&&void 0===i&&(e.apply(t,a),i=setTimeout((()=>{i=clearTimeout(i)}),r)),o||(clearTimeout(i),i=setTimeout((()=>{e.apply(t,a)}),r))}}function o(e){var t=this;let r=!1;return function(){if(!r){r=!0;for(var n=arguments.length,o=new Array(n),i=0;i<n;i++)o[i]=arguments[i];e.apply(t,o)}}}r.d(t,{D:()=>n,Z:()=>o})},1284:(e,t,r)=>{"use strict";r.d(t,{D:()=>n});const n=(e,t)=>Object.entries(e||{}).map((e=>{let[r,n]=e;return t(r,n)}))},4351:(e,t,r)=>{"use strict";r.d(t,{P:()=>i});var n=r(2177);const o=()=>{const e=new WeakSet;return(t,r)=>{if("object"==typeof r&&null!==r){if(e.has(r))return;e.add(r)}return r}};function i(e){try{return JSON.stringify(e,o())}catch(e){try{n.ee.emit("internal-error",[e])}catch(e){}}}},3960:(e,t,r)=>{"use strict";r.d(t,{KB:()=>a,b2:()=>i});var n=r(3239);function o(){return"undefined"==typeof document||"complete"===document.readyState}function i(e,t){if(o())return e();(0,n.bP)("load",e,t)}function a(e){if(o())return e();(0,n.iz)("DOMContentLoaded",e)}},8632:(e,t,r)=>{"use strict";r.d(t,{EZ:()=>u,ce:()=>i,ek:()=>d,fP:()=>a,gG:()=>l,h5:()=>c,mF:()=>s});var n=r(7894),o=r(385);const i={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net"};function a(){return o._A.NREUM||(o._A.NREUM={}),void 0===o._A.newrelic&&(o._A.newrelic=o._A.NREUM),o._A.NREUM}function s(){let e=a();return e.o||(e.o={ST:o._A.setTimeout,SI:o._A.setImmediate,CT:o._A.clearTimeout,XHR:o._A.XMLHttpRequest,REQ:o._A.Request,EV:o._A.Event,PR:o._A.Promise,MO:o._A.MutationObserver,FETCH:o._A.fetch}),e}function c(e,t){let r=a();r.initializedAgents??={},t.initializedAt={ms:(0,n.z)(),date:new Date},r.initializedAgents[e]=t}function d(e){let t=a();return t.initializedAgents?.[e]}function u(e,t){a()[e]=t}function l(){return function(){let e=a();const t=e.info||{};e.info={beacon:i.beacon,errorBeacon:i.errorBeacon,...t}}(),function(){let e=a();const t=e.init||{};e.init={...t}}(),s(),function(){let e=a();const t=e.loader_config||{};e.loader_config={...t}}(),a()}},7956:(e,t,r)=>{"use strict";r.d(t,{N:()=>o});var n=r(3239);function o(e){let t=arguments.length>1&&void 0!==arguments[1]&&arguments[1],r=arguments.length>2?arguments[2]:void 0,o=arguments.length>3?arguments[3]:void 0;(0,n.iz)("visibilitychange",(function(){if(t)return void("hidden"===document.visibilityState&&e());e(document.visibilityState)}),r,o)}},7806:(e,t,r)=>{"use strict";r.d(t,{em:()=>m,u5:()=>S,QU:()=>N,_L:()=>I,Gm:()=>j,Lg:()=>M,BV:()=>V,Kf:()=>K});var n=r(2177),o=r(4938),i=Object.prototype.hasOwnProperty,a=!1;function s(e,t){return e||(e=n.ee),r.inPlace=function(e,t,n,o,i){n||(n="");const a="-"===n.charAt(0);for(let s=0;s<t.length;s++){const c=t[s],u=e[c];d(u)||(e[c]=r(u,a?c+n:n,o,c,i))}},r.flag=o.v.contextOriginalId,r;function r(t,r,n,a,u){return d(t)?t:(r||(r=""),nrWrapper[o.v.contextOriginalId]=t,function(e,t,r){if(Object.defineProperty&&Object.keys)try{return Object.keys(e).forEach((function(r){Object.defineProperty(t,r,{get:function(){return e[r]},set:function(t){return e[r]=t,t}})})),t}catch(e){c([e],r)}for(var n in e)i.call(e,n)&&(t[n]=e[n])}(t,nrWrapper,e),nrWrapper);function nrWrapper(){var o,i,d,l;try{i=this,o=[...arguments],d="function"==typeof n?n(o,i):n||{}}catch(t){c([t,"",[o,i,a],d],e)}s(r+"start",[o,i,a],d,u);try{return l=t.apply(i,o)}catch(e){throw s(r+"err",[o,i,e],d,u),e}finally{s(r+"end",[o,i,l],d,u)}}}function s(r,n,o,i){if(!a||t){var s=a;a=!0;try{e.emit(r,n,o,t,i)}catch(t){c([t,r,n,o],e)}a=s}}}function c(e,t){t||(t=n.ee);try{t.emit("internal-error",e)}catch(e){}}function d(e){return!(e&&"function"==typeof e&&e.apply&&!e[o.v.contextOriginalId])}var u=r(2210),l=r(385);const f={},h=l._A.XMLHttpRequest,p="addEventListener",g="removeEventListener";function m(e){var t=function(e){return(e||n.ee).get("events")}(e);if(f[t.debugId]++)return t;f[t.debugId]=1;var r=s(t,!0);function i(e){r.inPlace(e,[p,g],"-",a)}function a(e,t){return e[1]}return"getPrototypeOf"in Object&&(l.il&&v(document,i),v(l._A,i),v(h.prototype,i)),t.on(p+"-start",(function(e,t){var n=e[1];if(null!==n&&("function"==typeof n||"object"==typeof n)){var i=(0,u.X)(n,o.v.contextWrappedId,(function(){var e={object:function(){if("function"!=typeof n.handleEvent)return;return n.handleEvent.apply(n,arguments)},function:n}[typeof n];return e?r(e,"fn-",null,e.name||"anonymous"):n}));this.wrapped=e[1]=i}})),t.on(g+"-start",(function(e){e[1]=this.wrapped||e[1]})),t}function v(e,t){let r=e;for(;"object"==typeof r&&!Object.prototype.hasOwnProperty.call(r,p);)r=Object.getPrototypeOf(r);for(var n=arguments.length,o=new Array(n>2?n-2:0),i=2;i<n;i++)o[i-2]=arguments[i];r&&t(r,...o)}var b="fetch-",y=b+"body-",A=["arrayBuffer","blob","json","text","formData"],x=l._A.Request,E=l._A.Response,w="prototype";const _={};function S(e){const t=function(e){return(e||n.ee).get("fetch")}(e);if(!(x&&E&&l._A.fetch))return t;if(_[t.debugId]++)return t;function r(e,r,n){var i=e[r];"function"==typeof i&&(e[r]=function(){var e,r=[...arguments],a={};t.emit(n+"before-start",[r],a),a[o.v.contextId]&&a[o.v.contextId].dt&&(e=a[o.v.contextId].dt);var s=i.apply(this,r);return t.emit(n+"start",[r,e],s),s.then((function(e){return t.emit(n+"end",[null,e],s),e}),(function(e){throw t.emit(n+"end",[e],s),e}))})}return _[t.debugId]=1,A.forEach((e=>{r(x[w],e,y),r(E[w],e,y)})),r(l._A,"fetch",b),t.on(b+"end",(function(e,r){var n=this;if(r){var o=r.headers.get("content-length");null!==o&&(n.rxSize=o),t.emit(b+"done",[null,r],n)}else t.emit(b+"done",[e],n)})),t}const T={},R=["pushState","replaceState"];function N(e){const t=function(e){return(e||n.ee).get("history")}(e);return!l.il||T[t.debugId]++||(T[t.debugId]=1,s(t).inPlace(window.history,R,"-")),t}var O=r(3239);const C={},D=["appendChild","insertBefore","replaceChild"];function I(e){const t=function(e){return(e||n.ee).get("jsonp")}(e);if(!l.il||C[t.debugId])return t;C[t.debugId]=!0;var r=s(t),o=/[?&](?:callback|cb)=([^&#]+)/,i=/(.*)\.([^.]+)/,a=/^(\w+)(\.|$)(.*)$/;function c(e,t){if(!e)return t;const r=e.match(a),n=r[1];return c(r[3],t[n])}return r.inPlace(Node.prototype,D,"dom-"),t.on("dom-start",(function(e){!function(e){if(!e||"string"!=typeof e.nodeName||"script"!==e.nodeName.toLowerCase())return;if("function"!=typeof e.addEventListener)return;var n=(a=e.src,s=a.match(o),s?s[1]:null);var a,s;if(!n)return;var d=function(e){var t=e.match(i);if(t&&t.length>=3)return{key:t[2],parent:c(t[1],window)};return{key:e,parent:window}}(n);if("function"!=typeof d.parent[d.key])return;var u={};function l(){t.emit("jsonp-end",[],u),e.removeEventListener("load",l,(0,O.m$)(!1)),e.removeEventListener("error",f,(0,O.m$)(!1))}function f(){t.emit("jsonp-error",[],u),t.emit("jsonp-end",[],u),e.removeEventListener("load",l,(0,O.m$)(!1)),e.removeEventListener("error",f,(0,O.m$)(!1))}r.inPlace(d.parent,[d.key],"cb-",u),e.addEventListener("load",l,(0,O.m$)(!1)),e.addEventListener("error",f,(0,O.m$)(!1)),t.emit("new-jsonp",[e.src],u)}(e[0])})),t}const P={};function j(e){const t=function(e){return(e||n.ee).get("mutation")}(e);if(!l.il||P[t.debugId])return t;P[t.debugId]=!0;var r=s(t),o=l._A.MutationObserver;return o&&(window.MutationObserver=function(e){return this instanceof o?new o(r(e,"fn-")):o.apply(this,arguments)},MutationObserver.prototype=o.prototype),t}const k={};function M(e){const t=function(e){return(e||n.ee).get("promise")}(e);if(k[t.debugId])return t;k[t.debugId]=!0;var r=t.context,i=s(t),a=l._A.Promise;return a&&function(){function e(r){var n=t.context(),o=i(r,"executor-",n,null,!1);const s=Reflect.construct(a,[o],e);return t.context(s).getCtx=function(){return n},s}l._A.Promise=e,Object.defineProperty(e,"name",{value:"Promise"}),e.toString=function(){return a.toString()},Object.setPrototypeOf(e,a),["all","race"].forEach((function(r){const n=a[r];e[r]=function(e){let o=!1;[...e||[]].forEach((e=>{this.resolve(e).then(a("all"===r),a(!1))}));const i=n.apply(this,arguments);return i;function a(e){return function(){t.emit("propagate",[null,!o],i,!1,!1),o=o||!e}}}})),["resolve","reject"].forEach((function(r){const n=a[r];e[r]=function(e){const r=n.apply(this,arguments);return e!==r&&t.emit("propagate",[e,!0],r,!1,!1),r}})),e.prototype=a.prototype;const n=a.prototype.then;a.prototype.then=function(){var e=this,o=r(e);o.promise=e;for(var a=arguments.length,s=new Array(a),c=0;c<a;c++)s[c]=arguments[c];s[0]=i(s[0],"cb-",o,null,!1),s[1]=i(s[1],"cb-",o,null,!1);const d=n.apply(this,s);return o.nextPromise=d,t.emit("propagate",[e,!0],d,!1,!1),d},a.prototype.then[o.v.contextOriginalId]=n,t.on("executor-start",(function(e){e[0]=i(e[0],"resolve-",this,null,!1),e[1]=i(e[1],"resolve-",this,null,!1)})),t.on("executor-err",(function(e,t,r){e[1](r)})),t.on("cb-end",(function(e,r,n){t.emit("propagate",[n,!0],this.nextPromise,!1,!1)})),t.on("propagate",(function(e,r,n){this.getCtx&&!r||(this.getCtx=function(){if(e instanceof Promise)var r=t.context(e);return r&&r.getCtx?r.getCtx():this})}))}(),t}const H={},L="setTimeout",z="setInterval",U="clearTimeout",F="-start",B="-",q=[L,"setImmediate",z,U,"clearImmediate"];function V(e){const t=function(e){return(e||n.ee).get("timer")}(e);if(H[t.debugId]++)return t;H[t.debugId]=1;var r=s(t);return r.inPlace(l._A,q.slice(0,2),L+B),r.inPlace(l._A,q.slice(2,3),z+B),r.inPlace(l._A,q.slice(3),U+B),t.on(z+F,(function(e,t,n){e[0]=r(e[0],"fn-",null,n)})),t.on(L+F,(function(e,t,n){this.method=n,this.timerDuration=isNaN(e[1])?0:+e[1],e[0]=r(e[0],"fn-",this,n)})),t}var G=r(50);const Z={},W=["open","send"];function K(e){var t=e||n.ee;const r=function(e){return(e||n.ee).get("xhr")}(t);if(Z[r.debugId]++)return r;Z[r.debugId]=1,m(t);var o=s(r),i=l._A.XMLHttpRequest,a=l._A.MutationObserver,c=l._A.Promise,d=l._A.setInterval,u="readystatechange",f=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],h=[],p=l._A.XMLHttpRequest=function(e){const t=new i(e),n=r.context(t);try{r.emit("new-xhr",[t],n),t.addEventListener(u,(a=n,function(){var e=this;e.readyState>3&&!a.resolved&&(a.resolved=!0,r.emit("xhr-resolved",[],e)),o.inPlace(e,f,"fn-",x)}),(0,O.m$)(!1))}catch(e){(0,G.Z)("An error occurred while intercepting XHR",e);try{r.emit("internal-error",[e])}catch(e){}}var a;return t};function g(e,t){o.inPlace(t,["onreadystatechange"],"fn-",x)}if(function(e,t){for(var r in e)t[r]=e[r]}(i,p),p.prototype=i.prototype,o.inPlace(p.prototype,W,"-xhr-",x),r.on("send-xhr-start",(function(e,t){g(e,t),function(e){h.push(e),a&&(v?v.then(A):d?d(A):(b=-b,y.data=b))}(t)})),r.on("open-xhr-start",g),a){var v=c&&c.resolve();if(!d&&!c){var b=1,y=document.createTextNode(b);new a(A).observe(y,{characterData:!0})}}else t.on("fn-end",(function(e){e[0]&&e[0].type===u||A()}));function A(){for(var e=0;e<h.length;e++)g(0,h[e]);h.length&&(h=[])}function x(e,t){return t}return r}},7825:(e,t,r)=>{"use strict";r.d(t,{t:()=>n});const n=r(3325).D.ajax},6660:(e,t,r)=>{"use strict";r.d(t,{t:()=>n});const n=r(3325).D.jserrors},3081:(e,t,r)=>{"use strict";r.d(t,{gF:()=>i,mY:()=>o,t9:()=>n,vz:()=>s,xS:()=>a});const n=r(3325).D.metrics,o="sm",i="cm",a="storeSupportabilityMetrics",s="storeEventMetrics"},4649:(e,t,r)=>{"use strict";r.d(t,{t:()=>n});const n=r(3325).D.pageAction},7633:(e,t,r)=>{"use strict";r.d(t,{t:()=>n});const n=r(3325).D.pageViewEvent},9251:(e,t,r)=>{"use strict";r.d(t,{t:()=>n});const n=r(3325).D.pageViewTiming},7144:(e,t,r)=>{"use strict";r.d(t,{Ef:()=>i,J0:()=>f,Mi:()=>l,Vb:()=>a,Ye:()=>c,fm:()=>d,i9:()=>s,t9:()=>o,u0:()=>u});var n=r(7056);const o=r(3325).D.sessionReplay,i={RECORD:"recordReplay",PAUSE:"pauseReplay"},a=.12,s={DomContentLoaded:0,Load:1,FullSnapshot:2,IncrementalSnapshot:3,Meta:4,Custom:5},c=1e6,d=64e3,u={[n.IK.ERROR]:15e3,[n.IK.FULL]:3e5,[n.IK.OFF]:0},l={RESET:{message:"Session was reset",sm:"Reset"},IMPORT:{message:"Recorder failed to import",sm:"Import"},TOO_MANY:{message:"429: Too Many Requests",sm:"Too-Many"},TOO_BIG:{message:"Payload was too large",sm:"Too-Big"},CROSS_TAB:{message:"Session Entity was set to OFF on another tab",sm:"Cross-Tab"},ENTITLEMENTS:{message:"Session Replay is not allowed and will not be started",sm:"Entitlement"}},f=5e3},3614:(e,t,r)=>{"use strict";r.d(t,{BST_RESOURCE:()=>o,END:()=>s,FEATURE_NAME:()=>n,FN_END:()=>d,FN_START:()=>c,PUSH_STATE:()=>u,RESOURCE:()=>i,START:()=>a});const n=r(3325).D.sessionTrace,o="bstResource",i="resource",a="-start",s="-end",c="fn"+a,d="fn"+s,u="pushState"},6216:(e,t,r)=>{"use strict";r.d(t,{K8:()=>s,QZ:()=>c,cS:()=>i,sE:()=>o,t9:()=>a,vh:()=>d});var n=r(3325);const o=["click","keydown","submit"],i="api",a=n.D.softNav,s={INITIAL_PAGE_LOAD:"",ROUTE_CHANGE:1,UNSPECIFIED:2},c={INTERACTION:1,AJAX:2,CUSTOM_END:3,CUSTOM_TRACER:4},d={IP:"in progress",FIN:"finished",CAN:"cancelled"}},7836:(e,t,r)=>{"use strict";r.d(t,{BODY:()=>E,CB_END:()=>w,CB_START:()=>d,END:()=>x,FEATURE_NAME:()=>o,FETCH:()=>S,FETCH_BODY:()=>v,FETCH_DONE:()=>m,FETCH_START:()=>g,FN_END:()=>c,FN_START:()=>s,INTERACTION:()=>f,INTERACTION_API:()=>u,INTERACTION_EVENTS:()=>i,JSONP_END:()=>b,JSONP_NODE:()=>p,JS_TIME:()=>_,MAX_TIMER_BUDGET:()=>a,REMAINING:()=>l,SPA_NODE:()=>h,START:()=>A,originalSetTimeout:()=>y});var n=r(234);const o=r(3325).D.spa,i=["click","submit","keypress","keydown","keyup","change"],a=999,s="fn-start",c="fn-end",d="cb-start",u="api-ixn-",l="remaining",f="interaction",h="spaNode",p="jsonpNode",g="fetch-start",m="fetch-done",v="fetch-body-",b="jsonp-end",y=n.Yu.ST,A="-start",x="-end",E="-body",w="cb"+x,_="jsTime",S="fetch"},5938:(e,t,r)=>{"use strict";r.d(t,{W:()=>o});var n=r(2177);class o{constructor(e,t,r){this.agentIdentifier=e,this.aggregator=t,this.ee=n.ee.get(e),this.featureName=r,this.blocked=!1}}},8862:(e,t,r)=>{"use strict";r.d(t,{j:()=>x});var n=r(3325),o=r(234),i=r(5546),a=r(2177),s=r(7894),c=r(8e3),d=r(3960),u=r(385),l=r(50),f=r(3081),h=r(8632),p=r(7144);const g=["setErrorHandler","finished","addToTrace","addRelease","addPageAction","setCurrentRouteName","setPageViewName","setCustomAttribute","interaction","noticeError","setUserId","setApplicationVersion","start","recordReplay","pauseReplay",p.Ef.RECORD,p.Ef.PAUSE],m=["setErrorHandler","finished","addToTrace","addRelease"];function v(){const e=(0,h.gG)();g.forEach((t=>{e[t]=function(){for(var r=arguments.length,n=new Array(r),o=0;o<r;o++)n[o]=arguments[o];return function(t){for(var r=arguments.length,n=new Array(r>1?r-1:0),o=1;o<r;o++)n[o-1]=arguments[o];let i=[];return Object.values(e.initializedAgents).forEach((e=>{e.exposed&&e.api[t]&&i.push(e.api[t](...n))})),i.length>1?i:i[0]}(t,...n)}}))}var b=r(2825);const y=e=>{const t=e.startsWith("http");e+="/",r.p=t?e:"https://"+e};let A=!1;function x(e){let t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{},g=arguments.length>2?arguments[2]:void 0,x=arguments.length>3?arguments[3]:void 0,{init:E,info:w,loader_config:_,runtime:S={loaderType:g},exposed:T=!0}=t;const R=(0,h.gG)();w||(E=R.init,w=R.info,_=R.loader_config),(0,o.Dg)(e.agentIdentifier,E||{}),(0,o.GE)(e.agentIdentifier,_||{}),w.jsAttributes??={},u.v6&&(w.jsAttributes.isWorker=!0),(0,o.CX)(e.agentIdentifier,w);const N=(0,o.P_)(e.agentIdentifier),O=[w.beacon,w.errorBeacon];A||(N.proxy.assets&&(y(N.proxy.assets),O.push(N.proxy.assets)),N.proxy.beacon&&O.push(N.proxy.beacon),v(),(0,h.EZ)("activatedFeatures",b.T),e.runSoftNavOverSpa&&=!0===N.soft_navigations.enabled&&N.feature_flags.includes("soft_nav")),S.denyList=[...N.ajax.deny_list||[],...N.ajax.block_internal?O:[]],(0,o.sU)(e.agentIdentifier,S),void 0===e.api&&(e.api=function(e,t){let h=arguments.length>2&&void 0!==arguments[2]&&arguments[2];t||(0,c.R)(e,"api");const g={};var v=a.ee.get(e),b=v.get("tracer"),y="api-",A=y+"ixn-";function x(t,r,n,i){const a=(0,o.C5)(e);return null===r?delete a.jsAttributes[t]:(0,o.CX)(e,{...a,jsAttributes:{...a.jsAttributes,[t]:r}}),_(y,n,!0,i||null===r?"session":void 0)(t,r)}function E(){}m.forEach((e=>{g[e]=_(y,e,!0,"api")})),g.addPageAction=_(y,"addPageAction",!0,n.D.pageAction),g.setPageViewName=function(t,r){if("string"==typeof t)return"/"!==t.charAt(0)&&(t="/"+t),(0,o.OP)(e).customTransaction=(r||"http://custom.transaction")+t,_(y,"setPageViewName",!0)()},g.setCustomAttribute=function(e,t){let r=arguments.length>2&&void 0!==arguments[2]&&arguments[2];if("string"==typeof e){if(["string","number","boolean"].includes(typeof t)||null===t)return x(e,t,"setCustomAttribute",r);(0,l.Z)("Failed to execute setCustomAttribute.\nNon-null value must be a string, number or boolean type, but a type of <".concat(typeof t,"> was provided."))}else(0,l.Z)("Failed to execute setCustomAttribute.\nName must be a string type, but a type of <".concat(typeof e,"> was provided."))},g.setUserId=function(e){if("string"==typeof e||null===e)return x("enduser.id",e,"setUserId",!0);(0,l.Z)("Failed to execute setUserId.\nNon-null value must be a string type, but a type of <".concat(typeof e,"> was provided."))},g.setApplicationVersion=function(e){if("string"==typeof e||null===e)return x("application.version",e,"setApplicationVersion",!1);(0,l.Z)("Failed to execute setApplicationVersion. Expected <String | null>, but got <".concat(typeof e,">."))},g.start=e=>{try{const t=e?"defined":"undefined";(0,i.p)(f.xS,["API/start/".concat(t,"/called")],void 0,n.D.metrics,v);const r=Object.values(n.D);if(void 0===e)e=r;else{if((e=Array.isArray(e)&&e.length?e:[e]).some((e=>!r.includes(e))))return(0,l.Z)("Invalid feature name supplied. Acceptable feature names are: ".concat(r));e.includes(n.D.pageViewEvent)||e.push(n.D.pageViewEvent)}e.forEach((e=>{v.emit("".concat(e,"-opt-in"))}))}catch(e){(0,l.Z)("An unexpected issue occurred",e)}},g[p.Ef.RECORD]=function(){(0,i.p)(f.xS,["API/recordReplay/called"],void 0,n.D.metrics,v),(0,i.p)(p.Ef.RECORD,[],void 0,n.D.sessionReplay,v)},g[p.Ef.PAUSE]=function(){(0,i.p)(f.xS,["API/pauseReplay/called"],void 0,n.D.metrics,v),(0,i.p)(p.Ef.PAUSE,[],void 0,n.D.sessionReplay,v)},g.interaction=function(e){return(new E).get("object"==typeof e?e:{})};const w=E.prototype={createTracer:function(e,t){var r={},o=this,a="function"==typeof t;return(0,i.p)(f.xS,["API/createTracer/called"],void 0,n.D.metrics,v),h||(0,i.p)(A+"tracer",[(0,s.z)(),e,r],o,n.D.spa,v),function(){if(b.emit((a?"":"no-")+"fn-start",[(0,s.z)(),o,a],r),a)try{return t.apply(this,arguments)}catch(e){throw b.emit("fn-err",[arguments,this,e],r),e}finally{b.emit("fn-end",[(0,s.z)()],r)}}}};function _(e,t,r,o){return function(){return(0,i.p)(f.xS,["API/"+t+"/called"],void 0,n.D.metrics,v),o&&(0,i.p)(e+t,[(0,s.z)(),...arguments],r?null:this,o,v),r?void 0:this}}function S(){r.e(111).then(r.bind(r,7438)).then((t=>{let{setAPI:r}=t;r(e),(0,c.L)(e,"api")})).catch((()=>{(0,l.Z)("Downloading runtime APIs failed..."),(0,c.L)(e,"api",!0)}))}return["actionText","setName","setAttribute","save","ignore","onEnd","getContext","end","get"].forEach((e=>{w[e]=_(A,e,void 0,h?n.D.softNav:n.D.spa)})),g.setCurrentRouteName=h?_(A,"routeName",void 0,n.D.softNav):_(y,"routeName",!0,n.D.spa),g.noticeError=function(e,t){"string"==typeof e&&(e=new Error(e)),(0,i.p)(f.xS,["API/noticeError/called"],void 0,n.D.metrics,v),(0,i.p)("err",[e,(0,s.z)(),!1,t],void 0,n.D.jserrors,v)},u.il?(0,d.b2)((()=>S()),!0):S(),g}(e.agentIdentifier,x,e.runSoftNavOverSpa)),void 0===e.exposed&&(e.exposed=T),A=!0}},1926:(e,t,r)=>{r.nc=(()=>{try{return document?.currentScript?.nonce}catch(e){}return""})()},3325:(e,t,r)=>{"use strict";r.d(t,{D:()=>n,p:()=>o});const n={ajax:"ajax",jserrors:"jserrors",metrics:"metrics",pageAction:"page_action",pageViewEvent:"page_view_event",pageViewTiming:"page_view_timing",sessionReplay:"session_replay",sessionTrace:"session_trace",softNav:"soft_navigations",spa:"spa"},o={[n.pageViewEvent]:1,[n.pageViewTiming]:2,[n.metrics]:3,[n.jserrors]:4,[n.ajax]:5,[n.sessionTrace]:6,[n.pageAction]:7,[n.spa]:8,[n.softNav]:9,[n.sessionReplay]:10}}},n={};function o(e){var t=n[e];if(void 0!==t)return t.exports;var i=n[e]={exports:{}};return r[e](i,i.exports,o),i.exports}o.m=r,o.d=(e,t)=>{for(var r in t)o.o(t,r)&&!o.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},o.f={},o.e=e=>Promise.all(Object.keys(o.f).reduce(((t,r)=>(o.f[r](e,t),t)),[])),o.u=e=>({111:"nr-spa",164:"nr-spa-compressor",433:"nr-spa-recorder"}[e]+"-1.253.0.min.js"),o.o=(e,t)=>Object.prototype.hasOwnProperty.call(e,t),e={},t="NRBA-1.253.0.PROD:",o.l=(r,n,i,a)=>{if(e[r])e[r].push(n);else{var s,c;if(void 0!==i)for(var d=document.getElementsByTagName("script"),u=0;u<d.length;u++){var l=d[u];if(l.getAttribute("src")==r||l.getAttribute("data-webpack")==t+i){s=l;break}}if(!s){c=!0;var f={111:"sha512-9q9mF25YixUzOl0h6A+kYg30MKv1nk2a0Fx09kyCfgOxt8ksjOW/9w2tJczXB75fpHty83UGhg16QZYqH5xGUA==",433:"sha512-XC5+mpqQ2tnT7qrjy10Au+hbjKZi4K7pKsvdzhKOe/fgoYKm7g9W52e22ufe22D4Fsb1Cq7JOEOPkUh+b8tcHA==",164:"sha512-nLe65dhs+GlSH+tKGdqn9vp9IbVkpOl4OifRjps2BSizmhkjfLxjYISHdBIgnzzk0wNwOFpTdheU8TRIq4FPXA=="};(s=document.createElement("script")).charset="utf-8",s.timeout=120,o.nc&&s.setAttribute("nonce",o.nc),s.setAttribute("data-webpack",t+i),s.src=r,0!==s.src.indexOf(window.location.origin+"/")&&(s.crossOrigin="anonymous"),f[a]&&(s.integrity=f[a])}e[r]=[n];var h=(t,n)=>{s.onerror=s.onload=null,clearTimeout(p);var o=e[r];if(delete e[r],s.parentNode&&s.parentNode.removeChild(s),o&&o.forEach((e=>e(n))),t)return t(n)},p=setTimeout(h.bind(null,void 0,{type:"timeout",target:s}),12e4);s.onerror=h.bind(null,s.onerror),s.onload=h.bind(null,s.onload),c&&document.head.appendChild(s)}},o.r=e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},o.p="https://js-agent.newrelic.com/",(()=>{var e={801:0,92:0};o.f.j=(t,r)=>{var n=o.o(e,t)?e[t]:void 0;if(0!==n)if(n)r.push(n[2]);else{var i=new Promise(((r,o)=>n=e[t]=[r,o]));r.push(n[2]=i);var a=o.p+o.u(t),s=new Error;o.l(a,(r=>{if(o.o(e,t)&&(0!==(n=e[t])&&(e[t]=void 0),n)){var i=r&&("load"===r.type?"missing":r.type),a=r&&r.target&&r.target.src;s.message="Loading chunk "+t+" failed.\n("+i+": "+a+")",s.name="ChunkLoadError",s.type=i,s.request=a,n[1](s)}}),"chunk-"+t,t)}};var t=(t,r)=>{var n,i,[a,s,c]=r,d=0;if(a.some((t=>0!==e[t]))){for(n in s)o.o(s,n)&&(o.m[n]=s[n]);if(c)c(o)}for(t&&t(r);d<a.length;d++)i=a[d],o.o(e,i)&&e[i]&&e[i][0](),e[i]=0},r=self["webpackChunk:NRBA-1.253.0.PROD"]=self["webpackChunk:NRBA-1.253.0.PROD"]||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))})(),(()=>{"use strict";o(1926);var e=o(50),t=o(7144),r=o(4938),n=o(4402),i=o(2177);class a{agentIdentifier;observationContext=new r.v;constructor(){let e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:(0,n.ky)(16);this.agentIdentifier=e;i.ee.get(e).observationContext=this.observationContext}#t(t){for(var r=arguments.length,n=new Array(r>1?r-1:0),o=1;o<r;o++)n[o-1]=arguments[o];if("function"==typeof this.api?.[t])return this.api[t](...n);(0,e.Z)("Call to agent api ".concat(t," failed. The API is not currently initialized."))}addPageAction(e,t){return this.#t("addPageAction",e,t)}setPageViewName(e,t){return this.#t("setPageViewName",e,t)}setCustomAttribute(e,t,r){return this.#t("setCustomAttribute",e,t,r)}noticeError(e,t){return this.#t("noticeError",e,t)}setUserId(e){return this.#t("setUserId",e)}setApplicationVersion(e){return this.#t("setApplicationVersion",e)}setErrorHandler(e){return this.#t("setErrorHandler",e)}finished(e){return this.#t("finished",e)}addRelease(e,t){return this.#t("addRelease",e,t)}start(e){return this.#t("start",e)}recordReplay(){return this.#t(t.Ef.RECORD)}pauseReplay(){return this.#t(t.Ef.PAUSE)}addToTrace(e){return this.#t("addToTrace",e)}setCurrentRouteName(e){return this.#t("setCurrentRouteName",e)}interaction(){return this.#t("interaction")}}var s=o(3325),c=o(234);const d=Object.values(s.D);function u(e){const t={};return d.forEach((r=>{t[r]=function(e,t){return!0===(0,c.Mt)(t,"".concat(e,".enabled"))}(r,e)})),t}var l=o(8862);var f=o(8e3),h=o(5938),p=o(3960),g=o(385);const m=e=>g.il&&!0===(0,c.Mt)(e,"privacy.cookies_enabled");function v(e){return c.Yu.MO&&m&&!0===(0,c.Mt)(e,"session_trace.enabled")}function b(e){return!0===(0,c.Mt)(e,"session_replay.preload")&&v(e)}class y extends h.W{constructor(e,t,r){let n=!(arguments.length>3&&void 0!==arguments[3])||arguments[3];super(e,t,r),this.auto=n,this.abortHandler=void 0,this.featAggregate=void 0,this.onAggregateImported=void 0,!1===(0,c.Mt)(this.agentIdentifier,"".concat(this.featureName,".autoStart"))&&(this.auto=!1),this.auto&&(0,f.R)(e,r)}importAggregator(){let t,r=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if(this.featAggregate)return;if(!this.auto)return void this.ee.on("".concat(this.featureName,"-opt-in"),(()=>{(0,f.R)(this.agentIdentifier,this.featureName),this.auto=!0,this.importAggregator()}));this.onAggregateImported=new Promise((e=>{t=e}));const n=async()=>{let n;try{if(m(this.agentIdentifier)){const{setupAgentSession:e}=await o.e(111).then(o.bind(o,1656));n=e(this.agentIdentifier)}}catch(t){(0,e.Z)("A problem occurred when starting up session manager. This page will not start or extend any session.",t),this.featureName===s.D.sessionReplay&&this.abortHandler?.()}try{if(!this.#r(this.featureName,n))return(0,f.L)(this.agentIdentifier,this.featureName),void t(!1);const{lazyFeatureLoader:e}=await o.e(111).then(o.bind(o,8582)),{Aggregate:i}=await e(this.featureName,"aggregate");this.featAggregate=new i(this.agentIdentifier,this.aggregator,r),t(!0)}catch(r){(0,e.Z)("Downloading and initializing ".concat(this.featureName," failed..."),r),this.abortHandler?.(),(0,f.L)(this.agentIdentifier,this.featureName,!0),t(!1)}};g.il?(0,p.b2)((()=>n()),!0):n()}#r(e,t){return e!==s.D.sessionReplay||(r=this.agentIdentifier,n=t,!(!v(r)||!n?.isNew&&!n?.state.sessionReplayMode));var r,n}}var A=o(7633);class x extends y{static featureName=A.t;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,A.t,r),this.importAggregator()}}var E=o(1117),w=o(1284);class _ extends E.w{constructor(e){super(e),this.aggregatedData={}}store(e,t,r,n,o){var i=this.getBucket(e,t,r,o);return i.metrics=function(e,t){t||(t={count:0});return t.count+=1,(0,w.D)(e,(function(e,r){t[e]=S(r,t[e])})),t}(n,i.metrics),i}merge(e,t,r,n,o){var i=this.getBucket(e,t,n,o);if(i.metrics){var a=i.metrics;a.count+=r.count,(0,w.D)(r,(function(e,t){if("count"!==e){var n=a[e],o=r[e];o&&!o.c?a[e]=S(o.t,n):a[e]=function(e,t){if(!t)return e;t.c||(t=T(t.t));return t.min=Math.min(e.min,t.min),t.max=Math.max(e.max,t.max),t.t+=e.t,t.sos+=e.sos,t.c+=e.c,t}(o,a[e])}}))}else i.metrics=r}storeMetric(e,t,r,n){var o=this.getBucket(e,t,r);return o.stats=S(n,o.stats),o}getBucket(e,t,r,n){this.aggregatedData[e]||(this.aggregatedData[e]={});var o=this.aggregatedData[e][t];return o||(o=this.aggregatedData[e][t]={params:r||{}},n&&(o.custom=n)),o}get(e,t){return t?this.aggregatedData[e]&&this.aggregatedData[e][t]:this.aggregatedData[e]}take(e){for(var t={},r="",n=!1,o=0;o<e.length;o++)t[r=e[o]]=Object.values(this.aggregatedData[r]||{}),t[r].length&&(n=!0),delete this.aggregatedData[r];return n?t:null}}function S(e,t){return null==e?function(e){e?e.c++:e={c:1};return e}(t):t?(t.c||(t=T(t.t)),t.c+=1,t.t+=e,t.sos+=e*e,e>t.max&&(t.max=e),e<t.min&&(t.min=e),t):{t:e}}function T(e){return{t:e,min:e,max:e,sos:e*e,c:1}}var R=o(8632),N=o(4351);var O=o(5546),C=o(7956),D=o(3239),I=o(7894),P=o(9251);class j extends y{static featureName=P.t;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,P.t,r),g.il&&((0,C.N)((()=>(0,O.p)("docHidden",[(0,I.z)()],void 0,P.t,this.ee)),!0),(0,D.bP)("pagehide",(()=>(0,O.p)("winPagehide",[(0,I.z)()],void 0,P.t,this.ee))),this.importAggregator())}}var k=o(3081);class M extends y{static featureName=k.t9;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,k.t9,r),this.importAggregator()}}var H=o(6660);class L{constructor(e,t,r,n){this.name="UncaughtError",this.message=e,this.sourceURL=t,this.line=r,this.column=n}}class z extends y{static featureName=H.t;#n=new Set;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,H.t,r);try{this.removeOnAbort=new AbortController}catch(e){}this.ee.on("fn-err",((e,t,r)=>{this.abortHandler&&!this.#n.has(r)&&(this.#n.add(r),(0,O.p)("err",[this.#o(r),(0,I.z)()],void 0,s.D.jserrors,this.ee))})),this.ee.on("internal-error",(e=>{this.abortHandler&&(0,O.p)("ierr",[this.#o(e),(0,I.z)(),!0],void 0,s.D.jserrors,this.ee)})),g._A.addEventListener("unhandledrejection",(e=>{this.abortHandler&&(0,O.p)("err",[this.#i(e),(0,I.z)(),!1,{unhandledPromiseRejection:1}],void 0,s.D.jserrors,this.ee)}),(0,D.m$)(!1,this.removeOnAbort?.signal)),g._A.addEventListener("error",(e=>{this.abortHandler&&(this.#n.has(e.error)?this.#n.delete(e.error):(0,O.p)("err",[this.#a(e),(0,I.z)()],void 0,s.D.jserrors,this.ee))}),(0,D.m$)(!1,this.removeOnAbort?.signal)),this.abortHandler=this.#s,this.importAggregator()}#s(){this.removeOnAbort?.abort(),this.#n.clear(),this.abortHandler=void 0}#o(e){return e instanceof Error?e:void 0!==e?.message?new L(e.message,e.filename||e.sourceURL,e.lineno||e.line,e.colno||e.col):new L("string"==typeof e?e:(0,N.P)(e))}#i(e){let t="Unhandled Promise Rejection: ";if(e?.reason instanceof Error)try{return e.reason.message=t+e.reason.message,e.reason}catch(t){return e.reason}if(void 0===e.reason)return new L(t);const r=this.#o(e.reason);return r.message=t+r.message,r}#a(e){if(e.error instanceof SyntaxError&&!/:\d+$/.test(e.error.stack?.trim())){const t=new L(e.message,e.filename,e.lineno,e.colno);return t.name=SyntaxError.name,t}return e.error instanceof Error?e.error:new L(e.message,e.filename,e.lineno,e.colno)}}var U=o(2210);let F=1;const B="nr@id";function q(e){const t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===g._A?0:(0,U.X)(e,B,(function(){return F++}))}function V(e){if("string"==typeof e&&e.length)return e.length;if("object"==typeof e){if("undefined"!=typeof ArrayBuffer&&e instanceof ArrayBuffer&&e.byteLength)return e.byteLength;if("undefined"!=typeof Blob&&e instanceof Blob&&e.size)return e.size;if(!("undefined"!=typeof FormData&&e instanceof FormData))try{return(0,N.P)(e).length}catch(e){return}}}var G=o(7806),Z=o(7243);class W{constructor(e){this.agentIdentifier=e}generateTracePayload(e){if(!this.shouldGenerateTrace(e))return null;var t=(0,c.DL)(this.agentIdentifier);if(!t)return null;var r=(t.accountID||"").toString()||null,o=(t.agentID||"").toString()||null,i=(t.trustKey||"").toString()||null;if(!r||!o)return null;var a=(0,n.M)(),s=(0,n.Ht)(),d=Date.now(),u={spanId:a,traceId:s,timestamp:d};return(e.sameOrigin||this.isAllowedOrigin(e)&&this.useTraceContextHeadersForCors())&&(u.traceContextParentHeader=this.generateTraceContextParentHeader(a,s),u.traceContextStateHeader=this.generateTraceContextStateHeader(a,d,r,o,i)),(e.sameOrigin&&!this.excludeNewrelicHeader()||!e.sameOrigin&&this.isAllowedOrigin(e)&&this.useNewrelicHeaderForCors())&&(u.newrelicHeader=this.generateTraceHeader(a,s,d,r,o,i)),u}generateTraceContextParentHeader(e,t){return"00-"+t+"-"+e+"-01"}generateTraceContextStateHeader(e,t,r,n,o){return o+"@nr=0-1-"+r+"-"+n+"-"+e+"----"+t}generateTraceHeader(e,t,r,n,o,i){if(!("function"==typeof g._A?.btoa))return null;var a={v:[0,1],d:{ty:"Browser",ac:n,ap:o,id:e,tr:t,ti:r}};return i&&n!==i&&(a.d.tk=i),btoa((0,N.P)(a))}shouldGenerateTrace(e){return this.isDtEnabled()&&this.isAllowedOrigin(e)}isAllowedOrigin(e){var t=!1,r={};if((0,c.Mt)(this.agentIdentifier,"distributed_tracing")&&(r=(0,c.P_)(this.agentIdentifier).distributed_tracing),e.sameOrigin)t=!0;else if(r.allowed_origins instanceof Array)for(var n=0;n<r.allowed_origins.length;n++){var o=(0,Z.e)(r.allowed_origins[n]);if(e.hostname===o.hostname&&e.protocol===o.protocol&&e.port===o.port){t=!0;break}}return t}isDtEnabled(){var e=(0,c.Mt)(this.agentIdentifier,"distributed_tracing");return!!e&&!!e.enabled}excludeNewrelicHeader(){var e=(0,c.Mt)(this.agentIdentifier,"distributed_tracing");return!!e&&!!e.exclude_newrelic_header}useNewrelicHeaderForCors(){var e=(0,c.Mt)(this.agentIdentifier,"distributed_tracing");return!!e&&!1!==e.cors_use_newrelic_header}useTraceContextHeadersForCors(){var e=(0,c.Mt)(this.agentIdentifier,"distributed_tracing");return!!e&&!!e.cors_use_tracecontext_headers}}var K=o(7825),X=["load","error","abort","timeout"],Y=X.length,J=c.Yu.REQ,Q=c.Yu.XHR;class ee extends y{static featureName=K.t;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];if(super(e,t,K.t,r),(0,c.OP)(e).xhrWrappable){this.dt=new W(e),this.handler=(e,t,r,n)=>(0,O.p)(e,t,r,n,this.ee);try{const e={xmlhttprequest:"xhr",fetch:"fetch",beacon:"beacon"};g._A?.performance?.getEntriesByType("resource").forEach((t=>{if(t.initiatorType in e&&0!==t.responseStatus){const r={status:t.responseStatus},n={rxSize:t.transferSize,duration:Math.floor(t.duration),cbTime:0};te(r,t.name),this.handler("xhr",[r,n,t.startTime,t.responseEnd,e[t.initiatorType]],void 0,s.D.ajax)}}))}catch(e){}(0,G.u5)(this.ee),(0,G.Kf)(this.ee),function(e,t,r,n){function o(e){var t=this;t.totalCbs=0,t.called=0,t.cbTime=0,t.end=E,t.ended=!1,t.xhrGuids={},t.lastSize=null,t.loadCaptureCalled=!1,t.params=this.params||{},t.metrics=this.metrics||{},e.addEventListener("load",(function(r){w(t,e)}),(0,D.m$)(!1)),g.IF||e.addEventListener("progress",(function(e){t.lastSize=e.loaded}),(0,D.m$)(!1))}function i(e){this.params={method:e[0]},te(this,e[1]),this.metrics={}}function a(t,r){var o=(0,c.DL)(e);o.xpid&&this.sameOrigin&&r.setRequestHeader("X-NewRelic-ID",o.xpid);var i=n.generateTracePayload(this.parsedOrigin);if(i){var a=!1;i.newrelicHeader&&(r.setRequestHeader("newrelic",i.newrelicHeader),a=!0),i.traceContextParentHeader&&(r.setRequestHeader("traceparent",i.traceContextParentHeader),i.traceContextStateHeader&&r.setRequestHeader("tracestate",i.traceContextStateHeader),a=!0),a&&(this.dt=i)}}function d(e,r){var n=this.metrics,o=e[0],i=this;if(n&&o){var a=V(o);a&&(n.txSize=a)}this.startTime=(0,I.z)(),this.body=o,this.listener=function(e){try{"abort"!==e.type||i.loadCaptureCalled||(i.params.aborted=!0),("load"!==e.type||i.called===i.totalCbs&&(i.onloadCalled||"function"!=typeof r.onload)&&"function"==typeof i.end)&&i.end(r)}catch(e){try{t.emit("internal-error",[e])}catch(e){}}};for(var s=0;s<Y;s++)r.addEventListener(X[s],this.listener,(0,D.m$)(!1))}function u(e,t,r){this.cbTime+=e,t?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof r.onload||"function"!=typeof this.end||this.end(r)}function l(e,t){var r=""+q(e)+!!t;this.xhrGuids&&!this.xhrGuids[r]&&(this.xhrGuids[r]=!0,this.totalCbs+=1)}function f(e,t){var r=""+q(e)+!!t;this.xhrGuids&&this.xhrGuids[r]&&(delete this.xhrGuids[r],this.totalCbs-=1)}function h(){this.endTime=(0,I.z)()}function p(e,r){r instanceof Q&&"load"===e[0]&&t.emit("xhr-load-added",[e[1],e[2]],r)}function m(e,r){r instanceof Q&&"load"===e[0]&&t.emit("xhr-load-removed",[e[1],e[2]],r)}function v(e,t,r){t instanceof Q&&("onload"===r&&(this.onload=!0),("load"===(e[0]&&e[0].type)||this.onload)&&(this.xhrCbStart=(0,I.z)()))}function b(e,r){this.xhrCbStart&&t.emit("xhr-cb-time",[(0,I.z)()-this.xhrCbStart,this.onload,r],r)}function y(e){var t,r=e[1]||{};if("string"==typeof e[0]?0===(t=e[0]).length&&g.il&&(t=""+g._A.location.href):e[0]&&e[0].url?t=e[0].url:g._A?.URL&&e[0]&&e[0]instanceof URL?t=e[0].href:"function"==typeof e[0].toString&&(t=e[0].toString()),"string"==typeof t&&0!==t.length){t&&(this.parsedOrigin=(0,Z.e)(t),this.sameOrigin=this.parsedOrigin.sameOrigin);var o=n.generateTracePayload(this.parsedOrigin);if(o&&(o.newrelicHeader||o.traceContextParentHeader))if(e[0]&&e[0].headers)s(e[0].headers,o)&&(this.dt=o);else{var i={};for(var a in r)i[a]=r[a];i.headers=new Headers(r.headers||{}),s(i.headers,o)&&(this.dt=o),e.length>1?e[1]=i:e.push(i)}}function s(e,t){var r=!1;return t.newrelicHeader&&(e.set("newrelic",t.newrelicHeader),r=!0),t.traceContextParentHeader&&(e.set("traceparent",t.traceContextParentHeader),t.traceContextStateHeader&&e.set("tracestate",t.traceContextStateHeader),r=!0),r}}function A(e,t){this.params={},this.metrics={},this.startTime=(0,I.z)(),this.dt=t,e.length>=1&&(this.target=e[0]),e.length>=2&&(this.opts=e[1]);var r,n=this.opts||{},o=this.target;"string"==typeof o?r=o:"object"==typeof o&&o instanceof J?r=o.url:g._A?.URL&&"object"==typeof o&&o instanceof URL&&(r=o.href),te(this,r);var i=(""+(o&&o instanceof J&&o.method||n.method||"GET")).toUpperCase();this.params.method=i,this.body=n.body,this.txSize=V(n.body)||0}function x(e,t){var n;this.endTime=(0,I.z)(),this.params||(this.params={}),this.params.status=t?t.status:0,"string"==typeof this.rxSize&&this.rxSize.length>0&&(n=+this.rxSize);var o={txSize:this.txSize,rxSize:n,duration:(0,I.z)()-this.startTime};r("xhr",[this.params,o,this.startTime,this.endTime,"fetch"],this,s.D.ajax)}function E(e){var t=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var o=0;o<Y;o++)e.removeEventListener(X[o],this.listener,!1);t.aborted||(n.duration=(0,I.z)()-this.startTime,this.loadCaptureCalled||4!==e.readyState?null==t.status&&(t.status=0):w(this,e),n.cbTime=this.cbTime,r("xhr",[t,n,this.startTime,this.endTime,"xhr"],this,s.D.ajax))}}function w(e,r){e.params.status=r.status;var n=function(e,t){var r=e.responseType;return"json"===r&&null!==t?t:"arraybuffer"===r||"blob"===r||"json"===r?V(e.response):"text"===r||""===r||void 0===r?V(e.responseText):void 0}(r,e.lastSize);if(n&&(e.metrics.rxSize=n),e.sameOrigin){var o=r.getResponseHeader("X-NewRelic-App-Data");o&&((0,O.p)(k.mY,["Ajax/CrossApplicationTracing/Header/Seen"],void 0,s.D.metrics,t),e.params.cat=o.split(", ").pop())}e.loadCaptureCalled=!0}t.on("new-xhr",o),t.on("open-xhr-start",i),t.on("open-xhr-end",a),t.on("send-xhr-start",d),t.on("xhr-cb-time",u),t.on("xhr-load-added",l),t.on("xhr-load-removed",f),t.on("xhr-resolved",h),t.on("addEventListener-end",p),t.on("removeEventListener-end",m),t.on("fn-end",b),t.on("fetch-before-start",y),t.on("fetch-start",A),t.on("fn-start",v),t.on("fetch-done",x)}(e,this.ee,this.handler,this.dt),this.importAggregator()}}}function te(e,t){var r=(0,Z.e)(t),n=e.params||e;n.hostname=r.hostname,n.port=r.port,n.protocol=r.protocol,n.host=r.hostname+":"+r.port,n.pathname=r.pathname,e.parsedOrigin=r,e.sameOrigin=r.sameOrigin}var re=o(3614);const{BST_RESOURCE:ne,RESOURCE:oe,START:ie,END:ae,FEATURE_NAME:se,FN_END:ce,FN_START:de,PUSH_STATE:ue}=re;var le=o(7056);class fe extends y{static featureName=t.t9;constructor(e,r){let n,o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,r,t.t9,o);try{n=JSON.parse(localStorage.getItem("".concat(le.Bq,"_").concat(le.K4)))}catch(e){}this.#c(n)?this.#d(n?.sessionReplayMode):this.importAggregator()}#c(e){return e&&(e.sessionReplayMode===le.IK.FULL||e.sessionReplayMode===le.IK.ERROR)||b(this.agentIdentifier)}async#d(e){const{Recorder:t}=await Promise.all([o.e(111),o.e(433)]).then(o.bind(o,4136));this.recorder=new t({mode:e,agentIdentifier:this.agentIdentifier}),this.recorder.startRecording(),this.abortHandler=this.recorder.stopRecording,this.importAggregator({recorder:this.recorder})}}var he=o(7872),pe=o(6216);class ge extends y{static featureName=pe.t9;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];if(super(e,t,pe.t9,r),!g.il||!c.Yu.MO)return;const n=(0,G.QU)(this.ee),o=(0,G.em)(this.ee),i=()=>(0,O.p)("newURL",[(0,I.z)(),""+window.location],void 0,this.featureName,this.ee);n.on("pushState-end",i),n.on("replaceState-end",i);try{this.removeOnAbort=new AbortController}catch(e){}(0,D.bP)("popstate",(e=>(0,O.p)("newURL",[e.timeStamp,""+window.location],void 0,this.featureName,this.ee)),!0,this.removeOnAbort?.signal);let a=!1;const s=new c.Yu.MO(((e,t)=>{a||(a=!0,requestAnimationFrame((()=>{(0,O.p)("newDom",[(0,I.z)()],void 0,this.featureName,this.ee),a=!1})))})),d=(0,he.D)((e=>{(0,O.p)("newUIEvent",[e],void 0,this.featureName,this.ee),s.observe(document.body,{attributes:!0,childList:!0,subtree:!0,characterData:!0})}),100,{leading:!0});o.on("fn-start",(e=>{let[t]=e;pe.sE.includes(t?.type)&&d(t)}));for(let e of pe.sE)document.addEventListener(e,(()=>{}));this.abortHandler=function(){this.removeOnAbort?.abort(),s.disconnect(),this.abortHandler=void 0},this.importAggregator({domObserver:s})}}var me=o(7836);const{FEATURE_NAME:ve,START:be,END:ye,BODY:Ae,CB_END:xe,JS_TIME:Ee,FETCH:we,FN_START:_e,CB_START:Se,FN_END:Te}=me;var Re=o(4649);class Ne extends y{static featureName=Re.t;constructor(e,t){let r=!(arguments.length>2&&void 0!==arguments[2])||arguments[2];super(e,t,Re.t,r),this.importAggregator()}}new class extends a{constructor(t,r){super(r),g._A?(this.sharedAggregator=new _({agentIdentifier:this.agentIdentifier}),this.features={},(0,R.h5)(this.agentIdentifier,this),this.desiredFeatures=new Set(t.features||[]),this.desiredFeatures.add(x),this.runSoftNavOverSpa=[...this.desiredFeatures].some((e=>e.featureName===s.D.softNav)),(0,l.j)(this,t,t.loaderType||"agent"),this.run()):(0,e.Z)("Failed to initial the agent. Could not determine the runtime environment.")}get config(){return{info:this.info,init:this.init,loader_config:this.loader_config,runtime:this.runtime}}run(){try{const t=u(this.agentIdentifier),r=[...this.desiredFeatures];r.sort(((e,t)=>s.p[e.featureName]-s.p[t.featureName])),r.forEach((r=>{if(!t[r.featureName]&&r.featureName!==s.D.pageViewEvent)return;if(this.runSoftNavOverSpa&&r.featureName===s.D.spa)return;if(!this.runSoftNavOverSpa&&r.featureName===s.D.softNav)return;const n=function(e){switch(e){case s.D.ajax:return[s.D.jserrors];case s.D.sessionTrace:return[s.D.ajax,s.D.pageViewEvent];case s.D.sessionReplay:return[s.D.sessionTrace];case s.D.pageViewTiming:return[s.D.pageViewEvent];default:return[]}}(r.featureName);n.every((e=>e in this.features))||(0,e.Z)("".concat(r.featureName," is enabled but one or more dependent features has not been initialized (").concat((0,N.P)(n),"). This may cause unintended consequences or missing data...")),this.features[r.featureName]=new r(this.agentIdentifier,this.sharedAggregator)}))}catch(t){(0,e.Z)("Failed to initialize all enabled instrument classes (agent aborted) -",t);for(const e in this.features)this.features[e].abortHandler?.();const r=(0,R.fP)();return delete r.initializedAgents[this.agentIdentifier]?.api,delete r.initializedAgents[this.agentIdentifier]?.features,delete this.sharedAggregator,r.ee?.abort(),delete r.ee?.get(this.agentIdentifier),!1}}}({features:[ee,x,j,class extends y{static featureName=se;constructor(e,t){if(super(e,t,se,!(arguments.length>2&&void 0!==arguments[2])||arguments[2]),!g.il)return;const r=this.ee;let n;(0,G.QU)(r),this.eventsEE=(0,G.em)(r),this.eventsEE.on(de,(function(e,t){this.bstStart=(0,I.z)()})),this.eventsEE.on(ce,(function(e,t){(0,O.p)("bst",[e[0],t,this.bstStart,(0,I.z)()],void 0,s.D.sessionTrace,r)})),r.on(ue+ie,(function(e){this.time=(0,I.z)(),this.startPath=location.pathname+location.hash})),r.on(ue+ae,(function(e){(0,O.p)("bstHist",[location.pathname+location.hash,this.startPath,this.time],void 0,s.D.sessionTrace,r)}));try{n=new PerformanceObserver((e=>{const t=e.getEntries();(0,O.p)(ne,[t],void 0,s.D.sessionTrace,r)})),n.observe({type:oe,buffered:!0})}catch(e){}this.importAggregator({resourceObserver:n})}},fe,M,Ne,z,ge,class extends y{static featureName=ve;constructor(e,t){if(super(e,t,ve,!(arguments.length>2&&void 0!==arguments[2])||arguments[2]),!g.il)return;if(!(0,c.OP)(e).xhrWrappable)return;try{this.removeOnAbort=new AbortController}catch(e){}let r,n=0;const o=this.ee.get("tracer"),i=(0,G._L)(this.ee),a=(0,G.Lg)(this.ee),s=(0,G.BV)(this.ee),d=(0,G.Kf)(this.ee),u=this.ee.get("events"),l=(0,G.u5)(this.ee),f=(0,G.QU)(this.ee),h=(0,G.Gm)(this.ee);function p(e,t){f.emit("newURL",[""+window.location,t])}function m(){n++,r=window.location.hash,this[_e]=(0,I.z)()}function v(){n--,window.location.hash!==r&&p(0,!0);var e=(0,I.z)();this[Ee]=~~this[Ee]+e-this[_e],this[Te]=e}function b(e,t){e.on(t,(function(){this[t]=(0,I.z)()}))}this.ee.on(_e,m),a.on(Se,m),i.on(Se,m),this.ee.on(Te,v),a.on(xe,v),i.on(xe,v),this.ee.buffer([_e,Te,"xhr-resolved"],this.featureName),u.buffer([_e],this.featureName),s.buffer(["setTimeout"+ye,"clearTimeout"+be,_e],this.featureName),d.buffer([_e,"new-xhr","send-xhr"+be],this.featureName),l.buffer([we+be,we+"-done",we+Ae+be,we+Ae+ye],this.featureName),f.buffer(["newURL"],this.featureName),h.buffer([_e],this.featureName),a.buffer(["propagate",Se,xe,"executor-err","resolve"+be],this.featureName),o.buffer([_e,"no-"+_e],this.featureName),i.buffer(["new-jsonp","cb-start","jsonp-error","jsonp-end"],this.featureName),b(l,we+be),b(l,we+"-done"),b(i,"new-jsonp"),b(i,"jsonp-end"),b(i,"cb-start"),f.on("pushState-end",p),f.on("replaceState-end",p),window.addEventListener("hashchange",p,(0,D.m$)(!0,this.removeOnAbort?.signal)),window.addEventListener("load",p,(0,D.m$)(!0,this.removeOnAbort?.signal)),window.addEventListener("popstate",(function(){p(0,n>1)}),(0,D.m$)(!0,this.removeOnAbort?.signal)),this.abortHandler=this.#s,this.importAggregator()}#s(){this.removeOnAbort?.abort(),this.abortHandler=void 0}}],loaderType:"spa"})})()})();</script>
+	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+	
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-52SXCTG');</script>
+	<!-- End Google Tag Manager -->
+
+
+	<!-- //// ICONS ////-->
+	<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/apple-touch-icon-57x57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/apple-touch-icon-60x60.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/apple-touch-icon-120x120.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/apple-touch-icon-76x76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/apple-touch-icon-152x152.png" />
+	<link rel="icon" type="image/png" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/favicon-196x196.png" sizes="196x196" />
+	<link rel="icon" type="image/png" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/favicon-96x96.png" sizes="96x96" />
+	<link rel="icon" type="image/png" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/favicon-32x32.png" sizes="32x32" />
+	<link rel="icon" type="image/png" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/favicon-16x16.png" sizes="16x16" />
+	<link rel="icon" type="image/png" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/favicon-128.png" sizes="128x128" />
+	<meta name="application-name" content="Biolayne"/>
+	<meta name="msapplication-TileColor" content="#FFFFFF" />
+	<meta name="msapplication-TileImage" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/mstile-144x144.png" />
+	<meta name="msapplication-square70x70logo" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/mstile-70x70.png" />
+	<meta name="msapplication-square150x150logo" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/mstile-150x150.png" />
+	<meta name="msapplication-wide310x150logo" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/mstile-310x150.png" />
+	<meta name="msapplication-square310x310logo" href="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/icons/mstile-310x310.png" />
+
+
+	<!-- //// WP HEAD ////-->
+	<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+	<!-- This site is optimized with the Yoast SEO Premium plugin v19.3 (Yoast SEO v19.7) - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>MetalSucks | Metal News, Tour Dates, Reviews and Videos</title>
+	<meta name="description" content="The most trusted source for metal opinion, analysis and up-to-date breaking news on tour dates and new music from artists ranging from the biggest in the world to the underground." />
+	<link rel="canonical" href="https://www.metalsucks.net/" />
+	<link rel="next" href="https://www.metalsucks.net/page/2/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="MetalSucks - Metal News" />
+	<meta property="og:description" content="Metal News, Tour Dates, Reviews and Videos" />
+	<meta property="og:url" content="https://www.metalsucks.net/" />
+	<meta property="og:site_name" content="MetalSucks" />
+	<meta property="og:image" content="https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2019/12/metalsucks_1200.jpg" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="628" />
+	<meta property="og:image:type" content="image/jpeg" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@metalsucks" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"CollectionPage","@id":"https://www.metalsucks.net/","url":"https://www.metalsucks.net/","name":"MetalSucks | Metal News, Tour Dates, Reviews and Videos","isPartOf":{"@id":"https://www.metalsucks.net/#website"},"description":"The most trusted source for metal opinion, analysis and up-to-date breaking news on tour dates and new music from artists ranging from the biggest in the world to the underground.","breadcrumb":{"@id":"https://www.metalsucks.net/#breadcrumb"},"inLanguage":"en-US"},{"@type":"BreadcrumbList","@id":"https://www.metalsucks.net/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home"}]},{"@type":"WebSite","@id":"https://www.metalsucks.net/#website","url":"https://www.metalsucks.net/","name":"MetalSucks","description":"Humming Powerman 5000 on the toilet since 2006","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.metalsucks.net/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"}]}</script>
+	<meta name="google-site-verification" content="KZOlolaeGAR798PFVNbIabHBDFAq44jMgVJd4C4mABU" />
+	<!-- / Yoast SEO Premium plugin. -->
+
+
+<link rel='dns-prefetch' href='//s7.addthis.com' />
+<script type="text/javascript">
+/* <![CDATA[ */
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.metalsucks.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=2d03f0a140a51dfcf30341d35f484335"}};
+/*! This file is auto-generated */
+!function(i,n){var o,s,e;function c(e){try{var t={supportTests:e,timestamp:(new Date).valueOf()};sessionStorage.setItem(o,JSON.stringify(t))}catch(e){}}function p(e,t,n){e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(t,0,0);var t=new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data),r=(e.clearRect(0,0,e.canvas.width,e.canvas.height),e.fillText(n,0,0),new Uint32Array(e.getImageData(0,0,e.canvas.width,e.canvas.height).data));return t.every(function(e,t){return e===r[t]})}function u(e,t,n){switch(t){case"flag":return n(e,"\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f","\ud83c\udff3\ufe0f\u200b\u26a7\ufe0f")?!1:!n(e,"\ud83c\uddfa\ud83c\uddf3","\ud83c\uddfa\u200b\ud83c\uddf3")&&!n(e,"\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f","\ud83c\udff4\u200b\udb40\udc67\u200b\udb40\udc62\u200b\udb40\udc65\u200b\udb40\udc6e\u200b\udb40\udc67\u200b\udb40\udc7f");case"emoji":return!n(e,"\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c\udfff","\ud83e\udef1\ud83c\udffb\u200b\ud83e\udef2\ud83c\udfff")}return!1}function f(e,t,n){var r="undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?new OffscreenCanvas(300,150):i.createElement("canvas"),a=r.getContext("2d",{willReadFrequently:!0}),o=(a.textBaseline="top",a.font="600 32px Arial",{});return e.forEach(function(e){o[e]=t(a,e,n)}),o}function t(e){var t=i.createElement("script");t.src=e,t.defer=!0,i.head.appendChild(t)}"undefined"!=typeof Promise&&(o="wpEmojiSettingsSupports",s=["flag","emoji"],n.supports={everything:!0,everythingExceptFlag:!0},e=new Promise(function(e){i.addEventListener("DOMContentLoaded",e,{once:!0})}),new Promise(function(t){var n=function(){try{var e=JSON.parse(sessionStorage.getItem(o));if("object"==typeof e&&"number"==typeof e.timestamp&&(new Date).valueOf()<e.timestamp+604800&&"object"==typeof e.supportTests)return e.supportTests}catch(e){}return null}();if(!n){if("undefined"!=typeof Worker&&"undefined"!=typeof OffscreenCanvas&&"undefined"!=typeof URL&&URL.createObjectURL&&"undefined"!=typeof Blob)try{var e="postMessage("+f.toString()+"("+[JSON.stringify(s),u.toString(),p.toString()].join(",")+"));",r=new Blob([e],{type:"text/javascript"}),a=new Worker(URL.createObjectURL(r),{name:"wpTestEmojiSupports"});return void(a.onmessage=function(e){c(n=e.data),a.terminate(),t(n)})}catch(e){}c(n=f(s,u,p))}t(n)}).then(function(e){for(var t in e)n.supports[t]=e[t],n.supports.everything=n.supports.everything&&n.supports[t],"flag"!==t&&(n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&n.supports[t]);n.supports.everythingExceptFlag=n.supports.everythingExceptFlag&&!n.supports.flag,n.DOMReady=!1,n.readyCallback=function(){n.DOMReady=!0}}).then(function(){return e}).then(function(){var e;n.supports.everything||(n.readyCallback(),(e=n.source||{}).concatemoji?t(e.concatemoji):e.wpemoji&&e.twemoji&&(t(e.twemoji),t(e.wpemoji)))}))}((window,document),window._wpemojiSettings);
+/* ]]> */
+</script>
+<link rel='stylesheet' id='ms-custom-admin-styles-css' href='https://www.metalsucks.net/wp-content/plugins/metalsucks-custom/css/admin.css?ver=2d03f0a140a51dfcf30341d35f484335' type='text/css' media='all' />
+<link rel='stylesheet' id='ms_min_css-css' href='https://www.metalsucks.net/wp-content/themes/metalsucks.v5/css/site.min.css?ver=1.04' type='text/css' media='all' />
+<link rel='stylesheet' id='ms_extra-css' href='https://www.metalsucks.net/wp-content/themes/metalsucks.v5/style.css?ver=2d03f0a140a51dfcf30341d35f484335' type='text/css' media='all' />
+<link rel='stylesheet' id='sbi_styles-css' href='https://www.metalsucks.net/wp-content/plugins/instagram-feed-pro/css/sbi-styles.min.css?ver=6.2.3' type='text/css' media='all' />
+<style id='wp-emoji-styles-inline-css' type='text/css'>
+
+	img.wp-smiley, img.emoji {
+		display: inline !important;
+		border: none !important;
+		box-shadow: none !important;
+		height: 1em !important;
+		width: 1em !important;
+		margin: 0 0.07em !important;
+		vertical-align: -0.1em !important;
+		background: none !important;
+		padding: 0 !important;
+	}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://www.metalsucks.net/wp-includes/css/dist/block-library/style.min.css?ver=2d03f0a140a51dfcf30341d35f484335' type='text/css' media='all' />
+<style id='powerpress-player-block-style-inline-css' type='text/css'>
+
+
+</style>
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='sme_security_admin_css-css' href='https://www.metalsucks.net/wp-content/mu-plugins/sme-security/inc/public/admin-style-7b635867.css' type='text/css' media='all' />
+<link rel='stylesheet' id='Total_Soft_Poll-css' href='https://www.metalsucks.net/wp-content/plugins/TS-Poll/CSS/Total-Soft-Poll-Widget.css?ver=2d03f0a140a51dfcf30341d35f484335' type='text/css' media='all' />
+<link rel='stylesheet' id='fontawesome-css-css' href='https://www.metalsucks.net/wp-content/plugins/TS-Poll/CSS/totalsoft.css?ver=2d03f0a140a51dfcf30341d35f484335' type='text/css' media='all' />
+<link rel='stylesheet' id='wpemfb-lightbox-css' href='https://www.metalsucks.net/wp-content/plugins/wp-embed-facebook/templates/lightbox/css/lightbox.css?ver=3.1.2' type='text/css' media='all' />
+<link rel='stylesheet' id='cff-css' href='https://www.metalsucks.net/wp-content/plugins/custom-facebook-feed-pro/assets/css/cff-style.min.css?ver=4.3.6' type='text/css' media='all' />
+<link rel='stylesheet' id='main_stylesheet-css' href='https://www.metalsucks.net/wp-content/plugins/spotim-comments/assets/stylesheets/main.css?ver=2d03f0a140a51dfcf30341d35f484335' type='text/css' media='all' />
+<script type="text/javascript" src="https://www.metalsucks.net/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/js/vendor/modernizr.min.js?ver=2.7.1" id="modernizr-js"></script>
+<script type="text/javascript" src="https://s7.addthis.com/js/300/addthis_widget.js?ver=300.0#pubid=ra-5081b8aa2abda858" id="addthis-js"></script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-includes/js/jquery/ui/core.min.js?ver=1.13.2" id="jquery-ui-core-js"></script>
+<script type="text/javascript" id="Total_Soft_Poll-js-extra">
+/* <![CDATA[ */
+var object = {"ajaxurl":"https:\/\/www.metalsucks.net\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-content/plugins/TS-Poll/JS/Total-Soft-Poll-Widget.js?ver=2d03f0a140a51dfcf30341d35f484335" id="Total_Soft_Poll-js"></script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-content/plugins/wp-embed-facebook/templates/lightbox/js/lightbox.min.js?ver=3.1.2" id="wpemfb-lightbox-js"></script>
+<script type="text/javascript" id="wpemfb-fbjs-js-extra">
+/* <![CDATA[ */
+var WEF = {"local":"af_ZA","version":"v2.11","fb_id":"200344505324","comments_nonce":"36271027c1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-content/plugins/wp-embed-facebook/inc/js/fb.min.js?ver=3.1.2" id="wpemfb-fbjs-js"></script>
+<link rel="https://api.w.org/" href="https://www.metalsucks.net/wp-json/" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.metalsucks.net/xmlrpc.php?rsd" />
+<meta name="sme-cache-keys" content="front,home,post-460529,post-460517,post-460496,post-460136,post-460466,post-460328,post-460448,post-460238,post-460436,post-460406,post-460400,post-460289,post-460088,post-460010,post-459959,post-459866,post-459944,post-459935,post-459809,post-459719">            <!-- Google Tag Manager -->
+            <script>(function (w, d, s, l, i) {
+                    w[l] = w[l] || [];
+                    w[l].push({'gtm.start':
+                                new Date().getTime(), event: 'gtm.js'});
+                    var f = d.getElementsByTagName(s)[0],
+                            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+                    j.async = true;
+                    j.src =
+                            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                    f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', 'GTM-59X8G86');</script>
+            <!-- End Google Tag Manager -->
+            <!-- Custom Facebook Feed JS vars -->
+<script type="text/javascript">
+var cffsiteurl = "https://www.metalsucks.net/wp-content/plugins";
+var cffajaxurl = "https://www.metalsucks.net/wp-admin/admin-ajax.php";
+
+
+var cfflinkhashtags = "false";
+</script>
+<script type="text/javascript"><!--
+function powerpress_pinw(pinw_url){window.open(pinw_url, 'PowerPressPlayer','toolbar=0,status=0,resizable=1,width=460,height=320');	return false;}
+//-->
+</script>
+<style type="text/css">.blue-message {
+background: none repeat scroll 0 0 #3399ff;
+color: #ffffff;
+text-shadow: none;
+font-size: 14px;
+line-height: 24px;
+padding: 10px;
+} 
+.green-message {
+background: none repeat scroll 0 0 #8cc14c;
+color: #ffffff;
+text-shadow: none;
+font-size: 14px;
+line-height: 24px;
+padding: 10px;
+} 
+.orange-message {
+background: none repeat scroll 0 0 #faa732;
+color: #ffffff;
+text-shadow: none;
+font-size: 14px;
+line-height: 24px;
+padding: 10px;
+} 
+.red-message {
+background: none repeat scroll 0 0 #da4d31;
+color: #ffffff;
+text-shadow: none;
+font-size: 14px;
+line-height: 24px;
+padding: 10px;
+} 
+.grey-message {
+background: none repeat scroll 0 0 #53555c;
+color: #ffffff;
+text-shadow: none;
+font-size: 14px;
+line-height: 24px;
+padding: 10px;
+} 
+.left-block {
+background: none repeat scroll 0 0px, radial-gradient(ellipse at center center, #ffffff 0%, #f2f2f2 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+color: #8b8e97;
+padding: 10px;
+margin: 10px;
+float: left;
+} 
+.right-block {
+background: none repeat scroll 0 0px, radial-gradient(ellipse at center center, #ffffff 0%, #f2f2f2 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+color: #8b8e97;
+padding: 10px;
+margin: 10px;
+float: right;
+} 
+.blockquotes {
+background: none;
+border-left: 5px solid #f1f1f1;
+color: #8B8E97;
+font-size: 14px;
+font-style: italic;
+line-height: 22px;
+padding-left: 15px;
+padding: 10px;
+width: 60%;
+float: left;
+} 
+</style>	
+	<style>
+	.tiktok-link svg {
+		display: inline-block;
+		width: 17px;
+		height: auto;
+		vertical-align: middle;	
+	}
+	
+	.tiktok-link svg path {
+		fill: #fff;
+		transition: all .3s ease;
+	}
+	
+	.tiktok-link:hover svg path,
+	.tiktok-link:focus svg path {
+		fill: #b20707;
+	}
+	
+	.footer-socials .tiktok-link {
+		height: 42.5px;
+	}
+	
+	.footer-socials .tiktok-link svg path {
+		fill: #fff;
+		transition: all .3s ease;
+	}
+	
+	.footer-socials .tiktok-link:hover svg path,
+	.footer-socials .tiktok-link:focus svg path {
+		fill: #b9b4a4;
+	}	
+	</style>
+
+
+	<!-- ///// IE COMPAT ///// -->
+	<!--[if IE 8]>
+		<script type="text/javascript" src="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/js/compat/html5shiv.min.js"></script>
+		<script type="text/javascript" src="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/js/compat/respond.js"></script>
+	<![endif]-->
+
+
+	<!--////////////////////////-->
+	<!--////// DFP HEADER //////-->
+	<!--////////////////////////-->
+
+	
+<!-- Make sure this is inserted before your GPT tag -->
+
+
+<!-- FB deleted PBJS -->
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--////////////////////////-->
+	<!--//////// EMBEDS ////////-->
+	<!--////////////////////////-->
+
+	<script type="text/javascript" async="async" data-noptimize="1" data-cfasync="false" src="//scripts.pubnation.com/tags/707ab261-57ce-4b16-a7c9-06715526f0a7.js"></script>
+
+ 
+	
+	
+    <style>
+        @media (min-width: 900px) {
+            .livestreampage .col-md-10 {
+                height: auto !important;
+            }
+            .livestreampage .bottomblock {
+                position: relative !important;
+            }
+        }
+    </style>
+</head>
+
+
+
+<body class="">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52SXCTG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="adhsticky-anchor"></div>
+
+<!--=========================== HEADER TOP ============================-->
+<section class="hdr-top hidden-xs" id="tip-top">
+	<div class="table-wrap">
+
+		<!--////// MS ICON //////-->
+		<a class="ms-link" href="https://www.metalsucks.net">Metal Sucks</a>
+
+		<!--////// SOCIALS //////-->
+		<div class="hdr-socials hidden-xs">
+			<ul class="hdr-links">
+				<li class="fb-link"><a href="https://www.facebook.com/metalsux" target="_blank">Facebook</a></li>
+				<li class="tw-link"><a href="https://www.twitter.com/metalsucks" target="_blank">Twitter</a></li>
+				<li class="yt-link"><a href="https://www.youtube.com/metalsucksofficial" target="_blank">YouTube</a>
+				</li>
+				<li class="in-link"><a href="https://instagram.com/metalsucks/" target="_blank">Instagram</a></li>
+				<li class="tb-link"><a href="https://metalsucksofficial.tumblr.com" target="_blank">Tumblr</a></li>
+				<li class="sc-link"><a href="https://soundcloud.com/metalsucks" target="_blank">Soundcloud</a></li>
+				<li class="tiktok-link">
+					<a href="https://www.tiktok.com/@metalsucksofficial" target="_blank" aria-label="TikTok">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2859 3333"
+						     shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
+						     image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd">
+							<path
+								d="M2081 0c55 473 319 755 778 785v532c-266 26-499-61-770-225v995c0 1264-1378 1659-1932 753-356-583-138-1606 1004-1647v561c-87 14-180 36-265 65-254 86-398 247-358 531 77 544 1075 705 992-358V1h551z"></path>
+						</svg>
+					</a>
+				</li>
+				<li class="rss-link"><a href="https://feeds.feedburner.com/Metalsucks" target="_blank">RSS</a></li>
+				<li class="hdr-quote hidden-sm">Humming Powerman 5000 on the toilet since 2006</li>
+			</ul>
+		</div>
+
+		<!--////// SEARCH //////-->
+		<div class="hdr-block search" role="search">
+			<button class="search-trigger"></button>
+			<div class="form-wrap">
+				<form method="get" action="https://www.metalsucks.net" class="header-search-form">
+					<input name="s" id="s" type="text" aria-label="Search..." placeholder="Search..."
+					       autocomplete="off">
+					<input type="submit" value="Search">
+				</form>
+			</div>
+		</div>
+
+	</div>
+</section>
+<!--=========================== /HEADER TOP ============================-->
+
+
+<!--============================ HEADER ============================-->
+<header role="banner">
+	<div class="centerizer">
+
+		<!--////// LOGO //////-->
+		<div class="hdr-logo nav-block">
+			<div class="ms-logo">
+				<a href="https://www.metalsucks.net"><img
+						src="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/hdr-logo.svg" alt="MetalSucks"></a>
+			</div>
+		</div>
+
+
+		<!--
+		<div class="hdr-logo nav-block">
+			<div class="metallica-logo">
+				<a href="https://www.metalsucks.net"><img src="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/metallica-logo.svg" alt="MetallicaSucks"></a>
+			</div>
+			<style>
+				header .metallica-logo {
+				    display: table;
+				    width: 250px;
+				    height: 100%;
+				}
+
+				header .metallica-logo a {
+				    display: table-cell;
+				    vertical-align: middle;
+				    text-align: left;
+				    padding-right: 0em;
+				}
+
+				header .metallica-logo a img {
+				    display: block;
+				    width: 250px;
+				    height: 81px;
+				}
+
+				@media (max-width: 481px) {
+					header .metallica-logo {
+					     width: 200px;
+					}
+
+					header .metallica-logo a {
+					    padding-right: 1em;
+					}
+
+					header .metallica-logo a img {
+					    width: 240px;
+						height: 72px;
+					}
+				}
+			</style>
+		</div>
+-->
+
+		<!--////// NAVIGATION //////-->
+		<nav class="navigation">
+			<input type="checkbox" id="toggle"/>
+			<label for="toggle" class="toggle" onclick></label>
+			<ul class="menu pull-right">
+				<li>
+					<a href="https://www.metalsucks.net">News</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="https://www.metalsucks.net/category/new-stuff/">New Stuff</a>
+						</li>
+						<li>
+							<a href="https://www.metalsucks.net/category/shit-that-comes-out-today/">Shit That Comes
+								Out Today</a>
+						</li>
+						<li>
+							<a href="https://www.metalsucks.net/category/punishing-pictorials/">Photos</a>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<a href="https://www.metalsucks.net/category/editorials/">Editorials</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="https://www.metalsucks.net/category/br00tal-lists/">Br00tal Lists</a>
+						</li>
+						<li>
+							<a href="https://www.metalsucks.net/category/the-black-pages/">The Black Pages</a>
+						</li>
+						<li>
+							<a href="https://www.metalsucks.net/category/hallowed-be-thy-game/">Hallowed Be Thy
+								Game</a>
+						</li>
+						<li>
+							<a href="https://www.metalsucks.net/category/international-aggression/">Intl Aggression</a>
+						</li>
+						<li>
+							<a href="https://www.metalsucks.net/category/heavy-rotation/">Heavy Rotation</a>
+						</li>
+					</ul>
+				</li>
+				<li><a href="https://www.metalsucks.net/category/cinemetal/">Videos</a></li>
+				<li><a href="https://www.metalsucks.net/category/tour-de-force/">Tours</a></li>
+				<li>
+					<a href="#">Playlists</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="https://www.metalsucks.net/category/podcast/">MS Podcast</a>
+						</li>
+						<li>
+							<a href="https://www.metalsucks.net/category/metalsucks-top-tracks-of-the-week/">Top Tracks
+								Of The Week</a>
+						</li>
+					</ul>
+				</li>
+				<li><a href="https://www.metalsucks.net/category/reviews/">Reviews</a></li>
+				<li><a href="https://www.metalsucks.net/subscribe/">Newsletter</a></li>
+				<li>
+					<a href="https://metalsucks.indiemerch.com/"
+					   target="_blank">Store</a></li>
+			</ul>
+		</nav>
+
+		<button class="mobile-search-toggle visible-xs">
+		</button>
+
+	</div>
+
+	<div class="mobile-search-wrap">
+		<form method="get" action="https://www.metalsucks.net" class="mobile-search-form">
+			<input name="s" id="s3" type="text" aria-label="Search..." placeholder="Search..." autocomplete="off">
+			<input type="submit" value="Search">
+		</form>
+
+	</div>
+
+
+</header>
+<div class="fix-gap visible-xs"></div>
+<!--============================ /HEADER ===========================-->
+
+		
+
+
+
+<!--========================== JUMBOTRON =============================-->
+	<style>
+	#zox-site-takeover a { display: block; padding: 2rem 0; }
+	#zox-site-takeover a img { display: block; width: 100%; height: auto; }
+	</style>
+	<div id="zox-site-takeover" class="centerizer clearfix">
+		<a href="https://metalsucks.indiemerch.com/products/life-is-killing-me" target="_blank">
+			<img width="970" height="250" src="https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/TypeO_970x250-1.jpg" class="attachment-full size-full" alt="TypeO_970x250" decoding="async" loading="lazy" srcset="https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/TypeO_970x250-1.jpg 970w, https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/TypeO_970x250-1-300x77.jpg 300w, https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/TypeO_970x250-1-680x175.jpg 680w" sizes="(max-width: 970px) 100vw, 970px" />		</a>
+	</div>
+	<section id="hero">
+	<div class="centerizer clearfix">
+
+		<!--////////// BANNER ADS //////////-->
+		<section class="hori-banner">
+	<div class="banner-ad">
+		
+<div id='cmn-leaderboard'></div>
+
+			
+		
+
+
+
+
+	</div>
+
+
+</section>
+
+
+		
+		<div class="hero-block clearfix">
+
+			
+				
+				<!--hero-feat-lrg-->
+				<article class="col-md-13 hero-stories">
+					<a href="https://www.metalsucks.net/2024/03/06/reader-poll-what-were-your-favorite-albums-of-january-and-february-2024/">
+						<div class="hero-feat-lrg">
+							<div class="content-block">
+								<span class="category-tag">Poll</span>
+																	<span class="post-title">Reader Poll: What Were Your Favorite Albums of January and February 2024?</span>
+																<div class="post-meta">
+									<time itemprop="datePublished" datetime="2024-03-06" pubdate>March 6th, 2024 at 2:46pm</time>
+									<span class="author">
+										Hesher Keenan									
+									</span>
+								</div>
+								<a href="https://www.metalsucks.net/2024/03/06/reader-poll-what-were-your-favorite-albums-of-january-and-february-2024/#disqus_thread" class="comments" itemprop="commentCount">0</a>
+							</div>
+							<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/cds.jpg)"></div>
+						</div>
+					</a>
+				</article>
+				<!--/hero-feat-lrg-->
+
+			
+
+			
+				
+				<!--hero-feat-sm-->
+				<div class="col-md-7 hero-stories">
+					<article class="hero-feat-sm">
+						<a href="https://www.metalsucks.net/2024/03/25/cryptopsy-take-home-juno-award-for-as-gomorrah-burns/" class="trans-btn">
+							<div class="content-block">
+								<span class="category-tag">News</span>
+																	<span class="post-title">Cryptopsy Take Home Juno Award for <em>As Gomorrah Burns</em></span>
+																<div class="post-meta">
+									<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 10:31am</time>
+									<span class="author">
+										Hesher Keenan										
+									</span>
+								</div>
+							</div>
+							<a href="https://www.metalsucks.net/2024/03/25/cryptopsy-take-home-juno-award-for-as-gomorrah-burns/#disqus_thread" class="comments" itemprop="commentCount">0</a>
+							<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2023/07/Cryptopsy2023a-520x325.jpg)"></div>
+						</a>
+					</article>
+				</div>
+				<!--/hero-feat-sm-->
+
+			
+				
+				<!--hero-feat-sm-->
+				<div class="col-md-7 hero-stories">
+					<article class="hero-feat-sm">
+						<a href="https://www.metalsucks.net/2024/03/23/its-official-the-summer-slaughter-tour-is-back/" class="trans-btn">
+							<div class="content-block">
+								<span class="category-tag">News</span>
+																	<span class="post-title">It&#8217;s Official: The Summer Slaughter Tour is Back</span>
+																<div class="post-meta">
+									<time itemprop="datePublished" datetime="2024-03-23" pubdate>March 23rd, 2024 at 1:00pm</time>
+									<span class="author">
+										Hesher Keenan										
+									</span>
+								</div>
+							</div>
+							<a href="https://www.metalsucks.net/2024/03/23/its-official-the-summer-slaughter-tour-is-back/#disqus_thread" class="comments" itemprop="commentCount">0</a>
+							<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/summerslaughter_back-520x325.png)"></div>
+						</a>
+					</article>
+				</div>
+				<!--/hero-feat-sm-->
+
+			
+
+		</div>
+
+		
+	</div>
+</section><!--========================= /JUMBOTRON =============================-->
+
+
+
+<!--============================= MAIN =============================-->
+<section class="main-home clearfix">
+	<div class="centerizer">
+
+		
+		<div id="metal-dau" class="left-content col-md-14" role="main">
+
+		
+<div class="col-md-20 divider">
+	<h1>Latest News</h1>
+	<hr class="hidden-xs">
+</div>
+
+
+
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/news/" class="category-tag" itemprop="keywords">News</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/25/sebastian-bach-doesnt-mind-bands-using-backing-tracks-as-long-as-theyre-old/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/25/sebastian-bach-doesnt-mind-bands-using-backing-tracks-as-long-as-theyre-old/" class="full-cover" aria-label="Sebastian Bach Doesn&#8217;t Mind Bands Using Backing Tracks, As Long As They&#8217;re Old"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/old_kiss-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/25/sebastian-bach-doesnt-mind-bands-using-backing-tracks-as-long-as-theyre-old/">Sebastian Bach Doesn&#8217;t Mind Bands Using Backing Tracks, As Long As They&#8217;re Old</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 4:23pm</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/hesher-keenan/" itemprop="author">Hesher Keenan</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/25/sebastian-bach-doesnt-mind-bands-using-backing-tracks-as-long-as-theyre-old/" title="Sebastian Bach Doesn't Mind Bands Using Backing Tracks, As Long As They're Old"><p>Sure hope granny can use a laptop!</p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/news/" class="category-tag" itemprop="keywords">News</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/25/green-jelly-malignancy-beyond-creation-and-more-announced-for-loud-as-hell-open-air/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/25/green-jelly-malignancy-beyond-creation-and-more-announced-for-loud-as-hell-open-air/" class="full-cover" aria-label="Green Jelly, Malignancy, Beyond Creation, And More Announced for Loud As Hell Open Air"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/lah_mainimage-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/25/green-jelly-malignancy-beyond-creation-and-more-announced-for-loud-as-hell-open-air/">Green Jelly, Malignancy, Beyond Creation, And More Announced for Loud As Hell Open Air</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 3:55pm</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/hesher-keenan/" itemprop="author">Hesher Keenan</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/25/green-jelly-malignancy-beyond-creation-and-more-announced-for-loud-as-hell-open-air/" title="Green Jelly, Malignancy, Beyond Creation, And More Announced for Loud As Hell Open Air"><p>Sounds like a hell of a weekend in Canada.</p>
+</a>
+					</span>
+	</div>
+</article>
+
+<div class='single-300-insert'>
+	
+	<div id='cmn-feed-inline_3641'></div>
+
+	
+	</div><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/tour-de-force/" class="category-tag" itemprop="keywords">Tour de Force</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/25/cannibal-corpse-is-headlining-a-european-tour-this-fall/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/25/cannibal-corpse-is-headlining-a-european-tour-this-fall/" class="full-cover" aria-label="Cannibal Corpse is Headlining a European Tour This Fall"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2023/08/cannibalcorpse_summoned-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/25/cannibal-corpse-is-headlining-a-european-tour-this-fall/">Cannibal Corpse is Headlining a European Tour This Fall</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 2:28pm</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/hesher-keenan/" itemprop="author">Hesher Keenan</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/25/cannibal-corpse-is-headlining-a-european-tour-this-fall/" title="Cannibal Corpse is Headlining a European Tour This Fall"><p>Municipal Waste, Immolation, and Schizophrenia will open.</p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/Review">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/reviews/" class="category-tag" itemprop="keywords">Reviews</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/25/review-coffin-storm-channel-trad-doom-realness-on-debut-album/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/25/review-coffin-storm-channel-trad-doom-realness-on-debut-album/" class="full-cover" aria-label="Review: Coffin Storm Channel Trad Doom Realness on Debut Album"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/Coffin-Storm-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/25/review-coffin-storm-channel-trad-doom-realness-on-debut-album/">Review: Coffin Storm Channel Trad Doom Realness on Debut Album</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 1:35pm</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/ahwheeler/" itemprop="author">Mandy Scythe</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/25/review-coffin-storm-channel-trad-doom-realness-on-debut-album/" title="Review: Coffin Storm Channel Trad Doom Realness on Debut Album"><p>Unleash the trad-metal goodness. </p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/news/" class="category-tag" itemprop="keywords">News</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/25/unearth-will-play-all-of-the-oncoming-storm-at-special-june-show/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/25/unearth-will-play-all-of-the-oncoming-storm-at-special-june-show/" class="full-cover" aria-label="Unearth Will Play All of &lt;em&gt;The Oncoming Storm&lt;/em&gt; at Special June Show"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2023/10/3.-Unearth_IMG_8117-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/25/unearth-will-play-all-of-the-oncoming-storm-at-special-june-show/">Unearth Will Play All of <em>The Oncoming Storm</em> at Special June Show</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 12:44pm</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/hesher-keenan/" itemprop="author">Hesher Keenan</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/25/unearth-will-play-all-of-the-oncoming-storm-at-special-june-show/" title="Unearth Will Play All of The Oncoming Storm at Special June Show"><p>Gonna be a special night.</p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/new-stuff/" class="category-tag" itemprop="keywords">New Stuff</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/25/strychnos-new-album-armageddon-patronage-coming-this-may-new-single-out-now/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/25/strychnos-new-album-armageddon-patronage-coming-this-may-new-single-out-now/" class="full-cover" aria-label="Strychnos&#8217; New Album &lt;em&gt;Armageddon Patronage&lt;/em&gt; Coming This May, New Single Out Now"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/STRYCHNOS-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/25/strychnos-new-album-armageddon-patronage-coming-this-may-new-single-out-now/">Strychnos&#8217; New Album <em>Armageddon Patronage</em> Coming This May, New Single Out Now</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 12:24pm</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/ahwheeler/" itemprop="author">Mandy Scythe</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/25/strychnos-new-album-armageddon-patronage-coming-this-may-new-single-out-now/" title="Strychnos' New Album Armageddon Patronage Coming This May, New Single Out Now"><p>Michael Poulsen of Volbeat is definitely a stan.</p>
+</a>
+					</span>
+	</div>
+</article>
+
+<div class='single-300-insert'>
+	
+	<div id='cmn-feed-inline_3543'></div>
+
+	
+	</div><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/tour-de-force/" class="category-tag" itemprop="keywords">Tour de Force</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/25/iron-maiden-add-arizona-show-with-the-hu-to-open-their-north-american-tour/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/25/iron-maiden-add-arizona-show-with-the-hu-to-open-their-north-american-tour/" class="full-cover" aria-label="Iron Maiden Add Arizona Show with The Hu to Open Their North American Tour"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2022/09/Iron_Maiden_NJP08403_MSPUB-resize-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/25/iron-maiden-add-arizona-show-with-the-hu-to-open-their-north-american-tour/">Iron Maiden Add Arizona Show with The Hu to Open Their North American Tour</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 11:25am</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/hesher-keenan/" itemprop="author">Hesher Keenan</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/25/iron-maiden-add-arizona-show-with-the-hu-to-open-their-north-american-tour/" title="Iron Maiden Add Arizona Show with The Hu to Open Their North American Tour"><p>Tickets are on sale right now.</p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/news/" class="category-tag" itemprop="keywords">News</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/25/full-of-hell-and-thou-share-asia-australia-and-new-zealand-tour-dates/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/25/full-of-hell-and-thou-share-asia-australia-and-new-zealand-tour-dates/" class="full-cover" aria-label="Full Of Hell and Thou Share Asia, Australia, and New Zealand Tour Dates"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/fullofhell_2024-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/25/full-of-hell-and-thou-share-asia-australia-and-new-zealand-tour-dates/">Full Of Hell and Thou Share Asia, Australia, and New Zealand Tour Dates</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 10:52am</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/ahwheeler/" itemprop="author">Mandy Scythe</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/25/full-of-hell-and-thou-share-asia-australia-and-new-zealand-tour-dates/" title="Full Of Hell and Thou Share Asia, Australia, and New Zealand Tour Dates"><p>Prepare for the rumble down under. </p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/news/" class="category-tag" itemprop="keywords">News</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/25/cryptopsy-take-home-juno-award-for-as-gomorrah-burns/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/25/cryptopsy-take-home-juno-award-for-as-gomorrah-burns/" class="full-cover" aria-label="Cryptopsy Take Home Juno Award for &lt;em&gt;As Gomorrah Burns&lt;/em&gt;"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2023/07/Cryptopsy2023a-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/25/cryptopsy-take-home-juno-award-for-as-gomorrah-burns/">Cryptopsy Take Home Juno Award for <em>As Gomorrah Burns</em></a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 10:31am</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/hesher-keenan/" itemprop="author">Hesher Keenan</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/25/cryptopsy-take-home-juno-award-for-as-gomorrah-burns/" title="Cryptopsy Take Home Juno Award for As Gomorrah Burns"><p>Congrats, gentlemen!</p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/news/" class="category-tag" itemprop="keywords">News</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/25/fit-for-an-autopsys-asia-tour-cut-short-over-visas/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/25/fit-for-an-autopsys-asia-tour-cut-short-over-visas/" class="full-cover" aria-label="Fit For An Autopsy&#8217;s Asia Tour Cut Short Over Visas"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2023/06/2018_Fit_For_An_Autopsy_-_by_2eight_-_8SC4997-520x325.jpeg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/25/fit-for-an-autopsys-asia-tour-cut-short-over-visas/">Fit For An Autopsy&#8217;s Asia Tour Cut Short Over Visas</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 9:51am</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/hesher-keenan/" itemprop="author">Hesher Keenan</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/25/fit-for-an-autopsys-asia-tour-cut-short-over-visas/" title="Fit For An Autopsy's Asia Tour Cut Short Over Visas"><p>They&#8217;re hoping to reschedule the affected dates soon.</p>
+</a>
+					</span>
+	</div>
+</article>
+
+<div class='single-300-insert'>
+	
+	<div id='cmn-feed-inline_2985'></div>
+
+	
+	</div><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/news/" class="category-tag" itemprop="keywords">News</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/25/got-a-message-from-testaments-chuck-billy-on-facebook-youre-likely-being-scammed/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/25/got-a-message-from-testaments-chuck-billy-on-facebook-youre-likely-being-scammed/" class="full-cover" aria-label="Got a Facebook Message from Testament&#8217;s Chuck Billy? You&#8217;re Likely Being Scammed"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2022/10/3.-Testament_A99A3117_MS-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/25/got-a-message-from-testaments-chuck-billy-on-facebook-youre-likely-being-scammed/">Got a Facebook Message from Testament&#8217;s Chuck Billy? You&#8217;re Likely Being Scammed</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 9:06am</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/hesher-keenan/" itemprop="author">Hesher Keenan</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/25/got-a-message-from-testaments-chuck-billy-on-facebook-youre-likely-being-scammed/" title="Got a Facebook Message from Testament's Chuck Billy? You're Likely Being Scammed"><p>Don&#8217;t be fooled.</p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/podcast/" class="category-tag" itemprop="keywords">Podcast</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/25/in-flames-anders-friden-on-the-metalsucks-podcast-531/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/25/in-flames-anders-friden-on-the-metalsucks-podcast-531/" class="full-cover" aria-label="In Flames&#8217; Anders Fridén on The MetalSucks Podcast #531"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2023/09/inflames_live-520x325.png)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/25/in-flames-anders-friden-on-the-metalsucks-podcast-531/">In Flames&#8217; Anders Fridén on The MetalSucks Podcast #531</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-25" pubdate>March 25th, 2024 at 8:00am</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/hesher-keenan/" itemprop="author">Hesher Keenan</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+												<p><a href="https://www.metalsucks.net/2024/03/25/in-flames-anders-friden-on-the-metalsucks-podcast-531/" title="In Flames' Anders Fridén on The MetalSucks Podcast #531">In Flames will be on tour in your area very soon.</a></p>
+									</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/news/" class="category-tag" itemprop="keywords">News</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/24/protest-the-hero-share-canadian-tour-dates/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/24/protest-the-hero-share-canadian-tour-dates/" class="full-cover" aria-label="Protest The Hero Share Canadian Tour Dates"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/Protest-The-Hero-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/24/protest-the-hero-share-canadian-tour-dates/">Protest The Hero Share Canadian Tour Dates</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-24" pubdate>March 24th, 2024 at 1:00pm</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/ahwheeler/" itemprop="author">Mandy Scythe</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/24/protest-the-hero-share-canadian-tour-dates/" title="Protest The Hero Share Canadian Tour Dates"><p>They&#8217;ll be hitting six dates total. </p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/new-stuff/" class="category-tag" itemprop="keywords">New Stuff</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/24/static-x-announce-documentary-celebrating-wisconsin-death-trip-anniversary/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/24/static-x-announce-documentary-celebrating-wisconsin-death-trip-anniversary/" class="full-cover" aria-label="Static-X Announce Documentary Celebrating Wisconsin Death Trip Anniversary"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2023/09/waynestatic-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/24/static-x-announce-documentary-celebrating-wisconsin-death-trip-anniversary/">Static-X Announce Documentary Celebrating Wisconsin Death Trip Anniversary</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-24" pubdate>March 24th, 2024 at 11:00am</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/ahwheeler/" itemprop="author">Mandy Scythe</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/24/static-x-announce-documentary-celebrating-wisconsin-death-trip-anniversary/" title="Static-X Announce Documentary Celebrating Wisconsin Death Trip Anniversary"><p>The documentary will chart their early career. </p>
+</a>
+					</span>
+	</div>
+</article>
+
+<div class='single-300-insert'>
+	
+	<div id='cmn-feed-inline_405'></div>
+
+	
+	</div><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/news/" class="category-tag" itemprop="keywords">News</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/24/ozzy-osbourne-gets-real-about-future-stage-appearances/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/24/ozzy-osbourne-gets-real-about-future-stage-appearances/" class="full-cover" aria-label="Ozzy Osbourne Gets Real About Future Stage Appearances"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2023/09/ozzyosbourne_theosbournes-520x325.png)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/24/ozzy-osbourne-gets-real-about-future-stage-appearances/">Ozzy Osbourne Gets Real About Future Stage Appearances</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-24" pubdate>March 24th, 2024 at 9:00am</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/ahwheeler/" itemprop="author">Mandy Scythe</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/24/ozzy-osbourne-gets-real-about-future-stage-appearances/" title="Ozzy Osbourne Gets Real About Future Stage Appearances"><p>We&#8217;re rooting for his inclusion in the Rock and Roll hall of fame. </p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/new-stuff/" class="category-tag" itemprop="keywords">New Stuff</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/23/bring-me-the-horizon-tease-album-with-video-for-kool-aid/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/23/bring-me-the-horizon-tease-album-with-video-for-kool-aid/" class="full-cover" aria-label="Bring Me The Horizon Tease Album with Video for &#8220;Kool-Aid&#8221;"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2022/02/Oli-Sykes-Bring-Me-The-Horizon-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/23/bring-me-the-horizon-tease-album-with-video-for-kool-aid/">Bring Me The Horizon Tease Album with Video for &#8220;Kool-Aid&#8221;</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-23" pubdate>March 23rd, 2024 at 2:00pm</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/ahwheeler/" itemprop="author">Mandy Scythe</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/23/bring-me-the-horizon-tease-album-with-video-for-kool-aid/" title="Bring Me The Horizon Tease Album with Video for "Kool-Aid""><p>They promise we&#8217;ll have an album by summer. </p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/news/" class="category-tag" itemprop="keywords">News</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/23/its-official-the-summer-slaughter-tour-is-back/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/23/its-official-the-summer-slaughter-tour-is-back/" class="full-cover" aria-label="It&#8217;s Official: The Summer Slaughter Tour is Back"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/summerslaughter_back-520x325.png)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/23/its-official-the-summer-slaughter-tour-is-back/">It&#8217;s Official: The Summer Slaughter Tour is Back</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-23" pubdate>March 23rd, 2024 at 1:00pm</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/hesher-keenan/" itemprop="author">Hesher Keenan</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/23/its-official-the-summer-slaughter-tour-is-back/" title="It's Official: The Summer Slaughter Tour is Back"><p>Prepare yourselves, U.S. and Canada.</p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/metalsucks-top-tracks-of-the-week/" class="category-tag" itemprop="keywords">MetalSucks' Top Tracks of the Week</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/23/belushi-speed-ball-kublai-khan-tx-and-pallbearer-added-to-the-metalsucks-playlist/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/23/belushi-speed-ball-kublai-khan-tx-and-pallbearer-added-to-the-metalsucks-playlist/" class="full-cover" aria-label="Belushi Speed Ball, Kublai Khan TX, and Pallbearer Added to The MetalSucks Playlist"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2023/12/kublaikhantx-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/23/belushi-speed-ball-kublai-khan-tx-and-pallbearer-added-to-the-metalsucks-playlist/">Belushi Speed Ball, Kublai Khan TX, and Pallbearer Added to The MetalSucks Playlist</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-23" pubdate>March 23rd, 2024 at 12:02pm</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/hesher-keenan/" itemprop="author">Hesher Keenan</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/23/belushi-speed-ball-kublai-khan-tx-and-pallbearer-added-to-the-metalsucks-playlist/" title="Belushi Speed Ball, Kublai Khan TX, and Pallbearer Added to The MetalSucks Playlist"><p>Also featuring tracks from Boundaries, Necrot, and Gatecreeper.</p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/new-stuff/" class="category-tag" itemprop="keywords">New Stuff</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/23/josh-freese-will-rejoin-a-perfect-circle-live/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/23/josh-freese-will-rejoin-a-perfect-circle-live/" class="full-cover" aria-label="Josh Freese will Rejoin A Perfect Circle Live"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2024/03/Josh-Freese-520x325.png)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/23/josh-freese-will-rejoin-a-perfect-circle-live/">Josh Freese will Rejoin A Perfect Circle Live</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-23" pubdate>March 23rd, 2024 at 11:00am</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/ahwheeler/" itemprop="author">Mandy Scythe</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/23/josh-freese-will-rejoin-a-perfect-circle-live/" title="Josh Freese will Rejoin A Perfect Circle Live"><p>He&#8217;ll be splitting time between A Perfect Circle and Foo Fighters. </p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<article class="sm-feat clearfix" itemscope itemtype="http://schema.org/NewsArticle">
+	<div class="col-md-10 col-img">
+		<span class="feat-thumb-sm" itemprop="url">
+			<a href="https://www.metalsucks.net/category/new-stuff/" class="category-tag" itemprop="keywords">New Stuff</a>
+			<span class="comments" itemprop="commentCount">
+				<a href="https://www.metalsucks.net/2024/03/23/alestorm-release-new-single-uzbekistan/#disqus_thread">0</a>
+			</span>
+			<a href="https://www.metalsucks.net/2024/03/23/alestorm-release-new-single-uzbekistan/" class="full-cover" aria-label="Alestorm Release New Single &#8220;Uzbekistan&#8221;"></a>
+			<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2023/11/unnamed-1-1-520x325.jpg)" itemprop="image"></div>
+		</span>
+	</div>
+	<div class="col-md-10">
+		<span class="post-title" itemprop="headline"><a itemprop="url" href="https://www.metalsucks.net/2024/03/23/alestorm-release-new-single-uzbekistan/">Alestorm Release New Single &#8220;Uzbekistan&#8221;</a></span>
+		<div class="content-block">
+			<time itemprop="datePublished" datetime="2024-03-23" pubdate>March 23rd, 2024 at 9:00am</time>
+			<span class="author">
+									<a href="https://www.metalsucks.net/author/ahwheeler/" itemprop="author">Mandy Scythe</a>
+						
+			</span>
+		</div>
+		<span class="excerpt" itemprop="description">
+							<a href="https://www.metalsucks.net/2024/03/23/alestorm-release-new-single-uzbekistan/" title="Alestorm Release New Single "Uzbekistan""><p>&#8220;We&#8217;ve decided it is our life goal to become the biggest band in Uzbekistan.&#8221;</p>
+</a>
+					</span>
+	</div>
+</article><div class="col-md-20"><hr></div>
+<div class="col-md-20">
+	<a href="https://www.metalsucks.net/page/2/" class="readmore-btn">Read More Articles</a></div>
+		</div> <!-- /MAIN LOOP -->
+
+
+
+		<!--////////////////////////////////-->
+		<!--/////////// SIDEBAR ////////////-->
+		<!--////////////////////////////////-->
+		<aside class="col-md-6 sidebar hidden-sm hidden-xs" role="complementary">
+
+	<div id="ms-300-1-id-6" class="widget 300-1"><div class="ad-300">
+	
+<div id='cmn-aside_0'></div>
+<script>window.catalyst.cmd.push('loadAds',[['rect_sidebar', 'cmn-aside_0']]);</script>
+
+
+</div> <!-- /WIDGET --></div><!-- /WIDGET --><div id="ms-newsletter-3" class="widget "><div class="header-sm">Newsletter</div>
+<p>Sign up to receive the latest news, rumors and updates from Metal Sucks and The Orchard Metal Newsletter.</p>
+<form class="newsletter" method="post" id="smf-form">
+	<input type="hidden" name="ae_segment_id" id="ae_segment_id" value="1700046">
+	<input type="hidden" name="ae_brand_id" id="ae_brand_id" value="4938899">
+	<input type="hidden" name="ae_activities" id="ae_activities" value='{"actions":{"formsubmission":98098,"secondaryformsubmission":0},"mailing_list_optins":{"a0S0800000g8jqmEAA":101475}}'>
+	<input type="hidden" name="ae" id="ae" value="01817102294eb2d1dd388b099efa35490a5f217dad76ae7bfc6b49a6c6fb0027">
+	<input type="hidden" name="form" value="218252">
+	<input type="hidden" id="default_mailing_list" name="default_mailing_list" value="a0S0800000g8jqmEAA">
+	<input type="hidden" name="mailing-list-id[]" value="a0S1p00000UGMQPEA5">
+	<div class="lbField">
+		<input class="form-control" id="field_first_name" name="field_first_name" type="text" aria-label="First Name" placeholder="First Name" required>
+	</div>
+	<div class="lbField">
+		<input class="form-control" id="field_email_address" name="field_email_address" type="email" aria-label="Your Email Address" placeholder="Your Email Address" required />
+	</div>	
+	<div class="lbField">
+		<input class="form-control" id="field_city" name="field_city" type="text" aria-label="City" placeholder="City" required>
+	</div>
+	<div class="lbField">
+		<select id="field_country_region" name="field_country_region" aria-label="Enter your country or region" class="form-control" required>
+			<option value="">Select Country</option>
+			<option value="AF">Afghanistan</option>
+			<option value="AL">Albania</option>
+			<option value="DZ">Algeria</option>
+			<option value="AS">American Samoa</option>
+			<option value="AD">Andorra</option>
+			<option value="AO">Angola</option>
+			<option value="AI">Anguilla</option>
+			<option value="AQ">Antarctica</option>
+			<option value="AG">Antigua & Barbuda</option>
+			<option value="AR">Argentina</option>
+			<option value="AM">Armenia</option>
+			<option value="AW">Aruba</option>
+			<option value="AU">Australia</option>
+			<option value="AT">Austria</option>
+			<option value="AZ">Azerbaijan</option>
+			<option value="BS">Bahamas</option>
+			<option value="BH">Bahrain</option>
+			<option value="BD">Bangladesh</option>
+			<option value="BB">Barbados</option>
+			<option value="BY">Belarus</option>
+			<option value="BE">Belgium</option>
+			<option value="BZ">Belize</option>
+			<option value="BJ">Benin</option>
+			<option value="BM">Bermuda</option>
+			<option value="BT">Bhutan</option>
+			<option value="BO">Bolivia</option>
+			<option value="BA">Bosnia & Herzegovina</option>
+			<option value="BW">Botswana</option>
+			<option value="BV">Bouvet Island</option>
+			<option value="BR">Brazil</option>
+			<option value="IO">British Indian Ocean Territory</option>
+			<option value="VG">British Virgin Islands</option>
+			<option value="BN">Brunei</option>
+			<option value="BG">Bulgaria</option>
+			<option value="BF">Burkina Faso</option>
+			<option value="BI">Burundi</option>
+			<option value="KH">Cambodia</option>
+			<option value="CM">Cameroon</option>
+			<option value="CA">Canada</option>
+			<option value="CV">Cape Verde</option>
+			<option value="BQ">Caribbean Netherlands</option>
+			<option value="KY">Cayman Islands</option>
+			<option value="CF">Central African Republic</option>
+			<option value="TD">Chad</option>
+			<option value="CL">Chile</option>
+			<option value="CN">China</option>
+			<option value="CX">Christmas Island</option>
+			<option value="CC">Cocos (Keeling) Islands</option>
+			<option value="CO">Colombia</option>
+			<option value="KM">Comoros</option>
+			<option value="CG">Congo - Brazzaville</option>
+			<option value="CD">Congo - Kinshasa</option>
+			<option value="CK">Cook Islands</option>
+			<option value="CR">Costa Rica</option>
+			<option value="HR">Croatia</option>
+			<option value="CU">Cuba</option>
+			<option value="CW">Curaçao</option>
+			<option value="CY">Cyprus</option>
+			<option value="CZ">Czechia</option>
+			<option value="CI">Côte d’Ivoire</option>
+			<option value="DK">Denmark</option>
+			<option value="DJ">Djibouti</option>
+			<option value="DM">Dominica</option>
+			<option value="DO">Dominican Republic</option>
+			<option value="EC">Ecuador</option>
+			<option value="EG">Egypt</option>
+			<option value="SV">El Salvador</option>
+			<option value="GQ">Equatorial Guinea</option>
+			<option value="ER">Eritrea</option>
+			<option value="EE">Estonia</option>
+			<option value="SZ">Eswatini</option>
+			<option value="ET">Ethiopia</option>
+			<option value="FK">Falkland Islands</option>
+			<option value="FO">Faroe Islands</option>
+			<option value="FJ">Fiji</option>
+			<option value="FI">Finland</option>
+			<option value="FR">France</option>
+			<option value="GF">French Guiana</option>
+			<option value="PF">French Polynesia</option>
+			<option value="TF">French Southern Territories</option>
+			<option value="GA">Gabon</option>
+			<option value="GM">Gambia</option>
+			<option value="GE">Georgia</option>
+			<option value="DE">Germany</option>
+			<option value="GH">Ghana</option>
+			<option value="GI">Gibraltar</option>
+			<option value="GR">Greece</option>
+			<option value="GL">Greenland</option>
+			<option value="GD">Grenada</option>
+			<option value="GP">Guadeloupe</option>
+			<option value="GU">Guam</option>
+			<option value="GT">Guatemala</option>
+			<option value="GG">Guernsey</option>
+			<option value="GN">Guinea</option>
+			<option value="GW">Guinea-Bissau</option>
+			<option value="GY">Guyana</option>
+			<option value="HT">Haiti</option>
+			<option value="HM">Heard & McDonald Islands</option>
+			<option value="HN">Honduras</option>
+			<option value="HK">Hong Kong SAR China</option>
+			<option value="HU">Hungary</option>
+			<option value="IS">Iceland</option>
+			<option value="IN">India</option>
+			<option value="ID">Indonesia</option>
+			<option value="IR">Iran</option>
+			<option value="IQ">Iraq</option>
+			<option value="IE">Ireland</option>
+			<option value="IM">Isle of Man</option>
+			<option value="IL">Israel</option>
+			<option value="IT">Italy</option>
+			<option value="JM">Jamaica</option>
+			<option value="JP">Japan</option>
+			<option value="JE">Jersey</option>
+			<option value="JO">Jordan</option>
+			<option value="KZ">Kazakhstan</option>
+			<option value="KE">Kenya</option>
+			<option value="KI">Kiribati</option>
+			<option value="XK">Kosovo</option>
+			<option value="KW">Kuwait</option>
+			<option value="KG">Kyrgyzstan</option>
+			<option value="LA">Laos</option>
+			<option value="LV">Latvia</option>
+			<option value="LB">Lebanon</option>
+			<option value="LS">Lesotho</option>
+			<option value="LR">Liberia</option>
+			<option value="LY">Libya</option>
+			<option value="LI">Liechtenstein</option>
+			<option value="LT">Lithuania</option>
+			<option value="LU">Luxembourg</option>
+			<option value="MO">Macao SAR China</option>
+			<option value="MG">Madagascar</option>
+			<option value="MW">Malawi</option>
+			<option value="MY">Malaysia</option>
+			<option value="MV">Maldives</option>
+			<option value="ML">Mali</option>
+			<option value="MT">Malta</option>
+			<option value="MH">Marshall Islands</option>
+			<option value="MQ">Martinique</option>
+			<option value="MR">Mauritania</option>
+			<option value="MU">Mauritius</option>
+			<option value="YT">Mayotte</option>
+			<option value="MX">Mexico</option>
+			<option value="FM">Micronesia</option>
+			<option value="MD">Moldova</option>
+			<option value="MC">Monaco</option>
+			<option value="MN">Mongolia</option>
+			<option value="ME">Montenegro</option>
+			<option value="MS">Montserrat</option>
+			<option value="MA">Morocco</option>
+			<option value="MZ">Mozambique</option>
+			<option value="MM">Myanmar (Burma)</option>
+			<option value="NA">Namibia</option>
+			<option value="NR">Nauru</option>
+			<option value="NP">Nepal</option>
+			<option value="NL">Netherlands</option>
+			<option value="NC">New Caledonia</option>
+			<option value="NZ">New Zealand</option>
+			<option value="NI">Nicaragua</option>
+			<option value="NE">Niger</option>
+			<option value="NG">Nigeria</option>
+			<option value="NU">Niue</option>
+			<option value="NF">Norfolk Island</option>
+			<option value="KP">North Korea</option>
+			<option value="MK">North Macedonia</option>
+			<option value="MP">Northern Mariana Islands</option>
+			<option value="NO">Norway</option>
+			<option value="OM">Oman</option>
+			<option value="PK">Pakistan</option>
+			<option value="PW">Palau</option>
+			<option value="PS">Palestinian Territories</option>
+			<option value="PA">Panama</option>
+			<option value="PG">Papua New Guinea</option>
+			<option value="PY">Paraguay</option>
+			<option value="PE">Peru</option>
+			<option value="PH">Philippines</option>
+			<option value="PN">Pitcairn Islands</option>
+			<option value="PL">Poland</option>
+			<option value="PT">Portugal</option>
+			<option value="PR">Puerto Rico</option>
+			<option value="QA">Qatar</option>
+			<option value="RO">Romania</option>
+			<option value="RU">Russia</option>
+			<option value="RW">Rwanda</option>
+			<option value="RE">Réunion</option>
+			<option value="WS">Samoa</option>
+			<option value="SM">San Marino</option>
+			<option value="SA">Saudi Arabia</option>
+			<option value="SN">Senegal</option>
+			<option value="RS">Serbia</option>
+			<option value="SC">Seychelles</option>
+			<option value="SL">Sierra Leone</option>
+			<option value="SG">Singapore</option>
+			<option value="SX">Sint Maarten</option>
+			<option value="SK">Slovakia</option>
+			<option value="SI">Slovenia</option>
+			<option value="SB">Solomon Islands</option>
+			<option value="SO">Somalia</option>
+			<option value="ZA">South Africa</option>
+			<option value="GS">South Georgia & South Sandwich Islands</option>
+			<option value="KR">South Korea</option>
+			<option value="SS">South Sudan</option>
+			<option value="ES">Spain</option>
+			<option value="LK">Sri Lanka</option>
+			<option value="BL">St. Barthélemy</option>
+			<option value="SH">St. Helena</option>
+			<option value="KN">St. Kitts & Nevis</option>
+			<option value="LC">St. Lucia</option>
+			<option value="MF">St. Martin</option>
+			<option value="PM">St. Pierre & Miquelon</option>
+			<option value="VC">St. Vincent & Grenadines</option>
+			<option value="SD">Sudan</option>
+			<option value="SR">Suriname</option>
+			<option value="SJ">Svalbard & Jan Mayen</option>
+			<option value="SE">Sweden</option>
+			<option value="CH">Switzerland</option>
+			<option value="SY">Syria</option>
+			<option value="ST">São Tomé & Príncipe</option>
+			<option value="TW">Taiwan</option>
+			<option value="TJ">Tajikistan</option>
+			<option value="TZ">Tanzania</option>
+			<option value="TH">Thailand</option>
+			<option value="TL">Timor-Leste</option>
+			<option value="TG">Togo</option>
+			<option value="TK">Tokelau</option>
+			<option value="TO">Tonga</option>
+			<option value="TT">Trinidad & Tobago</option>
+			<option value="TN">Tunisia</option>
+			<option value="TR">Turkey</option>
+			<option value="TM">Turkmenistan</option>
+			<option value="TC">Turks & Caicos Islands</option>
+			<option value="TV">Tuvalu</option>
+			<option value="UM">U.S. Outlying Islands</option>
+			<option value="VI">U.S. Virgin Islands</option>
+			<option value="UG">Uganda</option>
+			<option value="UA">Ukraine</option>
+			<option value="AE">United Arab Emirates</option>
+			<option value="GB">United Kingdom</option>
+			<option value="US">United States</option>
+			<option value="UY">Uruguay</option>
+			<option value="UZ">Uzbekistan</option>
+			<option value="VU">Vanuatu</option>
+			<option value="VA">Vatican City</option>
+			<option value="VE">Venezuela</option>
+			<option value="VN">Vietnam</option>
+			<option value="WF">Wallis & Futuna</option>
+			<option value="EH">Western Sahara</option>
+			<option value="YE">Yemen</option>
+			<option value="ZM">Zambia</option>
+			<option value="ZW">Zimbabwe</option>
+			<option value="AX">Åland Islands</option>
+		</select>	
+	</div>	
+	<div class="lbField">
+		<select id="field_state" name="field_state" aria-label="Enter your state name" class="form-control">
+			<option value="">Select State</option>
+			<option value="AL">Alabama</option>
+			<option value="AK">Alaska</option>
+			<option value="AZ">Arizona</option>
+			<option value="AR">Arkansas</option>
+			<option value="CA">California</option>
+			<option value="CO">Colorado</option>
+			<option value="CT">Connecticut</option>
+			<option value="DE">Delaware</option>
+			<option value="DC">District of Columbia</option>
+			<option value="FL">Florida</option>
+			<option value="GA">Georgia</option>
+			<option value="HI">Hawaii</option>
+			<option value="ID">Idaho</option>
+			<option value="IL">Illinois</option>
+			<option value="IN">Indiana</option>
+			<option value="IA">Iowa</option>
+			<option value="KS">Kansas</option>
+			<option value="KY">Kentucky</option>
+			<option value="LA">Louisiana</option>
+			<option value="ME">Maine</option>
+			<option value="MD">Maryland</option>
+			<option value="MA">Massachusetts</option>
+			<option value="MI">Michigan</option>
+			<option value="MN">Minnesota</option>
+			<option value="MS">Mississippi</option>
+			<option value="MO">Missouri</option>
+			<option value="MT">Montana</option>
+			<option value="NE">Nebraska</option>
+			<option value="NV">Nevada</option>
+			<option value="NH">New Hampshire</option>
+			<option value="NJ">New Jersey</option>
+			<option value="NM">New Mexico</option>
+			<option value="NY">New York</option>
+			<option value="NC">North Carolina</option>
+			<option value="ND">North Dakota</option>
+			<option value="OH">Ohio</option>
+			<option value="OK">Oklahoma</option>
+			<option value="OR">Oregon</option>
+			<option value="PA">Pennsylvania</option>
+			<option value="RI">Rhode Island</option>
+			<option value="SC">South Carolina</option>
+			<option value="SD">South Dakota</option>
+			<option value="TN">Tennessee</option>
+			<option value="TX">Texas</option>
+			<option value="UT">Utah</option>
+			<option value="VT">Vermont</option>
+			<option value="VA">Virginia</option>
+			<option value="WA">Washington</option>
+			<option value="WV">West Virginia</option>
+			<option value="WI">Wisconsin</option>
+			<option value="WY">Wyoming</option>
+		</select>	
+	</div>	
+	<div class="lbField">
+		<input class="form-control" id="field_postal_code" name="field_postal_code" type="text" aria-label="Postal Code" placeholder="Postal Code" required>
+	</div>	
+	<input class="lbBtn" type="submit" value="Subscribe" />
+</form>
+<script>
+jQuery(document).ready(function ($) {
+	$("#smf-form").on("submit", function (e) {
+		e.preventDefault();
+		var data = $(this).serialize();
+		$.ajax({
+			type: "POST",
+			url: "https://subs.sonymusicfans.com/submit",
+			dataType: "json",
+			data: data,
+			xhrFields: {
+				withCredentials: false
+			},
+			success: function (data) {
+				$("#smf-form").html('Thanks for signing up!');
+			},
+			error: function (err) {
+				$("#smf-form").html('An error has occurred!');
+			}
+		});
+	});
+});
+</script></div><!-- /WIDGET --><div id="single-post-id-3" class="widget single-post-widget">
+
+
+	
+
+
+	<div class="sidebar-podcast">
+
+				<a href="https://www.metalsucks.net/category/podcast/">
+			<span class="category-tag">Podcast</span>
+		</a>
+		
+		<div class="content-block">
+			<a href="https://www.metalsucks.net/2024/03/25/in-flames-anders-friden-on-the-metalsucks-podcast-531/" class="header-podcast">In Flames&#8217; Anders Fridén on The MetalSucks Podcast #531</a>
+			<p>In Flames will be on tour in your area very&hellip;</p>			<a href="https://www.metalsucks.net/2024/03/25/in-flames-anders-friden-on-the-metalsucks-podcast-531/" class="read-more-sm">Read More</a>
+		</div>
+
+		<div class="bg-cover" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2023/09/inflames_live-680x383.png);"></div>
+	</div>
+
+</div><!-- /WIDGET --><div id="ms-300-2-id-5" class="widget 300-2"><div class="ad-300">
+
+<div id='cmn-aside_1'></div>
+<script>window.catalyst.cmd.push('loadAds',[['rect_sidebar', 'cmn-aside_1']]);</script>
+	
+
+</div> <!-- /WIDGET --></div><!-- /WIDGET -->	
+</aside>	
+
+
+<aside class="col-md-6 sidebar">
+
+<div id="sticky-anchor"></div>
+	<div id="sticky">
+		
+<div id='cmn-aside_2'></div>
+
+
+		
+
+
+</div>
+
+</aside>
+
+
+
+
+
+		<!--////////////////////////////////-->
+		<!--///////// GREATEST HITS ////////-->
+		<!--////////////////////////////////-->
+		
+
+<section class="greatest-hits vert-pad-2">
+
+	<span class="h2">Metal Sucks Greatest Hits</span>
+
+	<div id="slider" class="carousel">
+
+		
+			
+			<div class="item">
+				<article itemscope itemtype="http://schema.org/NewsArticle" class="gh-article" data-post-id="146826">
+					<div class="stats">
+						<a href="https://www.metalsucks.net/2014/07/02/drummer-mark-castillo-receives-cochlear-implant-quits-emmure/#disqus_thread" class="hits-comments" itemprop="commentCount">0</a>
+						<span class="hits-shares">-</span>
+					</div>
+					<a href="https://www.metalsucks.net/2014/07/02/drummer-mark-castillo-receives-cochlear-implant-quits-emmure/" class="post-title" itemprop="headline">Drummer Mark Castillo Receives Cochlear Implant, Quits Emmure</a>
+					<div class="bg-cover" itemprop="image" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2014/07/Mike-Castillo-Ochlear-Implant.jpg)"></div>
+
+				</article>
+			</div>
+
+		
+			
+			<div class="item">
+				<article itemscope itemtype="http://schema.org/NewsArticle" class="gh-article" data-post-id="114677">
+					<div class="stats">
+						<a href="https://www.metalsucks.net/2013/02/18/west-texas-am-university-launches-course-in-metal-lyrics/#disqus_thread" class="hits-comments" itemprop="commentCount">0</a>
+						<span class="hits-shares">-</span>
+					</div>
+					<a href="https://www.metalsucks.net/2013/02/18/west-texas-am-university-launches-course-in-metal-lyrics/" class="post-title" itemprop="headline">West Texas A&#038;M University Launches Course in Metal Lyrics</a>
+					<div class="bg-cover" itemprop="image" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2013/02/Eddie-The-Poet.jpg)"></div>
+
+				</article>
+			</div>
+
+		
+			
+			<div class="item">
+				<article itemscope itemtype="http://schema.org/NewsArticle" class="gh-article" data-post-id="247955">
+					<div class="stats">
+						<a href="https://www.metalsucks.net/2019/07/31/rammstein-members-kiss-during-moscow-show-violating-russias-anti-lgbtq-laws/#disqus_thread" class="hits-comments" itemprop="commentCount">0</a>
+						<span class="hits-shares">-</span>
+					</div>
+					<a href="https://www.metalsucks.net/2019/07/31/rammstein-members-kiss-during-moscow-show-violating-russias-anti-lgbtq-laws/" class="post-title" itemprop="headline">Rammstein Members Kiss During Moscow Show, Violating Russia&#8217;s Anti-LGBTQ Laws</a>
+					<div class="bg-cover" itemprop="image" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2019/07/Rammstein-Moscow-Kiss.jpg)"></div>
+
+				</article>
+			</div>
+
+		
+			
+			<div class="item">
+				<article itemscope itemtype="http://schema.org/NewsArticle" class="gh-article" data-post-id="302740">
+					<div class="stats">
+						<a href="https://www.metalsucks.net/2022/01/31/11-bands-youd-get-made-fun-of-for-liking-back-in-the-day/#disqus_thread" class="hits-comments" itemprop="commentCount">0</a>
+						<span class="hits-shares">-</span>
+					</div>
+					<a href="https://www.metalsucks.net/2022/01/31/11-bands-youd-get-made-fun-of-for-liking-back-in-the-day/" class="post-title" itemprop="headline">11 Bands You’d Get Made Fun Of for Liking Back In The Day</a>
+					<div class="bg-cover" itemprop="image" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2022/01/Bands-Youd-Get-Made-Fun-of-For-Liking-Back-In-the-Day.jpg)"></div>
+
+				</article>
+			</div>
+
+		
+			
+			<div class="item">
+				<article itemscope itemtype="http://schema.org/NewsArticle" class="gh-article" data-post-id="148280">
+					<div class="stats">
+						<a href="https://www.metalsucks.net/2014/07/28/debunking-myth-guitar-hero-made-dragonforce/#disqus_thread" class="hits-comments" itemprop="commentCount">0</a>
+						<span class="hits-shares">-</span>
+					</div>
+					<a href="https://www.metalsucks.net/2014/07/28/debunking-myth-guitar-hero-made-dragonforce/" class="post-title" itemprop="headline">Debunking the Myth that <em>Guitar Hero</em> Made Dragonforce</a>
+					<div class="bg-cover" itemprop="image" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2014/07/dragonforce2009.jpg)"></div>
+
+				</article>
+			</div>
+
+		
+			
+			<div class="item">
+				<article itemscope itemtype="http://schema.org/NewsArticle" class="gh-article" data-post-id="125297">
+					<div class="stats">
+						<a href="https://www.metalsucks.net/2013/07/08/ministrys-al-jourgensen-i-got-paid-to-humiliate-fred-durst/#disqus_thread" class="hits-comments" itemprop="commentCount">0</a>
+						<span class="hits-shares">-</span>
+					</div>
+					<a href="https://www.metalsucks.net/2013/07/08/ministrys-al-jourgensen-i-got-paid-to-humiliate-fred-durst/" class="post-title" itemprop="headline">Ministry&#8217;s Al Jourgensen: &#8220;I Got Paid to Humiliate Fred Durst&#8221;</a>
+					<div class="bg-cover" itemprop="image" style="background-image: url(https://cdn-p.smehost.net/sites/2ed48fdcc3904f548299cd86d78e9885/wp-content/uploads/2013/07/Fred-Naked-with-Al.jpg)"></div>
+
+				</article>
+			</div>
+
+		
+	</div><!-- /SLIDER -->
+
+</section>
+
+
+<script type="text/javascript">
+
+	jQuery(document).ready(function($) {
+
+		var postsArr = [];
+
+		$('.gh-article').each(function(){
+
+			var postId = jQuery(this).attr('data-post-id'),
+				totalShares = 0,
+				postUrl = jQuery(this).find('.gh-title').attr('href');
+
+			postsArr.push({'postId':postId, 'postUrl':postUrl});
+
+		});
+
+		var counter = 0;
+
+		function doRequest(){
+
+			if(counter < postsArr.length){
+
+				setTimeout(function(){
+
+					addthis.sharecounters.getShareCounts({service: ['facebook','reddit'], countUrl: postsArr[counter].postUrl}, function(addthisObj) {
+
+						var thisPost = $('[data-post-id="'+postsArr[counter].postId+'"]');
+
+						totalShares = addthisObj[0].count + addthisObj[1].count;
+
+						thisPost.find('.hits-shares').text(totalShares);
+
+						if(counter !== postsArr.length - 1){
+
+							counter++;
+
+							doRequest();
+
+						}else{
+							//console.log(postsArr);
+							return false;
+						}
+
+					});
+
+				}, 100);
+
+			}else{
+
+				return false;
+
+			}
+
+		}
+
+		doRequest();
+
+	});
+
+</script>
+
+
+
+
+
+	</div><!--/ CENTERIZER -->
+</section>
+<!--============================= /MAIN ============================-->
+
+
+
+
+<!--////////////////////////////////-->
+<!--///////// LEADERBOARD //////////-->
+<!--////////////////////////////////-->
+
+<section class="vert-pad-2 hidden-xs leaderboard-bottom">
+	<div class="centerizer">
+		<div class="hori-banner">
+			<div class="banner-ad">
+				<div id='adpos-leader-bot'>
+				
+				</div>
+			</div>
+			<span class="banner-ad">
+				<a href="/cdn-cgi/l/email-protection#bed0dbc9cdfed3dbcadfd2cdcbddd5cd90d0dbca"><img class="news-banner" src="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/images/news-banner.jpg"></a>
+			</span>
+		</div>
+		<a class="backtotop" href="#tip-top">Back To Top</a>
+	</div>
+</section>
+
+<!--============================ FOOTER ============================-->
+<footer class="clearfix" id="footermore">
+	<div class="centerizer">
+
+		<div class="footer-top clearfix">
+			 <div class="col-sm-3 hidden-sm hidden-xs">
+	            <ul class="footer-links">
+	                <li class="parent">The Blog</li>
+	                <li class="child"><a href="https://www.metalsucks.net">News</a></li>
+	                <li class="child"><a href="https://www.metalsucks.net/category/new-stuff/">New Tracks</a></li>
+					<li class="child"><a href="https://www.metalsucks.net/category/cinemetal/">Videos</a></li>
+					<li class="child"><a href="https://www.metalsucks.net/category/tour-de-force/">Tours</a></li>
+					<li class="child"><a href="https://www.metalsucks.net/category/reviews/">Reviews</a></li>
+					<li class="child"><a href="https://www.metalsucks.net/category/podcast/">Podcast</a></li>
+	            </ul>
+	        </div>
+			<div class="col-md-3 hidden-sm hidden-xs">
+				<ul class="footer-links">
+	                <li class="parent">Playlists</li>
+	                <li class="child"><a href="https://www.metalsucks.net/?s=youtube+covers/">Bands React to YouTube Covers</a></li>
+					<li class="child"><a href="https://open.spotify.com/playlist/40C5k2GWBlficlUyQKmR0S/" target="_blank">The MetalSucks Spotify Playlist</a></li>
+	            </ul>
+			</div>
+			<div class="col-md-3 hidden-sm hidden-xs">
+				<ul class="footer-links">
+	                <li class="parent">Ad Partners</li>
+	                <li class="child"><a href="https://www.metalinjection.net/" target="_blank">Metal Injection</a></li>
+					<li class="child"><a href="https://www.geargods.net/" target="_blank">Gear Gods</a></li>
+					<li class="child"><a href="https://www.blastbeatnetwork.com/" target="_blank">Blast Beat Network</a></li>
+	           		
+	           		
+	            </ul>
+			</div>
+			<div class="col-md-3 hidden-sm hidden-xs">
+				<ul class="footer-links">
+	                <li class="parent">Contact</li>
+					<li class="child"><a href="https://www.metalsucks.net/advertise-on-metalsucks/">Advertising</a></li>
+	            </ul>
+			</div>
+
+			<div class="col-md-6 col-md-offset-2">
+				<div class="header-sm">Social Media</div>
+				<p>Follow us online for more news, rumors and updates from Metal Sucks</p>
+				<!--
+				<form class="newsletter" id="listbox_subscribe" method="post" action="http://www.listbox.com/subscribe/" >
+					<input name="list_id" type="hidden" value="227428" />
+					<input id="username" onclick="$(this).attr('value','');" name="username" type="text" placeholder="Your Email Address" maxlength="128" class="form-field" />
+					<input id="action" name="action" type="hidden" value="subscribe" />
+					<button type="submit" value="subscribe" class="btn-default">Submit</button>
+				</form>
+				-->
+
+
+
+
+				<ul class="footer-social">
+					<li class="fb-link"><a href="https://www.facebook.com/metalsux" target="_blank">Facebook</a></li>
+					<li class="tw-link"><a href="https://www.twitter.com/metalsucks" target="_blank">Twitter</a></li>
+					<li class="yt-link"><a href="https://www.youtube.com/metalsucksofficial" target="_blank">YouTube</a></li>
+					<li class="in-link"><a href="https://instagram.com/metalsucks/" target="_blank">Instagram</a></li>
+					<li class="sp-link"><a href="https://open.spotify.com/user/metalsucks/" target="_blank">Spotify</a></li>
+					<li class="tb-link"><a href="https://metalsucksofficial.tumblr.com/" target="_blank">Tumblr</a></li>
+					<li class="tiktok-link">
+						<a href="https://www.tiktok.com/@metalsucksofficial" target="_blank" aria-label="TikTok">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2859 3333" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"><path d="M2081 0c55 473 319 755 778 785v532c-266 26-499-61-770-225v995c0 1264-1378 1659-1932 753-356-583-138-1606 1004-1647v561c-87 14-180 36-265 65-254 86-398 247-358 531 77 544 1075 705 992-358V1h551z"></path></svg>				
+						</a>
+					</li>
+					<li class="rss-link"><a href="https://feeds.feedburner.com/Metalsucks" target="_blank">RSS</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<div class="legal">
+				<p>All content created & copyright © 2024 Metal Sucks. All images are © their respective owners.</p>
+				<p>
+					<a class="sme-privacy-exclude" href="https://www.theorchard.com/privacy-policy/" target="_blank">Privacy
+						Policy</a>
+					|
+					<a class="sme-privacy-exclude" href="https://www.sonymusic.com/how-we-use-your-data/" target="_blank">How We Use Your Data</a>
+					|
+					<a
+						href="https://www.sonymusic.com/ccpa-contact-form/" target="_blank">Do Not Sell My Personal
+						Information</a>
+					|
+					<a class="sme-privacy-exclude"
+					   href="https://www.sonymusic.com/privacy-policy/#your-california-privacy-rights"
+					   target="_blank">Your California Privacy Rights</a>
+					|
+					<a href="https://www.theorchard.com/terms-conditions/" target="_blank">Terms and
+						Conditions</a>
+				</p>
+			</div>
+		</div>
+		
+	</div>
+</footer>
+<!--=========================== /FOOTER ============================-->
+
+<!--////////////////////////-->
+<!--/////// DFP SKIN/ //////-->
+<!--////////////////////////-->
+
+
+
+<!--////////////////////////-->
+<!--//////// EMBEDS ////////-->
+<!--////////////////////////-->
+
+
+
+<!-- Quantcast Tag -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/javascript">
+
+	var _qevents = _qevents || [];
+
+	(function() {
+		var elem = document.createElement('script');
+		elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+		elem.async = true;
+		elem.type = "text/javascript";
+
+		var scpt = document.getElementsByTagName('script')[0];
+			scpt.parentNode.insertBefore(elem, scpt);
+	})();
+
+	_qevents.push({
+		qacct:"p-qKELvQhgtyzqE"
+	});
+
+</script>
+
+<noscript>
+	<div style="display:none;">
+		<img src="//pixel.quantserve.com/pixel/p-qKELvQhgtyzqE.gif" border="0" height="1" width="1" alt="Quantcast"/>
+	</div>
+</noscript>
+<!-- End Quantcast tag -->
+
+
+
+
+
+<!--//////////////////////////////// LOAD JS ////////////////////////////////-->
+
+
+	            <!-- Google Tag Manager (noscript) -->
+            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-59X8G86" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <!-- End Google Tag Manager (noscript) -->
+            <script type="text/javascript" src="//s.skimresources.com/js/105310X1562218.skimlinks.js"></script>
+<!-- Custom Feeds for Instagram JS -->
+<script type="text/javascript">
+var sbiajaxurl = "https://www.metalsucks.net/wp-admin/admin-ajax.php";
+
+</script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-includes/js/hoverintent-js.min.js?ver=2.2.1" id="hoverintent-js-js"></script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-includes/js/admin-bar.min.js?ver=2d03f0a140a51dfcf30341d35f484335" id="admin-bar-js"></script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/js/vendor/jquery.fitvids.js?ver=1.1" id="fitvids-js"></script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/js/vendor/owl.carousel.js?ver=1.3.3" id="owlcarousel-js"></script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/js/vendor/jquery.fancybox.js?ver=2.1.5" id="fancybox-js"></script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-content/themes/metalsucks.v5/js/site.js?ver=1.0.0" id="site-js"></script>
+<script type="text/javascript" id="cffscripts-js-extra">
+/* <![CDATA[ */
+var cffOptions = {"placeholder":"https:\/\/www.metalsucks.net\/wp-content\/plugins\/custom-facebook-feed-pro\/assets\/img\/placeholder.png","resized_url":"https:\/\/cdn-p.smehost.net\/sites\/2ed48fdcc3904f548299cd86d78e9885\/wp-content\/uploads\/sb-facebook-feed-images\/","nonce":"f9fe47000a"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.metalsucks.net/wp-content/plugins/custom-facebook-feed-pro/assets/js/cff-scripts.min.js?ver=4.3.6" id="cffscripts-js"></script>
+	<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"a55408e999","applicationID":"1585340599","transactionName":"YlBRMBQHC0JWAUVbC1saZhYPSQxfUwdJHBRdRQ==","queueTime":0,"applicationTime":4,"atts":"ThdSRlwdGEw=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>
