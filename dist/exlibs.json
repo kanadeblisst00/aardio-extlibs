@@ -63,6 +63,14 @@
         "version":"1.0.0.1",
         "weight":1
     },
+    "kirequests":{
+        "author":"kanadeblisst",
+        "description":"...",
+        "lastModifyTime":"2024-04-02",
+        "url":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/package/kirequests.tar.lzma",
+        "version":"1.0.0.1",
+        "weight":1
+    },
     "kisunny":{
         "author":"kanadeblisst",
         "description":"sunny封装库，用于监听拦截和修改本机的http请求",
