@@ -1,0 +1,11 @@
+﻿
+namespace pyaardio;
+
+libInfo = {
+    "version": "1.0.0.1",
+    "author": "kanadeblisst",
+    "description": "Python风格的aardio库"
+}
+
+
+

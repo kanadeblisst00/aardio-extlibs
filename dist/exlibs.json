@@ -80,6 +80,14 @@
         "version":"1.0.0.1",
         "weight":1
     },
+    "pyaardio":{
+        "author":"kanadeblisst",
+        "description":"Python风格的aardio库",
+        "lastModifyTime":"2024-04-05",
+        "url":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/package/pyaardio.tar.lzma",
+        "version":"1.0.0.1",
+        "weight":1
+    },
     "rdphelper":{
         "author":"kanadeblisst",
         "description":"生成rdp文件，用于远程桌面管理",

@@ -37,26 +37,22 @@ namespace str{
     	
     	_mul = function(b) {
 			if(type(b) != type.number) b = 1;
-			var ss = ""; 
-			for(i=1;b;1){
-				ss = ss ++ owner.rawStr;
-			}
 			var newStr = table.clone(owner);
-    		newStr.rawStr = ss;
+    		newStr.rawStr = string.repeat(b,owner.rawStr);
 			return newStr;
 		}
 		
 		_eq = function(b) {
-			if(type(b) != type(owner)) return;
-			return string.cmp(owner.rawStr, b.rawStr) == 0;
+			if(type(b) != type(owner)) return false;
+			return owner.rawStr === b.rawStr;
 		}
 		
 		_lt = function(b) {
 			if(type(b) != type(owner)){
 				return;
 			}
-			var s1 = owner.rawStr;
-			var s2 = b.rawStr;
+			return owner.rawStr < b.rawStr;
+			/*
 			var l = math.min(#s1, #s2);
 			for(i=1;l*3;1){
 				if(!s1[i] && s2[i]) return true;
@@ -66,6 +62,7 @@ namespace str{
 				elseif(s1[i] == s2[i]) continue;
 				else return false;
 			}
+			*/
 		};
 		
 		_len = function() {
@@ -74,14 +71,21 @@ namespace str{
 		
 		__get = function(k,ownerCall) {
 			if(type(k) != type.string) return;
+			var len = string.len(owner.rawStr);
 			if(string.find(k, "@:")){
-				var t = string.split(k,":");
-				var i = t[1];
-				var j = t[2];
-				return string.slice(owner.rawStr,i+1,j,true); 
+				var t = string.split(k,':');
+				var i = tonumber(t[1]);
+				if(i === null) i = 0;
+				var j = tonumber(t[2]);
+				if(j === null) j = len;
+				if(i>=0 && j>= 0) return string.slice(owner.rawStr,i+1,j,true);
+				elseif(i<0 && j<0) return string.slice(owner.rawStr,i,j-1,true);
+				elseif(i>0 && j<0) return string.slice(owner.rawStr,i+1,j-1,true);
+				else return ; 
 			}else{
 				var index = tonumber(k);
-				return string.slice(owner.rawStr,index+1,index+1,true); 
+				if(index >= 0) return string.slice(owner.rawStr,index+1,index+1,true); 
+				else return string.slice(owner.rawStr,index,index,true); 
 			}
 		};
 		
@@ -92,26 +96,19 @@ namespace str{
 		_type = "pyaardio.str";
 		
 		_add = function(b) {
-			if(type(b) == type(owner)){
-				var newStr = table.clone(owner);
-    			newStr.rawStr = owner.rawStr + b.rawStr;
-    			return newStr;
-			}elseif(type(b) == type.string){
-				var newStr = table.clone(owner);
-    			newStr.rawStr = owner.rawStr + b;
-    			return newStr;
-			}else{
-				return owner;
-			}
+			if(type(b) == type(owner)) b = b.rawStr;
+			var newStr = table.clone(owner);
+    		newStr.rawStr = string.concat(owner.rawStr, b);
+    		return newStr;
 		}
     	
     	capitalize = function(){
     		var ss = string.trimleft(owner.rawStr);
-    		var s1 = string.slice(ss,1,1);
-    		var s0 = string.slice(ss,2);
-    		var ns = string.upper(s1) + string.lower(s0);
-    		var newStr = table.clone(owner);
-    		newStr.rawStr = ns;
+    		var s1 = string.slice(ss,1,1,true); // 取第一个字符
+    		var s0 = string.slice(ss,2,,true); // 取后面的字符
+    		var newStr = table.clone(owner); // 因为无法在内部实例化pyaardio.str类，所以只能拷贝自身
+    		// 第一个字符串大写，后面小写
+    		newStr.rawStr = string.upper(s1) + string.lower(s0); 
     		return newStr;
     	};
     	
@@ -124,18 +121,23 @@ namespace str{
     	center = function(width, fillchar=" "){
     	    var ss = owner.rawStr;
     	    var len = string.len(ss);
+    	    // 如果fillchar类型也是pyaardio.str，则取它的实际字符串
+    	    if(type(fillchar) == type(owner)) fillchar = fillchar.rawStr;
+    	    // 如果fillchar给定的不是字符串或长度不等于1
     	    if(type(fillchar) != type.string || string.len(fillchar) != 1) return;
-    	    if(!len){
+    	    if(!len){ // 如果本身自己就是空字符串，就返回width个fillchar字符
     	         var newStr = table.clone(owner);
     	         newStr.rawStr = fillchar;
     	         return newStr*width; 
     	    }
-    	    if(width <= len){
+    	    if(width <= len){ 
     		    return owner;
     		}
     		var paddingSize = width - len;
+    		// 计算左右需要填充的长度
     		var leftPaddingSize = ..math.floor(paddingSize/2);
     		var rightPaddingSize = paddingSize - leftPaddingSize;
+    		// 拼接字符串
     		var leftStr = table.clone(owner);
     	    leftStr.rawStr = fillchar;
     	    var rightStr = table.clone(owner);
@@ -157,21 +159,22 @@ namespace str{
     	};
     	
     	count = function(sub,i,j){
+    	    // aardio中索引是1开头，这里我们遵循Python的规范(0开始)
     		if(type(sub) == type(owner)) sub = sub.rawStr;
     		var len = string.len(owner.rawStr);
     		i,j = formatSlice(i,j,len);
     		if(!j) return 0;
-    		var count = 0;
+    		var findCount = 0;
     		var pos;
     		var subLen = string.len(sub);
     		while(i<j){
     		    pos = owner.find(sub,i,j);
     		    if(pos == -1) break;
-    		    count += 1;
+    		    findCount += 1;
     		    i = pos + subLen;
     		    if(i+subLen>len) break;
     		}
-    		return count;
+    		return findCount;
     	};
     	
     	encode = function(encoding="utf-8"){
@@ -190,8 +193,7 @@ namespace str{
     	    var spaceStr = table.clone(owner);
     	    spaceStr.rawStr = " ";
     	    var space = spaceStr*tabsize;
-    	    ..console.dump({"":spaceStr})
-    		return string.replace(owner.rawStr,"\t",space.rawStr);
+    	    return string.replace(owner.rawStr,"\t",space.rawStr);
     	};
     	
     	format = function(...){
@@ -558,5 +560,45 @@ str() = !strObj.
 !strObj.capitalize() = 将字符串的第一个字符转换为大写，其余字符转换为小写
 !strObj.casefold() = 将字符串转换为小写，用于不区分大小写的匹配\n(Python实现较复杂，这里只实现lower的功能)
 !strObj.center(.(长度,填充字符) = 将字符串转换为小写，用于不区分大小写的匹配\n(Python实现较复杂，这里只实现lower的功能)
-
+!strObj.count(.(子字符串,开始,结束) = 返回sub在字符串里出现的次数，可以指定开始和结束位置
+!strObj.endswith(.(子字符串,开始,结束) = 检查字符串是否以指定的后缀结束
+!strObj.expandtabs(.(tabsize) = 将字符串中的tab符号('\t')转换为指定数量的空格
+!strObj.find(.(子字符串,开始,结束) = 查找sub在字符串中的第一个出现位置，找不到时返回-1
+!strObj.format() = 格式化字符串, 这里只实现{变量}和{0}两种格式
+!strObj.format_map() = 使用字典来格式化字符串
+!strObj.index(.(子字符串,开始,结束) = 同find
+!strObj.isalnum() = 检查字符串是否由字母和数字组成
+!strObj.isalpha() = 检查字符串是否只包含字母
+!strObj.isascii() = 检查字符串是否只包含ASCII字符
+!strObj.isdecimal() = 检查字符串是否只包含十进制字符
+!strObj.isdigit() = 检查字符串是否只由数字组成
+!strObj.isidentifier() = 检查字符串是否是有效的标识符名
+!strObj.islower() = 检查字符串中所有字母是否都是小写
+!strObj.isnumeric() = 检查字符串中是否所有字符都是数字字符
+!strObj.isprintable() = 检查字符串中所有字符是否都是可打印的
+!strObj.isspace() = 检查字符串是否只包含空白字符
+!strObj.istitle() = 检查字符串是否为标题化的(所有单词的首字母大写，其余字母小写)
+!strObj.isupper() = 检查字符串中的所有字母是否都是大写
+!strObj.join(.(列表) = 将列表中的字符串合并成一个字符串
+!strObj.ljust(.(长度,填充字符) = 返回左对齐字符串，并使用指定字符填充至长度width
+!strObj.lower() = 转换字符串中所有大写字符为小写
+!strObj.lstrip(.(字符集) = 移除字符串左边的指定字符集合
+!strObj.maketrans(.(intab,outtab) = 创建字符映射的转换表
+!strObj.partition(.(分隔符) = 根据分隔符将字符串分为三部分：sep前面的、sep、sep后面的
+!strObj.replace(.(old,new,count) = 将字符串中的old替换成new，如果指定count，则替换不超过count次
+!strObj.rfind(.(子字符串,开始,结束) = 从右侧开始查找sub在字符串里的第一个出现位置，找不到时返回-1
+!strObj.rindex(.(子字符串,开始,结束) = 同rfind
+!strObj.rjust(.(长度,填充字符) = 返回右对齐字符串，并使用指定字符填充至长度width
+!strObj.rpartition(.(分隔符) = 与partition相似，但是从右侧开始
+!strObj.rsplit(.(子字符串,次数) = 从字符串的末尾开始，按照指定的分隔符分割字符串
+!strObj.rstrip(.(子字符串) = 删除字符串末尾的空格或指定字符
+!strObj.split(.(子字符串,次数) = 从字符串的开头开始，按照指定的分隔符分割字符串
+!strObj.splitlines() = 按照行('\r', '\r\n', '\n')分割字符串
+!strObj.startswith(.(子字符串) = 检查字符串是否以指定的前缀开始
+!strObj.strip(.(子字符串) = 删除字符串前后的空格或指定字符
+!strObj.swapcase() = 将字符串中的小写字母转换为大写，大写字母转换为小写
+!strObj.title() = 将字符串中每个单词的首字母转换为大写
+!strObj.translate(.(tab) = 根据给定的转换表替换字符串中的字符
+!strObj.upper() = 将字符串中的所有小写字母转换为大写字母
+!strObj.zfill(.(长度) = 在数字字符串的左边填充零，直到达到指定的长度
 end intellisense**/

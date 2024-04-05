@@ -1,0 +1,11 @@
+import console; 
+import pyaardio.str;
+
+var s0 = pyaardio.str("你好");
+console.log("center: " , s0.center(10, "#"));
+
+var s1 = pyaardio.str("swafdrerswfdccswwscsasw");
+console.log("count: " , s1.count("sw"));
+console.log("endswith: ", s1.endswith("sw"))
+console.log("find: ", s1.find("ers"))
+console.pause(true);

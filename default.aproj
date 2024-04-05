@@ -2,7 +2,14 @@
 <project ver="10" name="publishExtlibs" libEmbed="true" icon="..." ui="win" output="publishExtlibs.exe" CompanyName="单位名称" FileDescription="publishExtlibs" LegalCopyright="Copyright (C) 作者 2024" ProductName="publishExtlibs" InternalName="publishExtlibs" FileVersion="0.0.0.1" ProductVersion="0.0.0.1" publishDir="/dist/" dstrip="false" local="false" ignored="false">
 	<file name="main.aardio" path="main.aardio" comment="main.aardio"/>
 	<folder name="资源文件" path="res" embed="true" local="false" ignored="false">
-		<folder name="goquery" path="res\goquery" comment="res\goquery" local="false" embed="false" ignored="false">
+		<folder name="FrpcManager" path="res\FrpcManager" comment="res\FrpcManager">
+			<file name="config.ini" path="res\FrpcManager\config.ini" comment="res\FrpcManager\config.ini"/>
+			<file name="FrpcManager.exe" path="res\FrpcManager\FrpcManager.exe" comment="res\FrpcManager\FrpcManager.exe"/>
+			<folder name="frpc" path="res\FrpcManager\frpc" comment="res\FrpcManager\frpc">
+				<file name="frpc.exe" path="res\FrpcManager\frpc\frpc.exe" comment="res\FrpcManager\frpc\frpc.exe"/>
+			</folder>
+		</folder>
+		<folder name="goquery" path="res\goquery" comment="res\goquery">
 			<file name="MetalSucks.html" path="res\goquery\MetalSucks.html" comment="res\goquery\MetalSucks.html"/>
 			<file name="test.aardio" path="res\goquery\test.aardio" comment="res\goquery\test.aardio"/>
 		</folder>
@@ -18,11 +25,24 @@
 		<folder name="kiredis" path="res\kiredis" comment="res\kiredis">
 			<file name="test.aardio" path="res\kiredis\test.aardio" comment="res\kiredis\test.aardio"/>
 		</folder>
-		<folder name="kisunny" path="res\kisunny" comment="res\kisunny" local="false" embed="false" ignored="false">
+		<folder name="kisunny" path="res\kisunny" comment="res\kisunny">
 			<file name="test.aardio" path="res\kisunny\test.aardio" comment="res\kisunny\test.aardio"/>
+		</folder>
+		<folder name="pyaardio" path="res\pyaardio" comment="res\pyaardio" local="false" embed="false" ignored="false">
+			<file name="str.aardio" path="res\pyaardio\str.aardio" comment="res\pyaardio\str.aardio"/>
+		</folder>
+		<folder name="rdphelper" path="res\rdphelper" comment="res\rdphelper">
+			<file name="rdp.tmpl" path="res\rdphelper\rdp.tmpl" comment="res\rdphelper\rdp.tmpl"/>
+			<file name="rdphelper.exe" path="res\rdphelper\rdphelper.exe" comment="res\rdphelper\rdphelper.exe"/>
+			<file name="remoteapp.tmpl" path="res\rdphelper\remoteapp.tmpl" comment="res\rdphelper\remoteapp.tmpl"/>
 		</folder>
 		<folder name="tlsClient" path="res\tlsClient" comment="res\tlsClient">
 			<file name="test.aardio" path="res\tlsClient\test.aardio" comment="res\tlsClient\test.aardio"/>
+		</folder>
+		<folder name="WechatVideoSniffer" path="res\WechatVideoSniffer" comment="res\WechatVideoSniffer">
+			<file name="Sunny.dll" path="res\WechatVideoSniffer\Sunny.dll" comment="res\WechatVideoSniffer\Sunny.dll"/>
+			<file name="使用说明.txt" path="res\WechatVideoSniffer\使用说明.txt" comment="res\WechatVideoSniffer\使用说明.txt"/>
+			<file name="视频号下载助手2.0.exe" path="res\WechatVideoSniffer\视频号下载助手2.0.exe" comment="res\WechatVideoSniffer\视频号下载助手2.0.exe"/>
 		</folder>
 		<folder name="xmlquery" path="res\xmlquery" comment="res\xmlquery">
 			<file name="test.aardio" path="res\xmlquery\test.aardio" comment="res\xmlquery\test.aardio"/>
@@ -30,6 +50,5 @@
 	</folder>
 	<folder name="窗体文件" path="dlg" comment="目录" embed="true" local="false" ignored="false">
 		<file name="extlibs.aardio" path="dlg\extlibs.aardio" comment="dlg\extlibs.aardio"/>
-		<file name="rdphelper.aardio" path="dlg\rdphelper.aardio" comment="dlg\rdphelper.aardio"/>
 	</folder>
 </project>
