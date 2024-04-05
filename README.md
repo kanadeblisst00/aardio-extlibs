@@ -9,6 +9,8 @@
 - tlsClient: tls-client封装，用于http请求。支持http2.0和tls指纹
 - xmlquery: 封装xmlquery，用于解析xml
 - kiredis: redis客户端
+- pyaardio: 封装Python风格的库方法
+- kilink: 创建windows软链接
 
 #### 目录结构
 
