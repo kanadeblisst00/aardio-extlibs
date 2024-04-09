@@ -11,6 +11,7 @@
 - kiredis: redis客户端
 - pyaardio: 封装Python风格的库方法
 - kilink: 创建windows软链接
+- kichardet: 自动识别给定的字符串编码
 
 #### 目录结构
 
