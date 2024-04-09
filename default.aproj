@@ -22,13 +22,16 @@
 		<folder name="jsonquery" path="res\jsonquery" comment="res\jsonquery">
 			<file name="test.aardio" path="res\jsonquery\test.aardio" comment="res\jsonquery\test.aardio"/>
 		</folder>
+		<folder name="kichardet" path="res\kichardet" comment="res\kichardet" local="false" embed="false" ignored="false">
+			<file name="test.aardio" path="res\kichardet\test.aardio" comment="res\kichardet\test.aardio"/>
+		</folder>
 		<folder name="kiredis" path="res\kiredis" comment="res\kiredis">
 			<file name="test.aardio" path="res\kiredis\test.aardio" comment="res\kiredis\test.aardio"/>
 		</folder>
 		<folder name="kisunny" path="res\kisunny" comment="res\kisunny">
 			<file name="test.aardio" path="res\kisunny\test.aardio" comment="res\kisunny\test.aardio"/>
 		</folder>
-		<folder name="pyaardio" path="res\pyaardio" comment="res\pyaardio" local="false" embed="false" ignored="false">
+		<folder name="pyaardio" path="res\pyaardio" comment="res\pyaardio">
 			<file name="str.aardio" path="res\pyaardio\str.aardio" comment="res\pyaardio\str.aardio"/>
 		</folder>
 		<folder name="rdphelper" path="res\rdphelper" comment="res\rdphelper">

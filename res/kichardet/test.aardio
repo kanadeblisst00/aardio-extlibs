@@ -1,0 +1,11 @@
+import console; 
+import kichardet;
+
+
+
+console.log("您输入的是" ,kichardet.detect_file("T:\Code\aardio_code\extlibs\res\kichardet\uft8.txt") );
+console.log("您输入的是" ,kichardet.detect_file("T:\Code\aardio_code\extlibs\res\kichardet\gb18030.txt") );
+console.log("您输入的是" ,kichardet.detect_file("T:\Code\aardio_code\extlibs\res\kichardet\utf16le.txt") );
+
+
+console.pause(true);

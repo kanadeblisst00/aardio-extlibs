@@ -1,0 +1,329 @@
+
+search
+www/ Software/ uchardet
+www/ 软件/ uchardet
+Edit  编辑 Page History  页面历史记录 Repo Info  回购信息
+uchardet 乌沙代特
+uchardet is an encoding detector library, which takes a sequence of bytes in an unknown character encoding without any additional information, and attempts to determine the encoding of the text. Returned encoding names are iconv-compatible.
+uchardet 是一个编码检测器库，它采用未知字符编码的字节序列，无需任何附加信息，并尝试确定文本的编码。返回的编码名称与 iconv 兼容。
+
+uchardet started as a C language binding of the original C++ implementation of the universal charset detection library by Mozilla. It can now detect more charsets, and more reliably than the original implementation.
+uchardet 最初是 Mozilla 通用字符集检测库的原始 C++ 实现的 C 语言绑定。它现在可以检测更多的字符集，并且比原始实现更可靠。
+
+Report bugs and contribute patches at (check opened bugs first): https://gitlab.freedesktop.org/uchardet/uchardet/-/issues
+报告错误并贡献补丁（首先检查打开的错误）：https://gitlab.freedesktop.org/uchardet/uchardet/-/issues
+
+Last release: uchardet version 0.0.8 (release note, git repository for dev code) on 2022-12-08.
+最新版本：uchardet 版本 0.0.8（发行说明，开发代码的 git 存储库）于 2022 年 12 月 8 日发布。
+
+Supported Languages/Encodings
+支持的语言/编码
+International (Unicode)  国际（统一码）
+UTF-8
+UTF-16BE / UTF-16LE
+UTF-32BE / UTF-32LE / X-ISO-10646-UCS-4-34121 / X-ISO-10646-UCS-4-21431
+Arabic  阿拉伯
+ISO-8859-6
+WINDOWS-1256
+Bulgarian  保加利亚语
+ISO-8859-5
+WINDOWS-1251
+Chinese  中国人
+ISO-2022-CN
+BIG5 大五
+EUC-TW
+GB18030
+HZ-GB-2312
+Croatian:  克罗地亚语：
+ISO-8859-2
+ISO-8859-13
+ISO-8859-16
+Windows-1250
+IBM852
+MAC-CENTRALEUROPE MAC-中欧
+Czech  捷克语
+Windows-1250
+ISO-8859-2
+IBM852
+MAC-CENTRALEUROPE MAC-中欧
+Danish  丹麦语
+IBM865
+ISO-8859-1
+ISO-8859-15
+WINDOWS-1252
+English  英语
+ASCII ASCII码
+Esperanto  世界语
+ISO-8859-3
+Estonian  爱沙尼亚语
+ISO-8859-4
+ISO-8859-13
+ISO-8859-13
+Windows-1252
+Windows-1257
+Finnish  芬兰
+ISO-8859-1
+ISO-8859-4
+ISO-8859-9
+ISO-8859-13
+ISO-8859-15
+WINDOWS-1252
+French  法语
+ISO-8859-1
+ISO-8859-15
+WINDOWS-1252
+German  德语
+ISO-8859-1
+WINDOWS-1252
+Greek  希腊语
+ISO-8859-7
+WINDOWS-1253
+Hebrew  希伯来语
+ISO-8859-8
+WINDOWS-1255
+Hungarian:  匈牙利：
+ISO-8859-2
+WINDOWS-1250
+Irish Gaelic  爱尔兰盖尔语
+ISO-8859-1
+ISO-8859-9
+ISO-8859-15
+WINDOWS-1252
+Italian  意大利语
+ISO-8859-1
+ISO-8859-3
+ISO-8859-9
+ISO-8859-15
+WINDOWS-1252
+Japanese  日本人
+ISO-2022-JP
+SHIFT_JIS
+EUC-JP
+Korean  韩国人
+ISO-2022-KR
+EUC-KR / UHC
+Lithuanian  立陶宛语
+ISO-8859-4
+ISO-8859-10
+ISO-8859-13
+Latvian  拉脱维亚语
+ISO-8859-4
+ISO-8859-10
+ISO-8859-13
+Maltese  马耳他语
+ISO-8859-3
+Norwegian  挪威
+IBM865
+ISO-8859-1
+ISO-8859-15
+WINDOWS-1252
+Polish:  抛光：
+ISO-8859-2
+ISO-8859-13
+ISO-8859-16
+Windows-1250
+IBM852
+MAC-CENTRALEUROPE MAC-中欧
+Portuguese  葡萄牙语
+ISO-8859-1
+ISO-8859-9
+ISO-8859-15
+WINDOWS-1252
+Romanian:  罗马尼亚语：
+ISO-8859-2
+ISO-8859-16
+Windows-1250
+IBM852
+Russian  俄语
+ISO-8859-5
+KOI8-R
+WINDOWS-1251
+MAC-CYRILLIC MAC-西里尔字母
+IBM866
+IBM855
+Slovak  斯洛伐克语
+Windows-1250
+ISO-8859-2
+IBM852
+MAC-CENTRALEUROPE MAC-中欧
+Slovene  斯洛文尼亚
+ISO-8859-2
+ISO-8859-16
+Windows-1250
+IBM852
+MAC-CENTRALEUROPE MAC-中欧
+Spanish  西班牙语
+ISO-8859-1
+ISO-8859-15
+WINDOWS-1252
+Swedish  瑞典
+ISO-8859-1
+ISO-8859-4
+ISO-8859-9
+ISO-8859-15
+WINDOWS-1252
+Thai  泰国
+TIS-620
+ISO-8859-11
+Turkish:  土耳其：
+ISO-8859-3
+ISO-8859-9
+Vietnamese:  越南语：
+VISCII 维西II
+Windows-1258
+Others  其他的
+WINDOWS-1252
+Installation 安装
+Debian/Ubuntu/Mint
+apt-get install uchardet libuchardet-dev
+Mageia 马吉亚
+urpmi libuchardet libuchardet-devel
+Fedora 软呢帽
+dnf install uchardet uchardet-devel
+Gentoo 根图
+emerge uchardet
+Mac
+brew install uchardet
+or
+
+port install uchardet
+Windows 视窗
+Binary packages are provided in Fedora and Msys2 repositories. There may exist other pre-built packages but I am not aware of them. Nevertheless the library is very easily and quickly compilable under Windows as well, so finding a binary package is not necessary. Some did it successfully with the CMake Windows installer and MinGW. It should be possible to use MinGW-w64 instead of MinGW, in particular to build both 32 and 64-bit DLL libraries).
+Fedora 和 Msys2 存储库中提供了二进制包。可能存在其他预构建的软件包，但我不知道它们。尽管如此，该库在 Windows 下也可以非常轻松快速地编译，因此无需查找二进制包。有些人使用 CMake Windows 安装程序和 MinGW 成功完成了这一任务。应该可以使用 MinGW-w64 代替 MinGW，特别是构建 32 位和 64 位 DLL 库）。
+
+Note also that it is very easily cross-buildable (for instance from a GNU/Linux machine); crossroad may help, this is what we use in our CI).
+另请注意，它非常容易交叉构建（例如从 GNU/Linux 机器）； crossroad 可能会有所帮助，这就是我们在 CI 中使用的）。
+
+Build from source 从源代码构建
+Releases are available from: https://www.freedesktop.org/software/uchardet/releases/
+可以从以下位置获取版本：https://www.freedesktop.org/software/uchardet/releases/
+
+If you prefer a development version, clone the git repository:
+如果您更喜欢开发版本，请克隆 git 存储库：
+
+git clone https://gitlab.freedesktop.org/uchardet/uchardet.git
+The source can be browsed at: https://gitlab.freedesktop.org/uchardet/uchardet
+源码可以浏览：https://gitlab.freedesktop.org/uchardet/uchardet
+
+cmake .
+make
+make install
+Build with flatpak-builder
+使用 flatpak-builder 构建
+Here is a working "module" section to include in your Flatpak's json manifest:
+这是一个工作“模块”部分，包含在 Flatpak 的 json 清单中：
+
+"modules": [
+    {
+        "name": "uchardet",
+        "buildsystem": "cmake",
+        "builddir": true,
+        "config-opts": [ "-DCMAKE_INSTALL_LIBDIR=lib" ],
+        "sources": [
+            {
+                ...
+            }
+        ]
+    }
+]
+Build with CMake exported targets
+使用 CMake 导出的目标进行构建
+uchardet installs a standard pkg-config file which will make it easily discoverable by any modern build system. Nevertheless if your project also uses CMake and you want to discover uchardet installation using CMake exported targets, you may find and link uchardet with:
+uchardet 安装一个标准的 pkg-config 文件，这将使它可以很容易地被任何现代构建系统发现。然而，如果您的项目也使用 CMake 并且您想使用 CMake 导出的目标来发现 uchardet 安装，您可以找到 uchardet 并将其链接到：
+
+project(sample LANGUAGES C)
+find_package ( uchardet )
+if (uchardet_FOUND)
+  add_executable( sample sample.c )
+  target_link_libraries ( sample PRIVATE uchardet::libuchardet )
+endif ()
+Note though that we recommend the library discovery with pkg-config because it is standard and generic. Therefore it will always work, even if we decided to change our own build system (which is not planned right now, but may always happen). This is why we advise to use standard pkg-config discovery.
+但请注意，我们建议使用 pkg-config 进行库发现，因为它是标准且通用的。因此，即使我们决定更改自己的构建系统（目前尚未计划，但可能总会发生），它也将始终有效。这就是为什么我们建议使用标准 pkg-config 发现。
+
+Some more CMake specificities may be found in the commit message which implemented such support.
+可以在实现此类支持的提交消息中找到更多 CMake 特性。
+
+Usage 用法
+Command Line 命令行
+uchardet Command Line Tool Version 0.0.7
+Authors: BYVoid, Jehan
+Bug Report: https://gitlab.freedesktop.org/uchardet/uchardet/-/issues
+
+Usage: uchardet [Options] [File]...
+
+Options:
+ -v, --version Print version and build information.
+ -h, --help Print this help.
+Library 图书馆
+See uchardet.h 参见 uchardet.h
+
+History 历史
+As said in introduction, this was initially a project of Mozilla to allow better detection of page encodings, and it used to be part of Firefox. If not mistaken, this is not the case anymore (probably because nowadays most websites better announce their encoding, and also UTF-8 is much more widely spread).
+正如简介中所说，这最初是 Mozilla 的一个项目，旨在更好地检测页面编码，并且它曾经是 Firefox 的一部分。如果没有记错的话，现在情况已经不再是这样了（可能是因为现在大多数网站都更好地公布了它们的编码，而且 UTF-8 也得到了更广泛的传播）。
+
+Techniques used by universalchardet are described at https://www-archive.mozilla.org/projects/intl/universalcharsetdetection
+Universalchardet 使用的技术在 https://www-archive.mozilla.org/projects/intl/universalcharsetdetection 中进行了描述
+
+It is to be noted that a lot has changed since the original code, yet the base concept is still around, basing detection not just on encoding rules, but importantly on analysis of character statistics in languages.
+值得注意的是，自原始代码以来已经发生了很多变化，但基本概念仍然存在，检测不仅基于编码规则，而且重要的是基于对语言中字符统计的分析。
+
+Original code of universalchardet by Mozilla can still be found from the Wayback machine.
+Mozilla 的 universalchardet 原始代码仍然可以从 Wayback 机器上找到。
+
+Mozilla code was extracted and packaged into a standalone library under the name uchardet by BYVoid in 2011, in a personal repository. Starting 2015, I (i.e. Jehan) started contributing, "standardized" the output to be iconv-compatible, added various encoding/language support and streamlined generation of sources for new support of encoding/languages by using texts from Wikipedia as statistics source on languages through Python scripts. Then I soon became co-maintainer. In 2016, uchardet became a freedesktop project.
+Mozilla 代码于 2011 年由 BYVoid 在个人存储库中提取并打包到名为 uchardet 的独立库中。从 2015 年开始，我（即 Jehan）开始贡献，将输出“标准化”为 iconv 兼容，添加了各种编码/语言支持，并通过使用维基百科中的文本作为语言统计源来简化新编码/语言支持的源生成通过Python脚本。然后我很快就成为了共同维护者。 2016年， uchardet 成为一个freedesktop项目。
+
+Related Projects 相关项目
+Some of these are bindings of uchardet, others are forks of the same initial code, which has diverged over time, others are native port in other languages. This list is not exhaustive and only meant as point of interest. We don't follow the status for these projects.
+其中一些是 uchardet 的绑定，其他是相同初始代码的分支，随着时间的推移已经发生了分歧，其他是其他语言的本机端口。此列表并不详尽，仅作为兴趣点。我们不关注这些项目的状态。
+
+R-uchardet R binding on CRAN
+R-uchardet R 与 CRAN 结合
+python-chardet Python port
+python-chardet Python 端口
+ruby-rchardet Ruby port  ruby-rchardet Ruby 端口
+juniversalchardet Java port of universalchardet
+juniversalchardet universalchardet 的 Java 端口
+jchardet Java port of chardet
+jchardet chardet 的 Java 端口
+nuniversalchardet C# port of universalchardet
+nuuniversalchardet universalchardet 的 C# 端口
+nchardet C# port of chardet
+nchardet C# chardet 端口
+uchardet-enhanced A fork of mozilla universalchardet
+uchardet-enhanced Mozilla universalchardet 的一个分支
+rust-uchardet Rust language binding of uchardet
+rust-uchardet uchardet 的 Rust 语言绑定
+libchardet Another C/C++ API wrapping Mozilla code.
+libchardet 另一个包装 Mozilla 代码的 C/C++ API。
+Used by 使用者
+mpv for subtitle detection
+mpv 用于字幕检测
+Tepl  泰普尔
+Nextcloud IOS app  下一个云IOS应用程序
+Codelite  科德莱特
+QtAV
+…
+License 执照
+Mozilla Public License Version 1.1
+Mozilla 公共许可证版本 1.1
+GNU General Public License, version 2.0 or later
+GNU 通用公共许可证，版本 2.0 或更高版本
+GNU Lesser General Public License, version 2.1 or later.
+GNU 较宽通用公共许可证，版本 2.1 或更高版本。
+See the file COPYING for the complete text of these 3 licenses.
+请参阅文件 COPYING 以获取这 3 个许可证的完整文本。
+
+Code of Conduct 行为守则
+The uchardet project is hosted by freedesktop.org and as such follows its code of conduct. In other words, it means we will treat anyone with respect and expect anyone to do the same.
+uchardet 项目由 freedesktop.org 托管，因此遵循其行为准则。换句话说，这意味着我们将尊重任何人，并期望任何人也这样做。
+
+Please read freedesktop.org Code of Conduct.
+请阅读 freedesktop.org 行为准则。
+
+In case of any problem regarding abusive behavior in uchardet project, please contact the maintainer (Jehan) or create a bug report (possibly private if needed).
+如果 uchardet 项目中存在任何有关滥用行为的问题，请联系维护者 (Jehan) 或创建错误报告（如果需要，可以是私人的）。
+
+Links: Software  链接：软件
+Last edited Thu Dec 8 21:31:13 2022
+最后编辑于 2022 年 12 月 8 日星期四 21:31:13

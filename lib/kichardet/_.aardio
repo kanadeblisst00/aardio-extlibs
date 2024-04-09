@@ -1,0 +1,49 @@
+﻿namespace kichardet;
+
+var dllpath = DEBUG ? "\lib\kichardet\.res\uchardet.dll" : $"~\lib\kichardet\.res\uchardet.dll";
+var dll = ..raw.loadDll(dllpath,,"cdecl");
+
+var uchardet_new = dll.api("uchardet_new","pointer()" ,"cdecl");
+var uchardet_handle_data = dll.api("uchardet_handle_data","int(pointer a,str b,int c)" ,"cdecl");
+var uchardet_data_end = dll.api("uchardet_data_end","void(pointer a)" ,"cdecl");
+var uchardet_get_charset = dll.api("uchardet_get_charset","str(pointer a)" ,"cdecl");
+var uchardet_delete = dll.api("uchardet_delete","void(pointer a)" ,"cdecl")
+
+var buffer_size = 65536;
+
+detect = function(s){
+	var len = #s;
+	if(!len) return;
+	var handle = uchardet_new();
+	for(i=0;..math.floor(len/buffer_size);1){
+		var start = i*buffer_size;
+		var end1 = (i+1)*buffer_size;
+		end1 = ..math.min(end1, len);
+		var buffer = ..string.slice(s,start+1,end1);
+		var retval = uchardet_handle_data(handle, buffer, #buffer);
+		start += buffer_size;
+	}
+	uchardet_data_end(handle);
+	var charset = uchardet_get_charset(handle);
+	uchardet_delete(handle);
+	return charset;
+}
+
+detect_file = function(path){
+	if(!..io.exist(path)) return;
+	var s = ..string.load(path);
+	return detect(s);
+}
+
+
+/**details(入门教程)
+该库编译自 https://www.freedesktop.org/wiki/Software/uchardet/
+
+用于检测文本的编码格式
+end details**/
+
+/**intellisense()
+kichardet.detect(.(字符串) = 检测并返回字符串编码
+kichardet.detect_file(.(文件路径) = 检测文件里的字符串编码
+end intellisense**/
+
