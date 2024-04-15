@@ -12,6 +12,8 @@
 - pyaardio: 封装Python风格的库方法
 - kilink: 创建windows软链接
 - kichardet: 自动识别给定的字符串编码
+- kilogging: 支持多线程的日志模块
+- kirequests: 符合Python requests模块风格的http请求库
 
 #### 目录结构
 
@@ -26,9 +28,9 @@
 
 接着重新打开编辑器就可以在工具栏目下看到一个`非官方扩展库`，用法和官方扩展一样(选择某项安装即可)，右键可查看使用案例。
 
-![](http://cdn.ikanade.cn/1711437791902.png)
+![](http://cdn.ikanade.cn/1713153749035.png)
 
-![](http://cdn.ikanade.cn/1711437840616.png)
+![](http://cdn.ikanade.cn/1713154449684.png)
 
 #### 搭建自己的扩展库
 
