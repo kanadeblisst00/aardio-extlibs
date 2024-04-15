@@ -1,0 +1,215 @@
+﻿import util.table;
+import debug;
+import fsys;
+import console;
+import process.mutex;
+
+class kilogging{
+	ctor(level, logName, path, logTerminal){
+		if(!path) path = ..thread.get("libtools.logging.LogPath") : defaultLogPath; 
+		if(!logName) logName = ..thread.get("libtools.logging.LogName") : defaultLogName;
+		if(!level) level = ..thread.get("libtools.logging.LogLevel") : defaultLogLevel;
+		if(!logTerminal) logTerminal = ..thread.get("libtools.logging.LogTerminal") : defaultLogTerminal;
+		
+		if((logTerminal & FILE) && !..io.exist(path)) {
+			..fsys.createDir(path);
+		}
+		
+		this.path = path;
+		this.logName = logName;
+		this.level = level;
+		this.logTerminal = logTerminal;
+		
+		var mutexName = "libtools.logging." + logName;
+		this.mutex = ..process.mutex(mutexName);
+		
+		if(!this.mutex ){
+			//遇到服务进程,权限被拒
+			this.mutex = ..process.mutex(mutexName ++ ::Kernel32.GetCurrentProcessId() ) ;
+			if(!this.mutex){
+				this.mutex = {
+					waitOne = function(){ };
+					release = function(){ }; 
+					close = function(){ };
+				}
+			}
+		}
+		..table.gc(this, "close");
+	}; 
+	
+	close = function(){
+		if( this.mutex ){
+			this.mutex.close();
+			this.mutex = null;
+		}
+	};
+	
+	log = function(level, logFormatStr, ...){
+		if(self[level] < self[this.level]) return;
+		var args = {...};
+		var logStr = logFormatStr;
+		if(logFormatStr === null){
+			logStr = '';
+		}
+		elseif(type(logFormatStr) != type.string){
+			logStr = tostringObject(logFormatStr, true);
+		}
+		elseif(type(args[1]) == type.table && ..string.find(logFormatStr, "@{")){
+			logStr = formatMap(logFormatStr, args[1]);
+		}elseif(#args && ..string.find(logFormatStr, "@%")){
+			logStr = ..string.format(logFormatStr, ...);
+		}elseif(#args){
+			var t = ..table.map(args,function(v,k,result){
+				result[k] = tostring(v);
+			})
+			..table.insert(t, logFormatStr);
+			logStr = ..string.join(t, " ");
+		}else{
+			logStr = logFormatStr;
+		}
+		if(logFormatStr !== null){
+			var debugInfo = ..debug.queryinfo(3,"select source,name,currentline");
+			var sourceFile = debugInfo.source.file;
+			if(sourceFile){
+				var libdir = ..fsys.path.relative(sourceFile,"~/lib/",false) : ..fsys.path.relative(sourceFile,"/lib/",false);
+				libdir = ..string.replace(libdir,"@.aardio", "");
+				sourceFile = ..string.replace(libdir,"@\",".");
+    		}else{
+    	    	sourceFile = "";
+    		}
+    		var logTime = tostring(..time(), timeFormat);
+			logStr = formatMap(logFormat, {
+				time=logTime;
+				level=level;
+				package=sourceFile;
+				func=debugInfo.name;
+				line=debugInfo.currentline;
+				log=logStr;
+			})
+		}
+		var logFile = ..io.joinpath(this.path, formatTimeMap(this.logName));
+		if( this.mutex.waitOne() ){
+			if(this.logTerminal & FILE){
+				var file = ..io.open(logFile,"a+t");
+				file.write(logStr);
+				file.write('\n');
+				file.close();
+			}
+			if(this.logTerminal & CONSOLE){
+				..console.log(logStr);
+			}
+			this.mutex.release();
+		}
+	}
+	
+	debug = function(logFormatStr, ...){
+		this.log("DEBUG",logFormatStr, ...);
+	}
+	
+	info = function(logFormatStr, ...){
+		this.log("INFO",logFormatStr, ...);
+	}
+	
+	warn = function(logFormatStr, ...){
+		this.log("WARN",logFormatStr, ...);
+	}
+	
+	error = function(logFormatStr, ...){
+		this.log("ERROR",logFormatStr, ...);
+	}
+	
+	trace = function(logFormatStr, ...){
+		this.log("ERROR", logFormatStr, ...);
+		this.log("ERROR", ..debug.traceback(,,2));
+	}
+	
+	exception = function(){
+		var tb = ..debug.traceback(,,2);
+		var locals = {};
+		var i = 1;
+		var name,value = ..debug.getlocalvar(2,i);
+		while(name){
+			locals[name] = value;
+			i += 1
+			name,value = ..debug.getlocalvar(2,i);
+		}
+		this.log("ERROR", tb + '\n\n' + "局部变量: {locals}", {"locals": locals});
+	}
+}
+
+namespace kilogging{ 
+	DEBUG = 0;
+	INFO = 1;
+	WARN = 2;
+	ERROR = 3;
+	
+	CONSOLE = 1;
+	FILE = 2;
+	
+	defaultLogPath = ..io.localpath("\log");
+	defaultLogName = "%Y-%m-%d.log";
+	defaultLogLevel = "INFO";
+	defaultLogTerminal = CONSOLE;
+	timeFormat = "%Y-%m-%d %H:%M:%S"
+	logFormat = "{time} | {level} | {package}:{func}:{line} - {log}";
+	
+	tostringObject = function(obj, prettyPrint){
+    	if(type(obj) == type.table) return ..util.table.stringify(obj, prettyPrint);
+    	elseif(type(obj) == type.string) return obj;
+    	else return tostring(obj);
+    }
+	
+	formatMap = function(s, kwargs){
+		kwargs = ..table.map(kwargs,function(v,k,result){
+    	    result[k] = tostringObject(v);
+    	})
+    	s = ..string.replace(s,"\{(.+?)\}", kwargs)
+    	return s;
+    }
+	
+	formatTimeMap = function(s, kwargs){
+		var tab = {
+			"%Y": "{year}",
+			"%m": "{month}",
+			"%d": "{day}",
+			"%H": "{hour}",
+			"%M": "{minute}",
+			"%S": "{second}"
+		}
+		var t = ..time();
+		kwargs = ..table.mix(kwargs, {
+			"year": t.year,
+			"month": t.month,
+			"day": t.day,
+			"hour": t.hour,
+			"minute": t.minute,
+			"second": t.second
+		})
+		s = ..string.replace(s, "\%.", tab);
+		return formatMap(s, kwargs)
+		
+    };
+    
+    config = function(level, logname, path, logTerminal){
+        //..console.log("配置全局日志参数: ", level, logname, path, logTerminal);
+		if(level) {
+			..thread.set("libtools.logging.LogLevel", level);
+		}
+		if(logname) ..thread.set("libtools.logging.LogName", logname);
+		if(path) ..thread.set("libtools.logging.LogPath", path);
+		if(logTerminal) ..thread.set("libtools.logging.LogTerminal", logTerminal);
+	}
+
+}
+
+/**intellisense()
+kilogging(.(日志级别,日志文件名,日志路径,日志打印终端) = 创建日志
+kilogging() = !kiLogger.
+kilogging.config(.(日志级别,日志文件名,日志路径,日志打印终端) = 配置多线程的日志打印信息
+!kiLogger.debug() = 打印DEBUG日志
+!kiLogger.info() = 打印INFO日志
+!kiLogger.warn() = 打印WARN日志
+!kiLogger.error() = 打印ERROR日志
+!kiLogger.trace() = 打印ERROR日志且输出调用堆栈
+!kiLogger.exception() = 打印调用堆栈和局部变量
+end intellisense**/

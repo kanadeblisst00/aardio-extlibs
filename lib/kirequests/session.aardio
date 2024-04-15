@@ -1,0 +1,466 @@
+﻿import web.json;
+import inet;
+import inet.url;
+import inet.file;
+import inet.tls;
+import zlib;
+import web;
+namespace kirequests;
+	
+class session{
+	ctor(headers, proxy, cookies){
+		this.defaultHeaders = headers : {};
+		for k,v in defaultHeaders{
+			if(!this.defaultHeaders[k]) this.defaultHeaders[k]= v;
+		}
+		var accessType = 0x1/*_INTERNET_OPEN_TYPE_DIRECT*/;;
+		if(type(proxy) == "string"){
+	        accessType = 0x3/*_INTERNET_OPEN_TYPE_PROXY*/; 
+	    }else{
+	        proxy = null;
+	    }
+	    var agent = this.defaultHeaders["User-Agent"];
+	    
+	    updateCookies(cookies);
+	    
+	    if(proxy){
+	        var p = parseProxy(proxy);
+	        proxy = p.proxy;
+	        this.proxyAuth = {p.user;p.pass};
+	    }
+	    this.session = ::InternetOpen(agent,accessType,proxy,"",0); 
+	   	// 禁用缓存
+	   	this.flags = 0x84000100/*_INTERNET_FLAG_DONT_CACHE | _INTERNET_FLAG_PRAGMA_NOCACHE |  _INTERNET_FLAG_RELOAD*/;
+	   	
+	   	if(!this.session) error("kirequests初始化失败", 2);
+		..table.gc(this,"close");  
+	}
+	
+	close = function(){  
+	    if(this.session){
+	    	this.endRequest();
+	    	::InternetCloseHandle( this.session );
+	    	this.session = null; 
+	    }
+	};
+	
+	beginRequest = function(url,method,headers,auth,redirect=true){
+		// 分析网址
+		var tUrl = ..inet.url.split(url);  
+		
+		var flags = 0;
+		// 需要将URL改成http，然后带上INTERNET_FLAG_SECURE标识			
+	    if( tUrl.schemeNum == 0x4/*_INTERNET_SCHEME_HTTPS*/){
+	    	flags =  0x800000/*_INTERNET_FLAG_SECURE*/;
+	    	tUrl.schemeNum = 0x3/*_INTERNET_SCHEME_HTTP*/
+		}
+		// 网站验证的用户名和密码
+		var username = auth[1];
+		var password = auth[2];
+		
+		this.connect = ::InternetConnect(this.session,tUrl.host,tUrl.port,username,password,tUrl.schemeNum,0,0) 
+			
+        if( ! this.connect ) return null,..lasterr( ,"beginRequest->InternetConnect");
+	    // 设置代理用户名密码
+	    if(this.proxyAuth){
+	        var proxyName = this.proxyAuth[1];
+	        InternetSetOptionW(this.connect,0x2B/*_INTERNET_OPTION_PROXY_USERNAME*/,proxyName,#proxyName);
+	        var proxyPassword = this.proxyAuth[2];
+	        InternetSetOptionW(this.connect,0x2C/*_INTERNET_OPTION_PROXY_PASSWORD*/,proxyPassword,#proxyPassword);
+	    }
+	    flags = flags | this.flags; 
+	    
+	    if(redirect === false) {
+	    	flags = flags | 0x200000/*_INTERNET_FLAG_NO_AUTO_REDIRECT*/;
+	    }
+	    var referer =  headers["Referer"] : this.referer;
+	    var uri = ..string.concat(tUrl.path ,tUrl.extraInfo);
+	    this.request = HttpOpenRequest(this.connect,method,uri,null,referer,{},flags,0);
+		
+		if( ! this.request ) return null, ..lasterr(,"beginRequest->HttpOpenRequest");
+		this.referer = url;
+		return true;
+	};
+	
+	setSecurityOption = function(){
+		var flags =  0;
+    	flags |= 0x1000/*_SECURITY_FLAG_IGNORE_CERT_CN_INVALID*/;
+		flags |= 0x2000/*_SECURITY_FLAG_IGNORE_CERT_DATE_INVALID*/;
+		flags |= 0x100/*_SECURITY_FLAG_IGNORE_UNKNOWN_CA*/;
+		flags |= 0x200/*_SECURITY_FLAG_IGNORE_CERT_WRONG_USAGE*/;
+      	flags |= 0x80/*_SECURITY_FLAG_IGNORE_REVOCATION*/;  
+
+	 	if( ! ::InternetSetOption(this.request,0x1F/*_INTERNET_OPTION_SECURITY_FLAGS*/,{INT feature=flags},4) ){
+	 		return null,..lasterr(,"setSecurityOption")
+	 	} 	
+	 	return true;
+	};
+	
+	send = function(postData){
+		var bufferTotal = #postData;
+		var headersStr = ..web.joinHeaders(this.headers);
+		  
+		var intBuf = INTERNET_BUFFERS();
+    	intBuf.header = headersStr;
+    	intBuf.headersLength = #headersStr;
+    	intBuf.headersTotal = #headersStr;
+        intBuf.bufferTotal = bufferTotal;  
+		
+		this.setSecurityOption();
+		
+		var sendstat;
+		if( bufferTotal  ){
+			sendstat = HttpSendRequestEx( this.request,intBuf, ,0);
+			writeFile( this.request,postData); 
+		}
+		else {
+			sendstat = HttpSendRequest(this.request,headersStr,#headersStr, ,0 );
+		}
+		
+	 	if( !sendstat) { 
+			var err,code = ..lasterr(,"beginSendData");
+			return null,err,code;
+		}  
+		if(bufferTotal && ( !HttpEndRequest(this.request, ,0) ) ){
+			return null,..lasterr(,"endSendData");
+		};
+		return true;  
+	};
+	
+	writeBuffer = function(buffer,l){
+		return writeFileBuffer( this.request,buffer,l:#buffer); 
+	};
+	
+	readAllHeader = function(){
+		var lev = 0x16;
+		
+		var ok,headersStr,len,next = QueryInfoByString( this.request,lev,0,0,0) ;
+		ok,headersStr,len = QueryInfoByString( this.request,lev,len,len,0);
+		
+		if(!ok) return null,..lasterr();   
+		var headers = parseHeaders(headersStr);	
+		return headers;
+	};
+	
+	readAllContent = function(responseHeaders){
+		var bufferSize = 128*1024;
+		var ptr = ..raw.realloc(bufferSize);
+		var totalSize = 0;
+		
+		while( var readSize = readFileBuffer(this.request,topointer(ptr,totalSize),bufferSize)) { 
+			totalSize = totalSize + readSize;
+			ptr = ..raw.realloc(totalSize+bufferSize,ptr);
+		}  
+		var responseData = ..raw.tostring(ptr,1,totalSize);
+		ptr = ..raw.realloc(0,ptr);
+		
+		var contentEncoding = responseHeaders["Content-Encoding"];
+		if( contentEncoding && ( ..string.cmp(contentEncoding,"gzip") == 0 ) ){
+			responseData  = ..zlib.gzUncompress(responseData);
+		}
+		
+		return responseData;
+	};
+	
+	getResponse = function(requestKwargs){
+		var _,status =  QueryInfoByInt( this.request,0x20000000/*_HTTP_QUERY_FLAG_NUMBER*/ | 0x13/*_HTTP_QUERY_STATUS_CODE*/,0,4,0);
+		var responseHeaders = this.readAllHeader();
+		if(requestKwargs.method == "HEAD"){
+			var response = {
+				request=requestKwargs;
+				status=status;
+				headers=responseHeaders;
+			}
+			return response;
+		}
+		var body = this.readAllContent(responseHeaders);
+		this.endRequest();  
+		var tUrl = ..inet.url.split(requestKwargs.url);  
+		var response = {
+			request=requestKwargs;
+			status=status;
+			cookies=..inet.getCookie(tUrl.scheme+"://"+tUrl.host);
+			headers=responseHeaders;
+			body=body;
+			text=body;
+			json = function(){
+				if(!owner.body) return;
+				return ..web.json.tryParse(owner.body);
+			}
+			
+		}
+		return response;
+	}
+	
+	requestApi = function(kwargs){  
+		// method,url,params,data,headers,json,timeout_seconds
+		var method = kwargs.method;
+		var url = kwargs.url;
+		var request_body = kwargs.request_body;
+		var headers = kwargs.headers;
+		var auth = kwargs.auth : {};
+		var redirect = kwargs.redirect;
+		
+		var req_headers = ..table.clone(this.defaultHeaders);
+		if(headers){
+			for k,v in headers{
+				req_headers[k] = v;
+			}
+		}
+		var ok,err,code = this.beginRequest(url,method,req_headers,auth,redirect); 
+	    if(!ok) return null,err,code;
+	    
+	    var ok,err,code = this.send( request_body );
+	  	if(!ok) {
+	  		this.endRequest();
+	  		return null,status/*err*/,total/*code*/;
+    	}
+    	
+    	return this.getResponse(kwargs);
+    };
+    
+    disableRedirects = function(){
+        this.flags = this.flags | 0x200000/*_INTERNET_FLAG_NO_AUTO_REDIRECT*/;
+	};
+	
+	disableCookies = function(){
+		this.flags = this.flags | 0x80000;
+	};
+	
+	setTimeouts = function(connect=10000,send=10000,receive=10000){
+		::InternetSetOption( this.session ,2,{int tm=connect},4);
+		::InternetSetOption( this.session ,5,{int tm=send},4);
+		::InternetSetOption( this.session ,6,{int tm=receive},4); 
+	};
+	
+	endRequest =  function(){ 
+		if(this.connect){
+			::InternetCloseHandle(this.connect);
+			this.connect = null;
+		}
+		if(this.request){
+			::InternetCloseHandle(this.request); 
+			this.request = null;
+		}
+	};
+	
+	post = function(...){
+		var kwargs = formatKwargs(...);
+		kwargs.method = "POST";
+		return this.requestApi(kwargs)
+	};
+	
+	get = function(...){
+		var kwargs = formatKwargs(...);
+		kwargs.method = "GET";
+		return this.requestApi(kwargs)
+	};
+	
+	head = function(...){
+		var kwargs = formatKwargs(...);
+		kwargs.method = "HEAD";
+		return this.requestApi(kwargs)
+	};
+	
+	delete = function(...){
+		var kwargs = formatKwargs(...);
+		kwargs.method = "DELETE";
+		return this.requestApi(kwargs)
+	};
+	
+	patch = function(...){
+		var kwargs = formatKwargs(...);
+		kwargs.method = "PATCH";
+		return this.requestApi(kwargs)
+	};
+	
+	put = function(...){
+		var kwargs = formatKwargs(...);
+		kwargs.method = "PUT";
+		return this.requestApi(kwargs)
+	};
+	
+	
+}
+
+namespace session{
+    defaultHeaders = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.0.0"
+    };
+    
+    HttpOpenRequest = ::Wininet.api("HttpOpenRequestW","pointer(POINTER hConnect,ustring verb,ustring objectName,ustring version,ustring referrer,struct acceptTypes,INT flags,INT context)")
+	AddRequestHeaders = Wininet.api("HttpAddRequestHeadersW","bool(POINTER hRequest,ustring headers,INT length,INT modifiers)")
+	QueryInfo = Wininet.api("HttpQueryInfoW","int(POINTER hRequest, INT dwInfoLevel,struct& lpBuffer,INT &lpdwBufferLength, INT & lpdwIndex)")
+	QueryInfoByString = Wininet.api("HttpQueryInfoW","int(POINTER hRequest, INT dwInfoLevel,ustring& lpBuffer,INT &lpdwBufferLength, INT & lpdwIndex)")
+	QueryInfoByInt = Wininet.api("HttpQueryInfoW","int(POINTER hRequest, INT dwInfoLevel,int& lpBuffer,INT &lpdwBufferLength, INT & lpdwIndex)")
+ 
+ 	HttpSendRequest = Wininet.api("HttpSendRequestW","bool(POINTER hRequest,ustring  lpszHeaders,INT dwHeadersLength,pointer lpOptional,INT dwOptionalLength)")
+	HttpSendRequestEx = Wininet.api("HttpSendRequestExW","bool(POINTER hRequest,struct lpBuffersIn,pointer resrverBuffersOut,INT flags,pointer content)")
+	HttpEndRequest = Wininet.api("HttpEndRequestW","bool(POINTER hRequest,pointer buffersOut,INT flags,pointer content)")
+	
+	InternetSetOptionW = Wininet.api("InternetSetOptionW","bool(pointer hInet,INT opt,ustring buffer,INT len)")
+	
+	GetCookieA = Wininet.api("InternetGetCookieA","bool(str url,str name,str &data,INT & size)")
+	SetCookieA = Wininet.api("InternetSetCookieA","int(str url,str name,str data)") 
+	
+	getCookie = function(url){
+		var ok,v,size = GetCookieA(url,"",0,0); 
+		ok,v = GetCookieA(url,k,size,size);
+		if(ok)return v;
+	}
+	
+	setCookie = function(url, cookie){
+		// https://www.cctry.com/thread-282119-1-1.html
+		// https://learn.microsoft.com/zh-cn/windows/win32/wininet/managing-cookies?redirectedfrom=MSDN
+    	var cookieStr = cookie;
+    	if(type(cookie) == type.table){
+    	    cookieStr = ..string.format("%s = %s",cookie.name, cookie.value);
+    	}
+    	SetCookieA(url,null,cookieStr);
+    }
+    
+    updateCookies = function(cookies){
+        // 清空wininet cookie
+        ..inet.clearCookie();
+        
+		if(!cookies) return;
+		for i, ck in cookies{
+			var domain = ck.domain;
+			if(!#domain) continue;
+			if(..string.startWith(domain, ".")) domain = ..string.slice(domain, 2,,true);
+			var url = "http://" + domain;
+			setCookie(url, ck);
+		}
+	};
+    
+    parseCookies = function(cookies, url){
+		if(!#cookies) return;
+		var cookiesArray = ..table.array();
+		if(type(cookies) == type.string){
+			var t = ..string.split(cookies,';')
+			for(i=1;#t;1){
+				var tmp = ..string.split(..string.trim(t[i]),'=', 2);
+				var cookie = {
+    				domain = url : "";
+    				path = "/";
+    				expires = null;
+    				name = tmp[1];
+    				value = tmp[2];
+				}
+				..table.push(cookiesArray, cookie)
+			}
+		}else{
+			cookiesArray = cookies;
+		}
+		return cookiesArray;
+	}
+	
+	class INTERNET_BUFFERS {
+    	INT cbSize = 40;
+    	pointer next;
+    	ustring header; 
+    	INT headersLength;
+    	INT headersTotal;
+    	pointer Buffer; 
+    	INT bufferLength; 
+    	INT bufferTotal;
+    	INT offsetLow;
+    	INT offsetHigh;
+	}   
+	
+	readFile = ..inet.file.read;
+	writeFile = ..inet.file.write;
+	readFileBuffer = ..inet.file.readBuffer;
+	writeFileBuffer = ..inet.file.writeBuffer;
+    
+	parseProxy = function(proxy){
+		if(!proxy) return {};
+		var protocol, proxy = ..table.unpack(..string.split(proxy,'<://>'))
+		if(protocol == "socks5") error("wininet不支持socks5代理",);
+		var tmp = ..string.split(proxy,'<@>');
+		var host_port = #tmp == 1 ? tmp[1] : tmp[2];
+		var user_pass = #tmp == 1 ? null : tmp[1];
+		var host, port = ..table.unpack(..string.split(host_port,':'));
+		var user, pass;
+		if(user_pass){
+			user, pass = ..table.unpack(..string.split(user_pass,':'));
+		}
+		var proxies = {
+			proxy=..string.format("%s:%s", host, port);
+			user=user;
+			pass=pass
+		};
+		return proxies;
+	}
+	
+	parseHeaders = function(headerStr){
+		if(!headerStr) return null;
+		var headerTable = ..string.split(headerStr,'<\r\n>');
+		var headers = {};
+		for(i=1;#headerTable;1){
+			var h = headerTable[i];
+			var tmp = ..string.split(h,':',2);
+			if(#tmp<2) continue;
+			headers[tmp[1]] = ..string.trim(tmp[2]);
+		}
+		return headers;
+	}
+	
+	formatKwargs = function(...){
+		// url,params,data,headers,json,auth
+		var kwargs = {...};
+		if(type(kwargs[1]) = type.table) kwargs = kwargs[1];
+		var url = kwargs.url : kwargs[1];
+		var params = kwargs.params : kwargs[2];
+		var headers = kwargs.headers : kwargs[3];
+		if(!headers) headers = {};
+		var redirect = kwargs.redirect === null ? kwargs[4];
+		redirect = redirect === null ? kwargs.redirect;
+		var auth = kwargs.auth : kwargs[5];
+		var data = kwargs.data : kwargs[6];
+		var json = kwargs.json : kwargs[7];
+		//..console.dump(kwargs.redirect === null)
+		if(params){
+			url = url + "?" + ..inet.url.stringifyParameters(params);
+		}
+		// 处理请求参数
+	    var content_type, request_body;
+		if(!data && json){
+			if(type(json) == type.table) request_body = ..web.json.stringify(json);
+			else request_body = json;
+			content_type = "application/json; charset=utf-8"
+		}elseif(type(data) == type.table){
+			request_body = ..inet.url.stringifyParameters(data);
+			content_type = "application/x-www-form-urlencoded";
+		}else{
+			request_body = data;
+		}
+	    if(content_type && !headers["Content-Type"]){
+			headers["Content-Type"] = content_type;
+		}
+		
+		var fKwargs = {
+			url=url;
+			request_body=request_body;
+			headers=headers;
+			auth=auth;
+			redirect=redirect;
+		}
+		return fKwargs;
+	}
+}
+
+
+/**intellisense()
+kirequests.session(.(默认请求头,代理,cookies数组) = 创建请求session
+kirequests.session() = !kirequestsSession.
+!kirequestsSession.disableRedirects() = 禁用重定向,也可以在请求时传redirect=false
+!kirequestsSession.disableCookies() = 禁用自动cookies管理
+!kirequestsSession.setTimeouts(.(连接超时,发送超时,接收超时) = 设置超时时间，单位毫秒，默认没有超时时间
+!kirequestsSession.get(.(url,params,heades,redirect,auth) = 发送GET请求\n支持关键词传参 get(url="",params={},headers={},redirect=false,auth={"用户名";"密码"})\n但不能关键词参数和位置参数混用
+!kirequestsSession.head(.(url,params,heades,redirect,auth) = 发送HEAD请求\n支持关键词传参 head(url="",params={},headers={},redirect=false,auth={"用户名";"密码"})\n但不能关键词参数和位置参数混用
+!kirequestsSession.post(.(url,params,heades,redirect,auth,data,json) = 发送POST请求 \n支持关键词传参 post(url="",params={},headers={},redirect=false,auth={"用户名";"密码"},data={},json={})\n但不能关键词参数和位置参数混用
+!kirequestsSession.patch(.(url,params,heades,redirect,auth,data,json) = 发送PATCH请求 \n支持关键词传参 patch(url="",params={},headers={},redirect=false,auth={"用户名";"密码"},data={},json={})\n但不能关键词参数和位置参数混用
+!kirequestsSession.put(.(url,params,heades,redirect,auth,data,json) = 发送PUT请求 \n支持关键词传参 put(url="",params={},headers={},redirect=false,auth={"用户名";"密码"},data={},json={})\n但不能关键词参数和位置参数混用
+!kirequestsSession.delete(.(url,params,heades,redirect,auth,data,json) = 发送DELETE请求 \n支持关键词传参 delete(url="",params={},headers={},redirect=false,auth={"用户名";"密码"},data={},json={})\n但不能关键词参数和位置参数混用
+end intellisense**/

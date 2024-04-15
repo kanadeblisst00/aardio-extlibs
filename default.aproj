@@ -22,11 +22,20 @@
 		<folder name="jsonquery" path="res\jsonquery" comment="res\jsonquery">
 			<file name="test.aardio" path="res\jsonquery\test.aardio" comment="res\jsonquery\test.aardio"/>
 		</folder>
-		<folder name="kichardet" path="res\kichardet" comment="res\kichardet" local="false" embed="false" ignored="false">
+		<folder name="kichardet" path="res\kichardet" comment="res\kichardet">
+			<file name="gb18030.txt" path="res\kichardet\gb18030.txt" comment="res\kichardet\gb18030.txt"/>
 			<file name="test.aardio" path="res\kichardet\test.aardio" comment="res\kichardet\test.aardio"/>
+			<file name="uft8.txt" path="res\kichardet\uft8.txt" comment="res\kichardet\uft8.txt"/>
+			<file name="utf16le.txt" path="res\kichardet\utf16le.txt" comment="res\kichardet\utf16le.txt"/>
+		</folder>
+		<folder name="kilogging" path="res\kilogging" comment="res\kilogging">
+			<file name="test.aardio" path="res\kilogging\test.aardio" comment="res\kilogging\test.aardio"/>
 		</folder>
 		<folder name="kiredis" path="res\kiredis" comment="res\kiredis">
 			<file name="test.aardio" path="res\kiredis\test.aardio" comment="res\kiredis\test.aardio"/>
+		</folder>
+		<folder name="kirequests" path="res\kirequests" comment="res\kirequests" local="false" embed="false" ignored="false">
+			<file name="test.aardio" path="res\kirequests\test.aardio" comment="res\kirequests\test.aardio"/>
 		</folder>
 		<folder name="kisunny" path="res\kisunny" comment="res\kisunny">
 			<file name="test.aardio" path="res\kisunny\test.aardio" comment="res\kisunny\test.aardio"/>

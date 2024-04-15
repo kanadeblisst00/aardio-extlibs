@@ -70,8 +70,8 @@ class tlsClient{
 				json = ..web.json.stringify(json);
 			}
 			request_body = json
-			content_type = "application/json"
-		}elseif(data && type(data) == type.table){
+			content_type = "application/json; charset=utf-8"
+		}elseif(type(data) == type.table){
 			request_body = ..inet.url.stringifyParameters(data);
 			content_type = "application/x-www-form-urlencoded";
 		}else{

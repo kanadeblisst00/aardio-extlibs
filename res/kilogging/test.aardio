@@ -1,0 +1,32 @@
+import console; 
+import kilogging;
+
+
+// 配置多线程的环境参数
+kilogging.config("DEBUG");
+
+var logger = kilogging();
+
+var func = function(){
+	logger.trace("输出调用堆栈: ")
+	logger.debug()
+}
+
+var func1 = function(){
+	var a = 1;
+	var b = "aaaa";
+	var c = {"a": a, "b": b};
+	logger.debug("输出调用堆栈和当前函数所有局部变量: ")
+	logger.exception()
+}
+
+
+t = {"a":1,"b":2}
+logger.debug("可以使用格式化语法(%s)", "format");
+logger.debug("可以使用大括号来格式化({arg})", {"arg": t});
+logger.debug("直接打印表: ")
+logger.debug(t)
+logger.debug() // 打印空行
+func();  // 打印堆栈
+func1(); // 打印堆栈和局部变量
+console.pause(true);

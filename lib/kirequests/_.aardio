@@ -1,0 +1,50 @@
+﻿namespace kirequests;
+
+import ..kirequests.session;
+
+
+libInfo = {
+    "version": "1.1.0.0",
+    "author": "kanadeblisst",
+    "description": "符合Python requests编程风格的http请求库"
+}
+
+get = function(...){
+	var r = ..kirequests.session();
+	return r.get(...);
+}
+
+post = function(...){
+	var r = ..kirequests.session();
+	return r.post(...);
+}
+
+head = function(...){
+	var r = ..kirequests.session();
+	return r.head(...);
+}
+
+patch = function(...){
+	var r = ..kirequests.session();
+	return r.patch(...);
+}
+
+put = function(...){
+	var r = ..kirequests.session();
+	return r.put(...);
+}
+
+delete = function(...){
+	var r = ..kirequests.session();
+	return r.delete(...);
+}
+
+
+/**intellisense()
+kirequests.get(.(url,params,heades,redirect,auth) = 发送GET请求\n支持关键词传参 get(url="",params={},headers={},redirect=false,auth={"用户名";"密码"})\n但不能关键词参数和位置参数混用
+kirequests.head(.(url,params,heades,redirect,auth) = 发送HEAD请求\n支持关键词传参 head(url="",params={},headers={},redirect=false,auth={"用户名";"密码"})\n但不能关键词参数和位置参数混用
+kirequests.post(.(url,params,heades,redirect,auth,data,json) = 发送POST请求 \n支持关键词传参 post(url="",params={},headers={},redirect=false,auth={"用户名";"密码"},data={},json={})\n但不能关键词参数和位置参数混用
+kirequests.patch(.(url,params,heades,redirect,auth,data,json) = 发送PATCH请求 \n支持关键词传参 patch(url="",params={},headers={},redirect=false,auth={"用户名";"密码"},data={},json={})\n但不能关键词参数和位置参数混用
+kirequests.put(.(url,params,heades,redirect,auth,data,json) = 发送PUT请求 \n支持关键词传参 put(url="",params={},headers={},redirect=false,auth={"用户名";"密码"},data={},json={})\n但不能关键词参数和位置参数混用
+kirequests.delete(.(url,params,heades,redirect,auth,data,json) = 发送DELETE请求 \n支持关键词传参 delete(url="",params={},headers={},redirect=false,auth={"用户名";"密码"},data={},json={})\n但不能关键词参数和位置参数混用
+end intellisense**/

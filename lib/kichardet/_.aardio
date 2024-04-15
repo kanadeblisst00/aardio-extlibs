@@ -1,5 +1,12 @@
 ﻿namespace kichardet;
 
+
+libInfo = {
+    "version": "1.0.0.1",
+    "author": "kanadeblisst",
+    "description": "自动识别给定的字符编码"
+}
+
 var dllpath = DEBUG ? "\lib\kichardet\.res\uchardet.dll" : $"~\lib\kichardet\.res\uchardet.dll";
 var dll = ..raw.loadDll(dllpath,,"cdecl");
 

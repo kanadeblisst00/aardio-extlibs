@@ -1,0 +1,53 @@
+import console; 
+import kirequests;
+
+io.open();
+// 简单请求
+//var resp = kirequests.get("https://www.httpbin.org/get")
+//console.dump(resp.status)
+//console.dump(resp.json())
+
+// 带请求参数: https://www.httpbin.org/get?a=1&b=2
+//console.dump(kirequests.get("https://www.httpbin.org/get",{"a":1,"b":2}).json())
+// 自定义请求头
+//console.dump(kirequests.get("https://www.httpbin.org/get",{"a":1,"b":2},{"User-Agent": "aardio"}).json())
+// 禁用重定向
+//var params = {"url": "https://www.baidu.com"}
+// 位置参数和关键词参数不能混用，要么全是位置参数，要么全是关键词参数
+//console.dump(kirequests.get(url="https://www.httpbin.org/redirect-to",params=params,redirect=false))
+//console.dump(kirequests.get("https://www.httpbin.org/redirect-to",params,,false))
+
+// 基础http验证
+//console.dump(kirequests.get(url="https://www.httpbin.org/basic-auth/root/123456",auth={"root";"123456"}))
+
+// post参数, url编码
+//console.dump(kirequests.post(url="https://www.httpbin.org/post",data={"a":1,"b":2}).json())
+// post参数, json格式
+//console.dump(kirequests.post(url="https://www.httpbin.org/post",json={"a":1,"b":2}).json())
+// post参数, 自定义格式，给字符串不会再处理，直接传过去
+//console.dump(kirequests.post(url="https://www.httpbin.org/post",data='{"a":1,"b":2}').json())
+
+
+// 使用代理 ,只支持http代理
+//import kirequests.session;
+//var ses = kirequests.session(,"http://root:toor@127.0.0.1:10809",)
+//console.dump(ses.get("https://www.httpbin.org/get").json())
+
+// 使用自定义cookies
+import kirequests.session;
+// cookies数组，至少包含name、value和domain字段
+var cookies = {
+	{"name":"a","value":"a","domain":".httpbin.org"};
+	{"name":"b","value":"b","domain":"www.httpbin.org"}
+	{"name":"c","value":"c","domain":".httpbin.org"}
+	{"name":"d","value":"d","domain":"www.httpbin.org"}
+}
+
+var ses = kirequests.session(,, cookies)
+// 设置超时时间(连接超时,发送超时,接收超时)，单位毫秒
+ses.setTimeouts(2000,2000,2000)
+console.dump(ses.get("https://www.httpbin.org/get").json())
+
+
+
+console.pause(true);

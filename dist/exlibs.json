@@ -48,8 +48,8 @@
     },
     "kichardet":{
         "author":"kanadeblisst",
-        "description":"...",
-        "lastModifyTime":"2024-04-09",
+        "description":"自动识别给定的字符编码",
+        "lastModifyTime":"2024-04-15",
         "sampleZipUrl":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/samples/kichardet.zip",
         "url":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/package/kichardet.tar.lzma",
         "version":"1.0.0.1",
@@ -60,6 +60,15 @@
         "description":"windows下给目录创建软链接",
         "lastModifyTime":"2024-03-30",
         "url":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/package/kilink.tar.lzma",
+        "version":"1.0.0.1",
+        "weight":1
+    },
+    "kilogging":{
+        "author":"kanadeblisst",
+        "description":"...",
+        "lastModifyTime":"2024-04-15",
+        "sampleZipUrl":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/samples/kilogging.zip",
+        "url":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/package/kilogging.tar.lzma",
         "version":"1.0.0.1",
         "weight":1
     },
@@ -74,10 +83,11 @@
     },
     "kirequests":{
         "author":"kanadeblisst",
-        "description":"...",
-        "lastModifyTime":"2024-04-02",
+        "description":"符合Python requests编程风格的http请求库",
+        "lastModifyTime":"2024-04-15",
+        "sampleZipUrl":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/samples/kirequests.zip",
         "url":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/package/kirequests.tar.lzma",
-        "version":"1.0.0.1",
+        "version":"1.1.0.0",
         "weight":1
     },
     "kisunny":{
@@ -110,7 +120,7 @@
     "tlsClient":{
         "author":"kanadeblisst",
         "description":"tls-client封装库，用于http请求",
-        "lastModifyTime":"2024-03-26",
+        "lastModifyTime":"2024-04-10",
         "sampleZipUrl":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/samples/tlsClient.zip",
         "url":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/package/tlsClient.tar.lzma",
         "version":"1.0.0.1",
