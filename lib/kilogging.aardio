@@ -153,6 +153,12 @@ namespace kilogging{
 	timeFormat = "%Y-%m-%d %H:%M:%S"
 	logFormat = "{time} | {level} | {package}:{func}:{line} - {log}";
 	
+	libInfo = {
+    	"version": "1.0.0.2",
+    	"author": "kanadeblisst",
+    	"description": "多线程日志打印库，可输出文件和控制台"
+	}
+	
 	tostringObject = function(obj, prettyPrint){
     	if(type(obj) == type.table) return ..util.table.stringify(obj, prettyPrint);
     	elseif(type(obj) == type.string) return obj;
