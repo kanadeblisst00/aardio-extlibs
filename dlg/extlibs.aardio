@@ -141,6 +141,7 @@ var installLibs = function(libNames){
 		}
 		if(table.find(thisInstalledLibs,libName)) continue;
 		installedLibs = installLib(libName, libInfo, installedLibs);
+		if(!installedLibs) installedLibs = ide.getExtLibs(); 
 		table.push(thisInstalledLibs,libName);
 	}
 }
