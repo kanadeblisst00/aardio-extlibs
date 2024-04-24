@@ -96,9 +96,9 @@ class session{
 	 	return true;
 	};
 	
-	send = function(postData){
+	send = function(postData,req_headers){
 		var bufferTotal = #postData;
-		var headersStr = ..web.joinHeaders(this.headers);
+		var headersStr = ..web.joinHeaders(req_headers);
 		  
 		var intBuf = INTERNET_BUFFERS();
     	intBuf.header = headersStr;
@@ -210,7 +210,7 @@ class session{
 		var ok,err,code = this.beginRequest(url,method,req_headers,auth,redirect); 
 	    if(!ok) return null,err,code;
 	    
-	    var ok,err,code = this.send( request_body );
+	    var ok,err,code = this.send( request_body,req_headers);
 	  	if(!ok) {
 	  		this.endRequest();
 	  		return null,status/*err*/,total/*code*/;

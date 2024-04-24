@@ -84,7 +84,7 @@
     "kirequests":{
         "author":"kanadeblisst",
         "description":"符合Python requests编程风格的http请求库",
-        "lastModifyTime":"2024-04-15",
+        "lastModifyTime":"2024-04-24",
         "sampleZipUrl":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/samples/kirequests.zip",
         "url":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/package/kirequests.tar.lzma",
         "version":"1.1.0.0",

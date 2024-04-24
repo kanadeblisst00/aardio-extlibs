@@ -4,7 +4,7 @@ import ..kirequests.session;
 
 
 libInfo = {
-    "version": "1.1.0.0",
+    "version": "1.2.0.0",
     "author": "kanadeblisst",
     "description": "符合Python requests编程风格的http请求库"
 }
