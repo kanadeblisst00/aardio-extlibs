@@ -209,6 +209,8 @@ namespace kilogging{
 }
 
 /**intellisense()
+CONSOLE = 打印到控制台常量
+FILE = 打印到文件常量
 kilogging(.(日志级别,日志文件名,日志路径,日志打印终端) = 创建日志
 kilogging() = !kiLogger.
 kilogging.config(.(日志级别,日志文件名,日志路径,日志打印终端) = 配置多线程的日志打印信息

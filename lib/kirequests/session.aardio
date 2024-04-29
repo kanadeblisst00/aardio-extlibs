@@ -322,6 +322,7 @@ namespace session{
     updateCookies = function(cookies){
         // 清空wininet cookie
         ..inet.clearCookie();
+        ..inet.clearCache();
         
 		if(!cookies) return;
 		for i, ck in cookies{
