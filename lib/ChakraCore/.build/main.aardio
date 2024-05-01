@@ -1,0 +1,13 @@
+import fsys;
+import ide; 
+
+var publisDir = ide.getPublisDir();
+if(!#publisDir) return; 
+
+var pubDir =  fsys.joinpath(publisDir,"\ChakraCore.dll" ); 
+if( ! io.exist(pubDir) ){ 
+	var libPath,libDir = io.libpath("ChakraCore");
+	..fsys.copy( fsys.joinpath(libDir,"\.res\ChakraCore.dll") ,pubDir,0x10/*_FOF_NOCONFIRMATION*/  | 0x200/*_FOF_NOCONFIRMMKDIR*/); 
+}
+
+

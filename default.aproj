@@ -2,6 +2,12 @@
 <project ver="10" name="publishExtlibs" libEmbed="true" icon="..." ui="win" output="publishExtlibs.exe" CompanyName="单位名称" FileDescription="publishExtlibs" LegalCopyright="Copyright (C) 作者 2024" ProductName="publishExtlibs" InternalName="publishExtlibs" FileVersion="0.0.0.1" ProductVersion="0.0.0.1" publishDir="/dist/" dstrip="false" local="false" ignored="false">
 	<file name="main.aardio" path="main.aardio" comment="main.aardio"/>
 	<folder name="资源文件" path="res" embed="true" local="false" ignored="false">
+		<folder name="ChakraCore" path="res\ChakraCore" comment="res\ChakraCore" local="false" embed="false" ignored="false">
+			<file name="test.aardio" path="res\ChakraCore\test.aardio" comment="res\ChakraCore\test.aardio"/>
+			<file name="test1.aardio" path="res\ChakraCore\test1.aardio" comment="res\ChakraCore\test1.aardio"/>
+			<file name="test2.aardio" path="res\ChakraCore\test2.aardio" comment="res\ChakraCore\test2.aardio"/>
+			<file name="test3.aardio" path="res\ChakraCore\test3.aardio" comment="res\ChakraCore\test3.aardio"/>
+		</folder>
 		<folder name="FrpcManager" path="res\FrpcManager" comment="res\FrpcManager">
 			<file name="config.ini" path="res\FrpcManager\config.ini" comment="res\FrpcManager\config.ini"/>
 			<file name="FrpcManager.exe" path="res\FrpcManager\FrpcManager.exe" comment="res\FrpcManager\FrpcManager.exe"/>
@@ -34,7 +40,7 @@
 		<folder name="kiredis" path="res\kiredis" comment="res\kiredis">
 			<file name="test.aardio" path="res\kiredis\test.aardio" comment="res\kiredis\test.aardio"/>
 		</folder>
-		<folder name="kirequests" path="res\kirequests" comment="res\kirequests" local="false" embed="false" ignored="false">
+		<folder name="kirequests" path="res\kirequests" comment="res\kirequests">
 			<file name="test.aardio" path="res\kirequests\test.aardio" comment="res\kirequests\test.aardio"/>
 		</folder>
 		<folder name="kisunny" path="res\kisunny" comment="res\kisunny">

@@ -1,0 +1,35 @@
+import console; 
+import ChakraCore;
+
+io.open()
+
+var core = ChakraCore();
+core.start();
+
+core.run($"~\lib\ChakraCore\.res\crypto-js.js")
+
+var js = /*
+let key = CryptoJS.enc.Utf8.parse("1234567890000000");
+let iv = CryptoJS.enc.Utf8.parse("1234567890000000");
+
+let s = "Hello World";
+let encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(s), key, {
+	iv: iv,
+	mode: CryptoJS.mode.CBC,
+	padding: CryptoJS.pad.Pkcs7
+});
+
+var eData = CryptoJS.enc.Base64.stringify(encrypted.ciphertext);
+console.log("加密字符串: ", eData);
+
+let decrypted = CryptoJS.AES.decrypt(eData,key, {    
+    iv: iv,
+    mode: CryptoJS.mode.CBC,
+    padding: CryptoJS.pad.Pkcs7
+});
+let dData= decrypted.toString(CryptoJS.enc.Utf8).toString();
+console.log("解密字符串: ", dData);
+*/
+
+core.run(js)
+console.pause(true);

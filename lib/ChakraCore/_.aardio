@@ -1,0 +1,313 @@
+﻿import web.json;
+import win;
+
+class ChakraCore{
+	ctor(){
+		this.runtime = 0;
+		this.context = 0;
+		this.jGlobal = 0;
+		this.jUndefined = 0;
+		this.jNull = 0;
+		this.callbacks = {};
+		// 传给JsRun的一个自增id，
+		this.curContextCookie = 0;
+		..table.gc(this, "release");
+	};
+	
+	getJValue = function(jCode){
+		// 也可以通过JsGetProperty从global一层一层获取
+		this.JsSetCurrentContext(this.context);
+		var sourceUrl = ..string.random(8);
+		var jSourceUrl = this.JsCreateString(sourceUrl, #sourceUrl,);
+		var jScriptSource = this.JsCreateExternalArrayBuffer(jCode,#jCode,null,null,);
+		// 第三个参数指定为2时，jCode就得是utf16编码
+		var jResult = this.JsRun(jScriptSource,this.curContextCookie,jSourceUrl,0,);
+		return jResult;
+	};
+	
+	run = function(jCode){
+		if(!this.runtime) error("请先调用start初始化js引擎!");
+		this.curContextCookie += 1;
+		var jResult = this.getJValue(jCode);
+		var result = this.jValueToJson(jResult);
+		return result;
+	};
+	
+	start = function(){
+		if(this.runtime) error("已经初始化!");
+		this.runtime = this.JsCreateRuntime(null,null,);
+		this.context = this.JsCreateContext(this.runtime, );
+		this.JsSetCurrentContext(this.context);
+		this.jGlobal = this.JsGetGlobalObject();
+		this.jUndefined = this.JsGetUndefinedValue();
+		this.jNull = this.JsGetNullValue();
+		this.run(prettyJsCode);
+		this.registerMethod(this.consoleLog, "console.log");
+		this.registerMethod(this.setTimeout, "setTimeout");
+	};
+	
+	consoleLog = function(ptr_callee, isConstructCall, ptrj_arguments, argumentCount, callbackState){
+	 	var pointerSize = 4;
+	 	var out = "";
+	 	for(i=1;argumentCount-1;1){
+	 		var jString = ..raw.convert(ptrj_arguments, {ptr p}, pointerSize*i).p;
+	 		var s = jValueToString(jString);
+	 		out = out + s + " ";
+	 	}
+	 	..io.print(out);
+	};
+	 
+	setTimeout = function(ptr_callee, isConstructCall, ptrj_arguments, argumentCount, callbackState){
+		var pointerSize = 4;
+		//var jUndefined = ..raw.convert(ptrj_arguments, {ptr p}).p;
+		var jFunc = ..raw.convert(ptrj_arguments, {ptr p}, pointerSize).p;
+		var jTimeout = ..raw.convert(ptrj_arguments, {ptr p}, pointerSize*2).p;
+		var timeout = jValueToInt(jTimeout);
+		//..win.delay(timeout);
+		var jArgsBuf = {
+			pointer buffer[];
+		};
+		var jArgs = {this.jUndefined};
+		for(i=3;argumentCount-1;1){
+			var jObj = ..raw.convert(ptrj_arguments, {ptr p}, pointerSize*i).p;
+			..table.push(jArgs, jObj);
+		}
+		jArgsBuf.buffer = jArgs;
+		this.JsCallFunction(jFunc, jArgsBuf, #jArgs,);
+	};
+	
+	jValueToJson = function(jValue){
+		var jType = this.JsGetValueType(jValue, 0);
+		var a1 = JsValueType.JsUndefined;
+		var a2 = JsValueType.JsNull;
+		var a3 = JsValueType.JsNumber;
+		var a4 = JsValueType.JsString;
+		var a5 = JsValueType.JsBoolean;
+		var a6 = JsValueType.JsObject;
+		var a7 = JsValueType.JsFunction;
+		var a8 = JsValueType.JsError;
+		var a9 = JsValueType.JsArray;
+		var a10 = JsValueType.JsSymbol;
+		var a11 = JsValueType.JsArrayBuffer;
+		var a12 = JsValueType.JsTypedArray;
+		var a13 = JsValueType.JsDataView;
+		var result;
+		select(jType) {
+			case a1,a2,a3,a4,a5,a7,a8,a10,a11 {
+				result = jValueToString(jValue);
+			}
+			case a6,a9,a12,a13 {
+				var jResult = this.callFunctionWithJArgs("JSON.stringify", jValue);
+				result = jValueToString(jResult);
+			}
+			else {
+				..io.print("未知js类型: ", jType);
+			}
+		}
+		return result;
+	};
+	
+	jValueToPretty = function(jValue){
+		var jType = this.JsGetValueType(jValue, 0);
+		if(jType != JsValueType.JsObject) return;
+		var jResult = this.callFunctionWithJArgs("pretty", jValue);
+		var s = jValueToString(jResult);
+		return s;
+	};
+	
+	callFunction = function(funName, ...){
+		var args = {...};
+		var jsonArgs = ..web.json.stringify(args);
+		if(!#args) jsonArgs = "[]";
+		var jsCode = ..string.format("%s(...JSON.parse('%s'))", funName, jsonArgs);
+		return this.run(jsCode);
+	};
+	
+	callFunctionWithJArgs = function(funName, jArgs){
+		if(type(jArgs) != type.table) jArgs = {jArgs};
+		..table.insert(jArgs, this.jUndefined);
+		var argsLen = #jArgs;
+		var jArgsBuf = {
+			pointer buffer[];
+		};
+		jArgsBuf.buffer = jArgs;
+		var jFunction = this.getJValue(funName);
+		var jResult = this.JsCallFunction(jFunction,jArgsBuf,argsLen,);
+		return jResult;
+	};
+	
+	registerMethod = function(func, funName){
+		var JsNativeFunctionCallback = "pointer(pointer a1,bool a2,pointer a3,WORD a4,pointer a5)";
+		var Callback = ..raw.tostdcall(func, JsNativeFunctionCallback);
+		..table.push(this.callbacks, Callback);
+		this.JsSetCurrentContext(this.context);
+		var jFunction =  this.JsCreateFunction(Callback,null,);
+		var components = ..string.split(funName, '.');
+		var jObj = this.jGlobal;
+		for(i=1;#components;1){
+			if(i == #components){
+				jSetPropertyFromName(jObj, components[i],jFunction,true);
+				break;
+			}
+			var jValue = jGetPropertyFromName(jObj,components[i]);
+			var vType = this.JsGetValueType(jValue,0);
+			if(vType === JsValueType.JsUndefined){
+				jValue = this.JsCreateObject();
+				jSetPropertyFromName(jObj, components[i],jValue, true);
+			}
+			jObj = jValue;
+		}
+	}
+	
+	release = function(){
+		if(this.runtime) this.JsDisposeRuntime(this.runtime);
+	};
+	
+	@_meta;
+}
+
+namespace ChakraCore{
+	import ..ChakraCore.enum;
+	import ..ChakraCore.export;
+	
+	libInfo = {
+    	"version": "1.0.0.1",
+    	"author": "kanadeblisst",
+    	"description": "一个微软开源的js引擎(ChakraCore.dll)"
+	}
+	
+	var dllpath = DEBUG ? "\lib\ChakraCore\.res\ChakraCore.dll" : "\ChakraCore.dll"
+	if(_STUDIO_INVOKED && !DEBUG) dllpath = "~\lib\ChakraCore\.res\ChakraCore.dll";
+	
+	_dll = ..raw.loadDll(dllpath);
+
+	prettyJsCode = DEBUG ? ..string.load("\lib\ChakraCore\.res\pretty.js") : $"~\lib\ChakraCore\.res\pretty.js"
+	
+	funcDef = ..ChakraCore.export.funcDef;
+	
+	JsErrorCode = ..ChakraCore.enum.JsErrorCode;
+	
+	JsValueType = ..ChakraCore.enum.JsValueType;
+	
+	_xcall = function(callName){
+		if(!funcDef[callName]) error("调用非ChakraCore.dll的导出函数("+callName+")");
+		var callFunc = _dll.api(callName, funcDef[callName]);
+		return callFunc;
+	};
+	
+	getValueType = function(jValue){
+		var ret,jsType = _xcall("JsGetValueType")(jValue, 0);
+		return jsType;
+	};
+	
+	getValueStringType = function(jValue){
+		var jsType = getValueType(jValue);
+		return ..table.find(JsValueType, jsType);
+	};
+	
+	jValueToString = function(jValue){
+		var ret, jString = _xcall("JsConvertValueToString")(jValue, );
+		var ret,_,cLenString = _xcall("JsCopyString")(jString,0,0,0);
+		var ret,cString =  _xcall("JsCopyString")(jString,cLenString,cLenString+1,0);
+		return cString;
+	};
+	
+	jValueToInt = function(jValue){
+		var ret,value = _xcall("JsNumberToInt")(jValue, 0);
+		return value;
+	};
+	
+	jGetPropertyFromName = function(jObj, name){
+	 	var ret,jNameId = _xcall("JsGetPropertyIdFromName")(name, );
+		var ret,jResult = _xcall("JsGetProperty")(jObj,jNameId,);
+		return jResult;
+	 };
+	 
+	 jSetPropertyFromName = function(jObj, name, jValue, useStrictRules=true){
+	 	var ret,jNameId = _xcall("JsGetPropertyIdFromName")(name, );
+	 	var ret = _xcall("JsSetProperty")(jObj,jNameId,jValue,useStrictRules);
+	 	return ret;
+	 }
+	 
+	 jGetProperty = function(jObj, name){
+	 	var ret,jNameId = _xcall("JsCreatePropertyId")(name, #name,);
+		var ret,jResult = _xcall("JsGetProperty")(jObj,jNameId,);
+		return jResult;
+	 };
+	 
+	 jSetProperty = function(jObj, name, jValue, useStrictRules=true){
+	 	var ret,jNameId = _xcall("JsCreatePropertyId")(name, #name, );
+	 	var ret = _xcall("JsSetProperty")(jObj,jNameId,jValue,useStrictRules);
+	 	return ret;
+	 }
+	
+	checkException = function(retCode){
+		if(retCode === JsErrorCode.JsNoError) {
+			return retCode;
+		}
+		var errMsgName = ..table.find(JsErrorCode, retCode);
+		var ret, hasErr = _xcall("JsHasException")();
+		if(!hasErr) return ;
+		..io.print("出现错误，错误码: ", tostring(retCode, 16), "错误信息: ", errMsgName);
+		var ret,jErr = _xcall("JsGetAndClearException")();
+		var err = jValueToString(jErr);
+		var errTable = {err};
+		if(retCode == JsErrorCode.JsErrorScriptCompile){
+			var jLine = jGetProperty(jErr, "line");
+			var jColumn = jGetProperty(jErr, "column");
+			var line = tostring(jValueToInt(jLine) + 1);
+			var column = tostring(jValueToInt(jColumn) + 1);
+			var e = '\t' ++ "at code('':"++line++":"++column;
+			..table.push(errTable, e);
+		}elseif(retCode == JsErrorCode.JsErrorScriptException){
+			var jStack = jGetProperty(jErr, "stack");
+			var ret, valueType = _xcall("JsGetValueType")(jStack, 0);
+			if(valueType == 0){
+				var jSource = jGetProperty(jErr, "source");
+				var e = jValueToString(jSource);
+				..table.push(errTable, e);
+			}else{
+				var e = jValueToString(jStack);
+				errTable[1] = e;
+			}
+		}
+		var errMsg = ..string.join(errTable,'\n');
+		error(errMsgName + '\n \n' + errMsg);
+	}
+	
+	xcall = function(callName){
+		function proxyFunc(...){
+			var results = {};
+			//..console.dump(callName, {...})
+			var callFunc = _xcall(callName);
+			..table.push(results, callFunc(...));
+			checkException(results[1]);
+			return ..table.unpack(results,2);
+		}
+		return proxyFunc;
+	};
+	
+	_meta = {
+		_get = function(k){
+			return xcall(k);
+		};
+	};
+	
+	
+
+}
+
+/**details(入门教程)
+github地址: https://github.com/chakra-core/ChakraCore
+end details**/
+
+/**intellisense()
+ChakraCore() = !ChakraCoreObj.
+!ChakraCoreObj.start() = 初始化JavaScript引擎
+!ChakraCoreObj.run(.(jsCode) = 运行JavaScript代码并获取返回值(如果是对象会转为json字符串)
+!ChakraCoreObj.callFunction(.(函数名, 任意参数) = 通过全局函数名调用JavaScript函数
+!ChakraCoreObj.callFunctionWithJArgs(.(函数名,参数数组) = 通过全局函数名调用JavaScript函数，参数是JavaScript类型
+!ChakraCoreObj.registerMethod(.(aardio函数,函数名) = 将aardio函数注册为JavaScript函数\n比如console.log就是这么注册的
+end intellisense**/
+
+

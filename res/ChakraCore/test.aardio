@@ -1,0 +1,13 @@
+import console; 
+import ChakraCore;
+
+io.open()
+
+var core = ChakraCore();
+core.start();
+
+console.dump(core.run('(()=>{return Uint8Array.from([1,2,3,4]).buffer;})()'))
+console.dump(core.run('(()=>{let a = {"a":1,"b":2};return a;})()'))
+console.dump(core.callFunction('pretty', {"a":1,"v":"111"}))
+console.dump(core.run('console.log("aaaaa",undefined,null,false,{a:1,b:2},function(){})'))
+console.pause(true);

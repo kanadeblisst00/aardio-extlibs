@@ -87,7 +87,7 @@ namespace kisunny{
 	}
 	
 	var dllpath = DEBUG ? "\lib\kisunny\.res\Sunny.dll" : "\Sunny.dll";
-	if(_STUDIO_INVOKED) dllpath = "~\lib\kisunny\.res\Sunny.dll";
+	if(_STUDIO_INVOKED  && !DEBUG) dllpath = "~\lib\kisunny\.res\Sunny.dll";
 	::SunnyDLL = ..raw.loadDll(dllpath, ,"cdecl");
 	
 	Free = ::SunnyDLL.api("Free","void(pointer p)");

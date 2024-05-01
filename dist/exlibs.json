@@ -1,4 +1,13 @@
 {
+    "ChakraCore":{
+        "author":"kanadeblisst",
+        "description":"一个微软开源的js引擎(ChakraCore.dll)",
+        "lastModifyTime":"2024-05-01",
+        "sampleZipUrl":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/samples/ChakraCore.zip",
+        "url":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/package/ChakraCore.tar.lzma",
+        "version":"1.0.0.1",
+        "weight":1
+    },
     "FrpcManager":{
         "author":"kanadeblisst",
         "description":"frpc的windows服务管理工具，可注册和自启frpc",
@@ -93,7 +102,7 @@
     "kisunny":{
         "author":"kanadeblisst",
         "description":"sunny封装库，用于监听拦截和修改本机的http请求",
-        "lastModifyTime":"2024-03-26",
+        "lastModifyTime":"2024-05-01",
         "sampleZipUrl":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/samples/kisunny.zip",
         "url":"http://git.pygrower.cn/kanadeblisst/aardio-extlibs/raw/branch/master/dist/package/kisunny.tar.lzma",
         "version":"1.0.0.1",

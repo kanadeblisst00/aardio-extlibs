@@ -1,0 +1,282 @@
+﻿
+namespace ChakraCore.enum;
+
+JsErrorCode = {
+	// Success error code.
+	JsNoError = 0; 
+	// Category of errors that relates to incorrect usage of the API itself.
+	JsErrorCategoryUsage = 0x10000; 
+	// An argument to a hosting API was invalid.
+	JsErrorInvalidArgument = 0x10001; 
+	// An argument to a hosting API was null in a context where null is not allowed.
+	JsErrorNullArgument = 0x10002; 
+	// The hosting API requires that a context be current, but there is no current context.
+	JsErrorNoCurrentContext = 0x10003; 
+	// The engine is in an exception state and no APIs can be called until the exception is cleared.
+	JsErrorInExceptionState = 0x10004; 
+	// A hosting API is not yet implemented.
+	JsErrorNotImplemented = 0x10005; 
+	// A hosting API was called on the wrong thread.
+	JsErrorWrongThread = 0x10006; 
+	// A runtime that is still in use cannot be disposed.
+	JsErrorRuntimeInUse = 0x10007; 
+	// A bad serialized script was used, or the serialized script was serialized by a different version of the Chakra engine.
+	JsErrorBadSerializedScript = 0x10008; 
+	// The runtime is in a disabled state.
+	JsErrorInDisabledState = 0x10009;
+	// Runtime does not support reliable script interruption.
+	JsErrorCannotDisableExecution = 0x1000A;
+	//  A heap enumeration is currently underway in the script context.
+	JsErrorHeapEnumInProgress = 0x1000B;
+	// A hosting API that operates on object values was called with a non-object value.
+	JsErrorArgumentNotObject = 0x1000C;
+	// A script context is in the middle of a profile callback.
+	JsErrorInProfileCallback = 0x1000D;
+	// A thread service callback is currently underway.
+	JsErrorInThreadServiceCallback = 0x1000E;
+	// Scripts cannot be serialized in debug contexts.
+	JsErrorCannotSerializeDebugScript = 0x1000F;
+	// The context cannot be put into a debug state because it is already in a debug state.
+	JsErrorAlreadyDebuggingContext = 0x10010;
+	// The context cannot start profiling because it is already profiling.
+	JsErrorAlreadyProfilingContext = 0x10011;
+	// Idle notification given when the host did not enable idle processing.
+	JsErrorIdleNotEnabled = 0x10012;
+	// The context did not accept the enqueue callback.
+	JsCannotSetProjectionEnqueueCallback = 0x10013;
+	// Failed to start projection.
+	JsErrorCannotStartProjection = 0x10014;
+	// The operation is not supported in an object before collect callback.
+	JsErrorInObjectBeforeCollectCallback = 0x10015;
+	// Object cannot be unwrapped to IInspectable pointer.
+	JsErrorObjectNotInspectable = 0x10016;
+	// A hosting API that operates on symbol property ids but was called with a non-symbol
+	// The error code is returned by JsGetSymbolFromPropertyId if the function is called with non-symbol property id.
+	JsErrorPropertyNotSymbol = 0x10017;
+	// A hosting API that operates on string property ids but was called with a non-string property id.
+	// The error code is returned by existing JsGetPropertyNamefromId if the function is called with non-string property id.
+	JsErrorPropertyNotString = 0x10018;
+	// Module evaluation is called in wrong context.
+	JsErrorInvalidContext = 0x10019;
+	// Module evaluation is called in wrong context.
+	JsInvalidModuleHostInfoKind = 0x1001A;
+	// Module was parsed already when JsParseModuleSource is called.
+	JsErrorModuleParsed = 0x1001B;
+	// Argument passed to JsCreateWeakReference is a primitive that is not managed by the GC.
+	// No weak reference is required, the value will never be collected.
+	JsNoWeakRefRequired = 0x1001C;
+	// The <c>Promise</c> object is still in the pending state.
+	JsErrorPromisePending = 0x1001D;
+	// Module was not yet evaluated when JsGetModuleNamespace was called.
+	JsErrorModuleNotEvaluated = 0x1001E;
+	// Category of errors that relates to errors occurring within the engine itself.
+	JsErrorCategoryEngine = 0x1001F;
+	// The Chakra engine has run out of memory.
+	JsErrorOutOfMemory = 0x10020;
+	// The Chakra engine failed to set the Floating Point Unit state.
+	JsErrorBadFPUState = 0x10021;
+	// Category of errors that relates to errors in a script.
+	JsErrorCategoryScript = 0x30000;
+	// A JavaScript exception occurred while running a script.
+	JsErrorScriptException = 0x30001;
+	// JavaScript failed to compile.
+	JsErrorScriptCompile = 0x30002;
+	// A script was terminated due to a request to suspend a runtime.
+	JsErrorScriptTerminated = 0x30003;
+	// A script was terminated because it tried to use <c>eval</c> or <c>function</c> and eval was disabled.
+	JsErrorScriptEvalDisabled = 0x30004;
+	// Category of errors that are fatal and signify failure of the engine.
+	JsErrorCategoryFatal = 0x40000;
+	// A fatal error in the engine has occurred.
+	JsErrorFatal = 0x40001;
+	// A hosting API was called with object created on different javascript runtime.
+	JsErrorWrongRuntime = 0x40002;
+	// Category of errors that are related to failures during diagnostic operations.
+	JsErrorCategoryDiagError = 0x50000;
+	// The object for which the debugging API was called was not found
+	JsErrorDiagAlreadyInDebugMode = 0x50001;
+	// The debugging API can only be called when VM is in debug mode
+	JsErrorDiagNotInDebugMode = 0x50002;
+	// The debugging API can only be called when VM is at a break
+	JsErrorDiagNotAtBreak = 0x50003;
+	// Debugging API was called with an invalid handle.
+	JsErrorDiagInvalidHandle = 0x50004;
+	// The object for which the debugging API was called was not found
+	JsErrorDiagObjectNotFound = 0x50005;
+	// VM was unable to perform the request action
+	JsErrorDiagUnableToPerformAction = 0x50006;
+}	
+
+JsRuntimeAttributes = {
+	// No special attributes.
+	JsRuntimeAttributeNone = 0x00000000;
+	// The runtime will not do any work (such as garbage collection) on background threads.
+	JsRuntimeAttributeDisableBackgroundWork = 0x00000001;
+	// The runtime should support reliable script interruption. This increases the number of
+	// places where the runtime will check for a script interrupt request at the cost of a
+	// small amount of runtime performance.
+	JsRuntimeAttributeAllowScriptInterrupt = 0x00000002;
+	// Host will call <c>JsIdle</c>, so enable idle processing. Otherwise, the runtime will
+	// manage memory slightly more aggressively.
+	JsRuntimeAttributeEnableIdleProcessing = 0x00000004;
+	// Runtime will not generate native code.
+	JsRuntimeAttributeDisableNativeCodeGeneration = 0x00000008;
+	// Using <c>eval</c> or <c>function</c> constructor will throw an exception.
+	JsRuntimeAttributeDisableEval = 0x00000010;
+	// Runtime will enable all experimental features.
+	JsRuntimeAttributeEnableExperimentalFeatures = 0x00000020;
+	// Calling <c>JsSetException</c> will also dispatch the exception to the script debugger
+	// (if any) giving the debugger a chance to break on the exception.
+	JsRuntimeAttributeDispatchSetExceptionsToDebugger = 0x00000040;
+	// Disable Failfast fatal error on OOM
+	JsRuntimeAttributeDisableFatalOnOOM = 0x00000080;
+	// 
+	JsRuntimeAttributeDisableExecutablePageAllocation = 0x00000100;
+}
+
+JsParseScriptAttributes = {
+	// Default attribute
+	JsParseScriptAttributeNone = 0x0;
+	// Specified script is internal and non-user code. Hidden from debugger
+	JsParseScriptAttributeLibraryCode = 0x1;
+	// ChakraCore assumes ExternalArrayBuffer is Utf8 by default.This one needs to be set for Utf16
+	JsParseScriptAttributeArrayBufferIsUtf16Encoded = 0x2;
+}
+
+JsMemoryEventType = {
+	JsMemoryAllocate = 0;
+	JsMemoryFree = 1;
+	JsMemoryFailure = 2;
+}
+
+JsModuleHostInfoKind = {
+    /// <summary>
+    ///     An exception object - e.g. if the module file cannot be found.
+    /// </summary>
+    JsModuleHostInfo_Exception = 0x01;
+    /// <summary>
+    ///     Host defined info.
+    /// </summary>
+    JsModuleHostInfo_HostDefined = 0x02;
+    /// <summary>
+    ///     Callback for receiving notification when module is ready.
+    /// </summary>
+    JsModuleHostInfo_NotifyModuleReadyCallback = 0x3;
+    /// <summary>
+    ///     Callback for receiving notification to fetch a dependent module.
+    /// </summary>
+    JsModuleHostInfo_FetchImportedModuleCallback = 0x4;
+    /// <summary>
+    ///     Callback for receiving notification for calls to ```import()```
+    /// </summary>
+    JsModuleHostInfo_FetchImportedModuleFromScriptCallback = 0x5;
+    /// <summary>
+    ///     URL for use in error stack traces and debugging.
+    /// </summary>
+    JsModuleHostInfo_Url = 0x6;
+    /// <summary>
+    ///     Callback to allow host to initialize import.meta object properties.
+    /// </summary>
+    JsModuleHostInfo_InitializeImportMetaCallback = 0x7;
+    /// <summary>
+    ///     Callback to report module completion or exception thrown when evaluating a module.
+    /// </summary>
+    JsModuleHostInfo_ReportModuleCompletionCallback = 0x8;
+}
+
+JsParseModuleSourceFlags = {
+    /// <summary>
+    ///     Module source is UTF16.
+    /// </summary>
+    JsParseModuleSourceFlags_DataIsUTF16LE = 0x00000000;
+    /// <summary>
+    ///     Module source is UTF8.
+    /// </summary>
+    JsParseModuleSourceFlags_DataIsUTF8 = 0x00000001;
+}
+
+JsPromiseState = {
+    JsPromiseStatePending = 0x0;
+    JsPromiseStateFulfilled = 0x1;
+    JsPromiseStateRejected = 0x2;
+} 
+
+JsPropertyIdType = {
+    /// <summary>
+    ///     Type enumeration of a JavaScript string property
+    /// </summary>
+    JsPropertyIdTypeString = 0;
+    /// <summary>
+    ///     Type enumeration of a JavaScript symbol property
+    /// </summary>
+    JsPropertyIdTypeSymbol = 1;
+} 
+
+
+JsValueType = {
+    /// <summary>
+    ///     The value is the <c>undefined</c> value.
+    /// </summary>
+    JsUndefined = 0;
+    /// <summary>
+    ///     The value is the <c>null</c> value.
+    /// </summary>
+    JsNull = 1;
+    /// <summary>
+    ///     The value is a JavaScript number value.
+    /// </summary>
+    JsNumber = 2;
+    /// <summary>
+    ///     The value is a JavaScript string value.
+    /// </summary>
+    JsString = 3;
+    /// <summary>
+    ///     The value is a JavaScript Boolean value.
+    /// </summary>
+    JsBoolean = 4;
+    /// <summary>
+    ///     The value is a JavaScript object value.
+    /// </summary>
+    JsObject = 5;
+    /// <summary>
+    ///     The value is a JavaScript function object value.
+    /// </summary>
+    JsFunction = 6;
+    /// <summary>
+    ///     The value is a JavaScript error object value.
+    /// </summary>
+    JsError = 7;
+    /// <summary>
+    ///     The value is a JavaScript array object value.
+    /// </summary>
+    JsArray = 8;
+    /// <summary>
+    ///     The value is a JavaScript symbol value.
+    /// </summary>
+    JsSymbol = 9;
+    /// <summary>
+    ///     The value is a JavaScript ArrayBuffer object value.
+    /// </summary>
+    JsArrayBuffer = 10;
+    /// <summary>
+    ///     The value is a JavaScript typed array object value.
+    /// </summary>
+    JsTypedArray = 11;
+    /// <summary>
+    ///     The value is a JavaScript DataView object value.
+    /// </summary>
+    JsDataView = 12;
+}  
+
+/**intellisense(Chakra.enum)
+JsErrorCode = API返回的错误代码
+JsMemoryEventType = 内存分配回调事件
+JsModuleHostInfoKind = 可以使用 JsSetModuleHostInfo 在模块记录上设置的主机信息类型
+JsParseModuleSourceFlags = 用于解析模块的标志
+JsParseScriptAttributes = JsParseScriptWithAttributes 的属性掩码
+JsPromiseState = Promise 对象的可能状态
+JsPropertyIdType = JavaScript 属性的类型枚举
+JsRuntimeAttributes = runtime属性
+JsTypedArrayType = 数组类型
+JsValueType = JsValueRef类型
+end intellisense**/

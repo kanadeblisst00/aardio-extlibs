@@ -1,0 +1,38 @@
+import console; 
+import ChakraCore;
+import crypt.bin;
+io.open()
+
+var core = ChakraCore();
+core.start();
+
+var btoa = function(ptr_callee, isConstructCall, ptrj_arguments, argumentCount, callbackState){
+	// ptr_callee不知道是什么
+	// isConstructCall表示是不是构造方法
+	// ptrj_arguments是参数的数组
+	// argumentCount是参数的个数
+	// callbackState也不知道是什么
+	var pointerSize = 4;
+	var jStr = ..raw.convert(ptrj_arguments, {ptr p}, pointerSize).p;
+	var aStr = ChakraCore.jValueToString(jStr);
+	var result = crypt.bin.encodeBase64(aStr);
+	var jResult = core.JsCreateString(result,#result,);
+	return jResult;
+};
+
+var atob = function(ptr_callee, isConstructCall, ptrj_arguments, argumentCount, callbackState){
+	var pointerSize = 4;
+	var jStr = ..raw.convert(ptrj_arguments, {ptr p}, pointerSize).p;
+	var aStr = ChakraCore.jValueToString(jStr);
+	var result = crypt.bin.decodeBase64(aStr);
+	var jResult = core.JsCreateString(result,#result,);
+	return jResult;
+}
+
+core.registerMethod(btoa, "btoa");
+core.registerMethod(atob, "atob");
+var result = core.run('btoa("Hello, world")')
+console.log("btoa: ", result)
+console.log("atob: ", core.callFunction("atob", result))
+console.log(core.run("btoa"))
+console.pause(true);

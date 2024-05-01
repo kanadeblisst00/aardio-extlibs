@@ -1,0 +1,186 @@
+﻿
+namespace ChakraCore.export;
+
+
+funcDef = {
+	// 
+    "JsAddRef": "int(pointer ref,int& count)", 
+    // 创建js bool值
+    "JsBoolToBoolean": "int(bool v,pointer& b)",
+    // 获取js bool值
+    "JsBooleanToBool": "int(pointer v,bool& b)",
+    // 调用js函数
+    "JsCallFunction": "int(pointer f,struct args,int count,pointer& r)",
+    // 执行完整的垃圾回收
+    "JsCollectGarbage": "int(pointer a)",
+    // 调用函数构造方法
+    "JsConstructObject": "int(pointer f,struct args,int count,pointer& r)",
+    // 转换值为bool类型
+    "JsConvertValueToBoolean": "int(pointer v,pointer& b)",
+    // 转换值为number类型
+    "JsConvertValueToNumber": "int(pointer v,pointer& b)",
+    // 转换值为对象
+    "JsConvertValueToObject": "int(pointer v,pointer& b)",
+    // 转换值为字符串
+    "JsConvertValueToString": "int(pointer v,pointer& b)",
+    // 复制字符串
+    "JsCopyString": "int(pointer a1,string& a2,int a3,int& a4)",
+    // 将JS字符串值写入不带空终止符的字符串缓冲区
+    "JsCopyStringOneByte": "int(pointer a1,int start,int len,string& buf,int& size)",
+    // 
+    "JsCopyStringUtf16": "int(pointer a1,int start,int len,string& buf,int& size)",
+    // 将与属性 ID 关联的名称复制到缓冲区中
+    "JsCopyPropertyId": "int(pointer a1,string& a2,int s3,int& a4)",
+    // 创建一个 Javascript 数组对象
+    "JsCreateArray": "int(int len,pointer& r)",
+    // 创建 ArrayBuffer 
+    "JsCreateArrayBuffer": "int(int len,pointer& r)",
+    // 创建context
+    "JsCreateContext": "int(pointer a1,pointer& a2)",
+    // 创建 DataView 
+    "JsCreateDataView": "int(pointer a1,int offset,int len,pointer& a2)",
+    // 创建新的增强型 JavaScript 函数。
+    "JsCreateEnhancedFunction": "int(pointer a1,pointer a2,pointer a3,pointer& a4)",
+    // 创建一个新的 JavaScript Error对象
+    "JsCreateError": "int(pointer a1,pointer& a2)",
+    // 创建一个 Javascript ArrayBuffer 对象来访问外部内存。
+    "JsCreateExternalArrayBuffer": "int(str a1,int a2,pointer a3,pointer a4,pointer& a5)",
+    "JsCreateExternalObject": "int(pointer a1,pointer a2,pointer& a3)",
+    "JsCreateExternalObjectWithPrototype": "int(pointer a1,pointer a2,pointer a3,pointer& a4)",
+    // 用C函数创建一个JavaScript函数
+    "JsCreateFunction": "int(POINTER a1,pointer a2,pointer& a3)",
+    // 创建一个带有名称的新 JavaScript 函数
+    "JsCreateNamedFunction": "int(pointer a1,pointer a2,pointer a3,pointer& a4)",
+    "JsCreateObject": "int(pointer& a1)",
+    "JsCreatePromise": "int(pointer& a1,pointer& a2,pointer& a3)",
+    "JsCreatePropertyId": "int(str name,int len,pointer& r)",
+    "JsCreateRangeError": "int(pointer a1,pointer& a2)",
+    "JsCreateReferenceError": "int(pointer a1,pointer& a2)",
+    "JsCreateRuntime": "int(pointer a1,pointer a2,pointer& a3)",
+    "JsCreateSharedArrayBufferWithSharedContent": "int(pointer a1,pointer& a2)",
+    "JsCreateString": "int(str name,int len,pointer& r)",
+    "JsCreateStringUtf16": "int(ustring s,int len,pointer& r)",
+    "JsCreateSymbol": "int(pointer a1,pointer& a2)",
+    "JsCreateSyntaxError": "int(pointer a1,pointer& a2)",
+    "JsCreateTypeError": "int(pointer a1,pointer& a2)",
+    "JsCreateTypedArray": "int(pointer a1,pointer a2,int offset,int len,pointer& a3)",
+    "JsCreateURIError": "int(pointer a1,pointer& a2)",
+    "JsCreateWeakReference": "int(pointer a1,pointer& a2)",
+    "JsDefineProperty": "int(pointer a1,pointer a2,pointer a3,bool& r)",
+    "JsDeleteIndexedProperty": "int(pointer a1,pointer a2)",
+    "JsDeleteProperty": "int(pointer a1,pointer a2,bool a3,pointer& a4)",
+    "JsDisableRuntimeExecution": "int(pointer a1)",
+    "JsDisposeRuntime": "int(pointer a1)",
+    "JsDoubleToNumber": "int(double a1,pointer& a2)",
+    "JsEnableRuntimeExecution": "int(pointer a1)",
+    "JsEquals": "int(double a1,pointer a2,bool& a3)",
+    "JsGetAndClearException": "int(pointer& a1)",
+    "JsGetAndClearExceptionWithMetadata": "int(pointer a1)",
+    "JsGetArrayBufferStorage": "int(pointer a1,pointer& a2,int& a3)",
+    "JsGetContextData": "int(pointer a1,pointer& a2)",
+    "JsGetContextOfObject": "int(pointer a1,pointer& a2)",
+    "JsGetCurrentContext": "int(pointer& a2)",
+    "JsGetDataViewInfo": "int(pointer a1,pointer& a2,int& offset,int& len)",
+    "JsGetDataViewStorage": "int(pointer a1,pointer& a2,int& len)",
+    "JsGetExtensionAllowed": "int(pointer a1,bool& v)",
+    "JsGetExternalData": "int(pointer a1,pointer& a2)",
+    "JsGetFalseValue": "int(pointer& a2)",
+    "JsGetGlobalObject": "int(pointer& a2)",
+    "JsGetIndexedPropertiesExternalData": "int(pointer a1,pointer& a2,pointer& a3,int& len)",
+    "JsGetIndexedProperty": "int(pointer a1,pointer a3,pointer& a2)",
+    "JsGetModuleHostInfo": "int(pointer a1,pointer a3,pointer& a2)",
+    "JsGetModuleNamespace": "int(pointer a1,pointer& a2)",
+    "JsGetNullValue": "int(pointer& a2)",
+    "JsGetOwnPropertyDescriptor": "int(pointer a1,pointer a3,pointer& a2)",
+    "JsGetOwnPropertyNames": "int(pointer a1,pointer& a2)",
+    "JsGetOwnPropertySymbols": "int(pointer a1,pointer& a2)",
+    "JsGetPromiseResult": "int(pointer a1,pointer& a2)",
+    "JsGetPromiseState": "int(pointer a1,pointer& a2)",
+    "JsGetProperty": "int(pointer a1,pointer a3,pointer& a2)",
+    "JsGetPropertyIdFromName": "int(ustring name,pointer& a2)",
+    "JsGetPropertyIdFromSymbol": "int(pointer a1,pointer& a2)",
+    "JsGetPropertyIdType": "int(pointer a1,pointer& a2)",
+    "JsGetPropertyNameFromId": "int(pointer a1,ustring& a2)",
+    "JsGetPrototype": "int(pointer a1,pointer& a2)",
+    "JsGetProxyProperties":  "int(pointer a1,bool& a2,pointer& a3,pointer& a3)",
+    "JsGetRuntime": "int(pointer a1,pointer& a2)",
+    "JsGetRuntimeMemoryLimit": "int(pointer a1,int& a2)",
+    "JsGetRuntimeMemoryUsage": "int(pointer a1,int& a2)",
+    "JsGetSharedArrayBufferContent": "int(pointer a1,pointer& a2)",
+    "JsGetStringLength": "int(pointer a1,int& a2)",
+    "JsGetSymbolFromPropertyId": "int(pointer a1,pointer& a2)",
+    "JsGetTrueValue": "int(pointer& a2)",
+    "JsGetTypedArrayInfo": "int(pointer a1,pointer& a2,pointer& a3,int& a4,int& a5)",
+    "JsGetTypedArrayStorage": "int(pointer a1,pointer& a2,int& a3,pointer& a4,int& a5)",
+    "JsGetUndefinedValue": "int(pointer& a2)",
+    "JsGetValueType": "int(pointer a1,int& a2)",
+    "JsGetWeakReferenceValue": "int(pointer a1,pointer& a2)",
+    "JsHasException": "int(bool& a2)",
+    "JsHasExternalData": "int(pointer a1,bool& a2)",
+    "JsHasIndexedPropertiesExternalData": "int(pointer a1,bool& a2)",
+    "JsHasIndexedProperty": "int(pointer a1,pointer a2,bool& a3)",
+    "JsHasOwnProperty": "int(pointer a1,pointer a2,bool& a3)",
+    "JsHasProperty": "int(pointer a1,pointer a2,bool& a3)",
+    "JsIdle": "int(int& a)",
+    "JsInitializeModuleRecord": "int(pointer a1,pointer a2,pointer& a3)",
+    "JsInstanceOf": "int(pointer a1,pointer a2,bool& a3)",
+    "JsIntToNumber": "int(int a1,pointer& a2)",
+    "JsIsRuntimeExecutionDisabled": "int(pointer a1,bool& a3)",
+    "JsLessThan": "int(pointer a1,pointer a2,bool& a3)",
+    "JsLessThanOrEqual": "int(pointer a1,pointer a2,bool& a3)",
+    "JsModuleEvaluation": "int(pointer& a1)",
+    "JsObjectDefineProperty":  "int(pointer a1,pointer a2,pointer a3,bool& a4)",
+    "JsObjectDeleteProperty": "int(pointer a1,pointer a2,bool a3,pointer& a4)",
+    "JsObjectGetOwnPropertyDescriptor": "int(pointer a1,pointer a2,pointer& a4)",
+    "JsObjectGetProperty": "int(pointer a1,pointer a2,pointer& a4)",
+    "JsObjectHasOwnProperty": "int(pointer a1,pointer a2,bool& a4)",
+    "JsObjectHasProperty": "int(pointer a1,pointer a2,bool& a4)",
+    "JsObjectSetProperty": "int(pointer a1,pointer a2,pointer a3,bool& a4)",
+    "JsNumberToDouble": "int(pointer a1,double& a4)",
+    "JsNumberToInt": "int(pointer a1,int& a4)",
+    "JsParse": "int(pointer a1,pointer a2,pointer a3,pointer a4,pointer& a5)",
+    "JsParseModuleSource": "",
+    "JsParseSerialized": "int(pointer a1,pointer a2,pointer a3,pointer a4,pointer& a5)",
+    "JsParseScript": "int(ustring a1,pointer a2,ustring a3,pointer& a4)",
+    "JsParseScriptWithAttributes": "int(ustring a1,pointer a2,ustring a3,pointer a4,pointer& a5)",
+    "JsParseSerializedScript": "int(ustring a1,struct a2,pointer a3,ustring a4,pointer& a5)",
+    "JsParseSerializedScriptWithCallback": "int(pointer a1,pointer a2,struct a3,pointer a4,ustring a5,pointer& a6)",
+    "JsPointerToString": "int(ustring a1,int len,pointer& a3)",
+    "JsPreventExtension": "int(pointer a1)",
+    "JsRelease": "int(pointer a1,int& a2)",
+    "JsReleaseSharedArrayBufferContentHandle": "int(pointer a1)",
+    "JsRun": "int(pointer a1,int a2,pointer a3,int a4,pointer& a5)",
+    "JsRunScript": "int(ustring a1,pointer a2,ustring a3,pointer& a4)",
+    "JsRunScriptWithParserState": "int(pointer a1,pointer a2,pointer a3,pointer a4,pointer a5,pointer& a6)",
+    "JsRunSerialized":  "int(pointer a1,pointer a2,pointer a3,pointer a5,pointer& a4)",
+    "JsRunSerializedScript": "int(ustring a1,struct a2,pointer a3,ustring a4,pointer& a5)",
+    "JsRunSerializedScriptWithCallback": "int(pointer a1,pointer a2,struct a3,pointer a4,ustring a5,pointer& a6)",
+    "JsSerialize": "int(pointer a1,pointer& a2,pointer a3)",
+    "JsSerializeParserState": "int(pointer a1,pointer& a2,pointer a3)",
+    "JsSerializeScript": "int(ustring a1,struct a2,long64& a3)",
+    "JsSetContextData": "int(pointer a1,pointer a2)",
+    "JsSetCurrentContext": "int(pointer a1)",
+    "JsSetException": "int(pointer a1)",
+    "JsSetExternalData": "int(pointer a1,pointer a2)",
+    "JsSetHostPromiseRejectionTracker": "int(pointer a1,pointer a2)",
+    "JsSetIndexedPropertiesToExternalData": "int(pointer a1,pointer a2,pointer a3,int a4)",
+    "JsSetIndexedProperty": "int(pointer a1,pointer a2,pointer a3)",
+    "JsSetModuleHostInfo": "int(pointer a1,pointer a2,pointer a3)",
+    "JsSetObjectBeforeCollectCallback": "int(pointer a1,pointer a2,pointer a3)",
+    "JsSetPromiseContinuationCallback": "int(pointer a1,pointer a2)",
+    "JsSetProperty": "int(pointer a1,pointer a2,pointer a3,bool a4)",
+    "JsSetPrototype": "int(pointer a1,pointer a2)",
+    "JsSetRuntimeBeforeCollectCallback": "int(pointer a1,pointer a2,pointer a3)",
+    "JsSetRuntimeMemoryAllocationCallback": "int(pointer a1,pointer a2,pointer a3)",
+    "JsSetRuntimeMemoryLimit": "int(pointer a1,int a2)",
+    "JsStrictEquals": "int(pointer a1,pointer a2,bool& a3)",
+    "JsStringToPointer": "int(pointer a1,ustring& a2,int& a3)",
+}
+
+/**details(入门教程)
+https://github.com/chakra-core/ChakraCore/wiki/JavaScript-Runtime-%28JSRT%29-Reference
+end details**/
+
+/**intellisense(Chakra.export)
+funcDef = ChakraCore.dll的所有导出函数
+end intellisense**/

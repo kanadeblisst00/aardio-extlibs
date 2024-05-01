@@ -14,6 +14,7 @@
 - kichardet: 自动识别给定的字符串编码
 - kilogging: 支持多线程的日志模块
 - kirequests: 符合Python requests模块风格的http请求库
+- ChakraCore: 一个微软开源的js引擎
 
 #### 目录结构
 
