@@ -1,0 +1,52 @@
+import console; 
+import kicrypt.des;
+import crypt.bin;
+
+demo_base64 = function(){
+	var t0 = time.tick();
+	var text = "NFLYMso61GY=";
+	var l = crypt.bin.decodeBase64(text);
+    // 如果是ecb模式，iv可以不传
+    var desObj = kicrypt.des("12345678", "12345678");
+    var result = desObj.decrypt(l, kicrypt.des.DES_CBC);
+    console.log("base64解密完成，花费时间: ", time.tick()-t0);
+    console.log("basse64解密结果, str: ", result);
+    
+    var result = desObj.encrypt(result,kicrypt.des.DES_CBC);
+    var b64Result = crypt.bin.encodeBase64(result);
+    console.log("basse64加密完成，花费时间: ", time.tick()-t0);
+    console.log("basse64加密结果, str: ", b64Result);
+}
+
+demo_hex = function(){
+	var t0 = time.tick();
+	var text = "3452d832ca3ad466";
+	var l = string.unhex(text,"");
+    var desObj = kicrypt.des("12345678", "12345678");
+    var result = desObj.decrypt(l, kicrypt.des.DES_CBC);
+    console.log("hex解密完成，花费时间: ", time.tick()-t0);
+    console.log("hex解密结果, str: ", result);
+    
+    var result = desObj.encrypt(result,kicrypt.des.DES_CBC);
+    var b64Result = string.lower(string.hex(result,""));
+    console.log("basse64加密完成，花费时间: ", time.tick()-t0);
+    console.log("basse64加密结果, str: ", b64Result);
+}
+
+demo_3des = function(){
+	var t0 = time.tick();
+	var desObj = kicrypt.des("app^hbrb:321#@!ewq&^*bnm");
+	var text = "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"
+    var l = crypt.bin.decodeBase64(text);
+    var result = desObj.decrypt(l, kicrypt.des.DES3_ECB);
+    console.log("demo_3des解密完成，时间：", time.tick()-t0)
+    console.log("demo_3des解密结果, str: ", result);
+}
+
+
+
+demo_base64()
+demo_hex()
+demo_3des()
+console.pause(true);

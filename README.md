@@ -15,6 +15,7 @@
 - kilogging: 支持多线程的日志模块
 - kirequests: 符合Python requests模块风格的http请求库
 - ChakraCore: 一个微软开源的js引擎
+- kicrypt: aes,des加解密
 
 #### 目录结构
 

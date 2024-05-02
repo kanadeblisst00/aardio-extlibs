@@ -1,0 +1,53 @@
+﻿namespace kicrypt;
+	
+class aes{
+	ctor(key,iv){
+		this.key = key;
+		this.iv = iv;
+	};
+	
+	decrypt = function(text,mode=0,padding=2){
+		var textLen = #text;
+		var resultLen, resultBuf = AESDecrypt(mode,padding,text,textLen,this.key,#this.key,this.iv,textLen+17);
+		return ..string.slice(resultBuf,1,resultLen);
+	};
+	
+	encrypt = function(text,mode=0,padding=2){
+		var textLen = #text;
+		var resultLen, resultBuf = AESEncrypt(mode,padding,text,textLen,this.key,#this.key,this.iv,textLen+17);
+		return ..string.slice(resultBuf,1,resultLen);
+	}
+	
+	
+}
+
+namespace aes{
+    Pkcs7Padding = 2
+    ZeroPadding = 1
+    NoPadding = 0
+    ECB = 0
+    CBC = 1
+    CFB = 2
+    
+	_dll = ..raw.loadDll($"~\lib\kicrypt\.res\aes32.dll");
+	
+	AESDecrypt = _dll.api("AESDecrypt","INT(INT a1,INT a2,string a3,INT a4,string a5,INT a6,string a7,string& a8)" ,"cdecl")
+	AESEncrypt = _dll.api("AESEncrypt","INT(INT a1,INT a2,string a3,INT a4,string a5,INT a6,string a7,string& a8)" ,"cdecl")
+
+}
+
+/**intellisense(kicrypt.aes)
+Pkcs7Padding = 2
+ZeroPadding = 1
+NoPadding = 0
+ECB = 0
+CBC = 1
+CFB = 2
+end intellisense**/
+
+/**intellisense()
+kicrypt.aes(.(key,iv) = AES加解密
+kicrypt.aes() = !kicryptAes.
+!kicryptAes.decrypt(.(解密文本,模式,填充格式) = 解密
+!kicryptAes.encrypt(.(加密文本,模式,填充格式) = 加密
+end intellisense**/

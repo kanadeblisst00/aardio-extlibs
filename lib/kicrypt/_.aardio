@@ -1,0 +1,8 @@
+﻿
+namespace kicrypt;
+
+libInfo = {
+    "version": "1.0.0.2",
+    "author": "kanadeblisst",
+    "description": "aes des加解密"
+}

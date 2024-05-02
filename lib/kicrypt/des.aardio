@@ -1,0 +1,49 @@
+﻿namespace kicrypt;
+	
+class des{
+	ctor(key,iv){
+		this.key = key;
+		this.iv = iv;
+	};
+	
+	decrypt = function(text,mode=0){
+		var textLen = #text;
+		var resultLen, resultBuf = des_decode(mode,this.key,#this.key,this.iv,text,textLen,textLen+17);
+		return ..string.slice(resultBuf,1,resultLen);
+	};
+	
+	encrypt = function(text,mode=0){
+		var textLen = #text;
+		var resultLen, resultBuf = des_encode(mode,this.key,#this.key,this.iv,text,textLen,textLen+17);
+		return ..string.slice(resultBuf,1,resultLen);
+	}
+	
+	
+}
+
+namespace des{
+    DES_ECB = 0
+    DES_CBC = 1
+    DES3_ECB = 2
+    DES3_CBC = 3
+    
+	_dll = ..raw.loadDll($"~\lib\kicrypt\.res\des32.dll");
+	
+	des_decode = _dll.api("des_decode","INT(INT a1,string a2,INT a3,string a4,string a5,INT a6,string& a7)" ,"cdecl")
+	des_encode = _dll.api("des_encode","INT(INT a1,string a2,INT a3,string a4,string a5,INT a6,string& a7)" ,"cdecl")
+	
+}
+
+/**intellisense(kicrypt.aes)
+DES_ECB = 0
+DES_CBC = 1
+DES3_ECB = 2
+DES3_CBC = 3
+end intellisense**/
+
+/**intellisense()
+kicrypt.des(.(key,iv) = DES加解密
+kicrypt.des() = !kicryptDes.
+!kicryptDes.decrypt(.(解密文本,模式) = 解密，填充模式默认Pkcs7
+!kicryptDes.encrypt(.(加密文本,模式) = 加密，填充模式默认Pkcs7
+end intellisense**/
