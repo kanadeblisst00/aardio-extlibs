@@ -1,0 +1,57 @@
+import console; 
+import kirequests;
+import ChakraCore;
+io.open()
+var core = ChakraCore()
+core.start()
+
+core.run(string.load("T:\Code\JavaScript\js练手项目\有道翻译\有道翻译.js"))
+
+var client = "fanyideskweb";
+var product = "webfanyi";
+var key = "fsdsogkndfokasodnaso";
+var signStr = `client=%s&mysticTime=%s&product=%s&key=%s`;
+
+// 先请求主页获取cookie
+var session = kirequests.session();
+var url = "https://fanyi.youdao.com/index.html"
+var resp = session.get(url);
+
+// 要翻译的内容
+var word = "中国";
+// 内容是什么语言
+var from = "auto";
+// 想翻译成什么语言
+var to = "";
+var webtranslateApi = "https://dict.youdao.com/webtranslate";
+var timestamp = tostring(tonumber(time())) + string.random(3,"1234567890");
+var postData = {
+	"i": word,
+	"from": from,
+	"to": to,
+	"domain": "0",
+	"dictResult": "true",
+	"keyid": product,
+	"client": client,
+	"product": product,
+	"appVersion": "1.0.0",
+	"vendor": "web",
+	"pointParam": "client,mysticTime,product",
+	"mysticTime": timestamp,
+	"keyfrom": "fanyi.web",
+	"mid": "1",
+	"screen": "1",
+	"model": "1",
+	"network": "wifi",
+	"abtest": "0",
+	"yduuid": "abcdefg"
+}
+var s = string.format(signStr, client,timestamp,product,key)
+postData["sign"] =  core.callFunction("window.md5",s);
+var resp = session.post(url=webtranslateApi,data=postData);
+// 开始解密
+var decodeiv = "ydsecret://query/iv/C@lZe2YzHtZ2CYgaXKSVfsb7Y4QWHjITPPZ0nQp87fBeJ!Iv6v^6fvi2WN@bYpJ4";
+var decodekey = "ydsecret://query/key/B*RGygVywfNBwpmBaZg*WT7SIOUP2T0C9WHMZN39j^DAdaZhAnxvGcCY6VYFwnHl";
+var result = core.callFunction("window.aes_cbc_decrypt", decodekey, decodeiv,resp.text)
+console.log(result)
+console.pause(true);
