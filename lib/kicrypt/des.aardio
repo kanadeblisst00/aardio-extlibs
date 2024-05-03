@@ -34,7 +34,7 @@ namespace des{
 	
 }
 
-/**intellisense(kicrypt.aes)
+/**intellisense(kicrypt.des)
 DES_ECB = 0
 DES_CBC = 1
 DES3_ECB = 2

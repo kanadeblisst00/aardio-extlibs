@@ -98,6 +98,7 @@ class session{
 	
 	send = function(postData,req_headers){
 		var bufferTotal = #postData;
+		req_headers["Referer"] = null;
 		var headersStr = ..web.joinHeaders(req_headers);
 		  
 		var intBuf = INTERNET_BUFFERS();
