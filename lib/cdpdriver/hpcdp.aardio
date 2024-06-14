@@ -1,0 +1,135 @@
+﻿import win;
+import util.metaProperty;
+import cdpdriver.jsonrpc;
+namespace cdpdriver;
+
+class hpcdp{
+	ctor(wsClient){
+		if(wsClient === null) error("请指定ws对象或者ws连接的URL");
+		elseif(type(wsClient) == type.table){
+			this.ws = wsClient; 
+		}elseif(type(wsClient) == type.string){
+			if(!..string.startWith(wsClient,"ws")) error("请指定websockets链接");
+			else{
+				this.ws = ..webdriver.jsonrpc();
+				this.ws.connectWsUrl(wsClient);
+				if(!this.ws.waitConnected()) error("连接失败");
+			}
+		}elseif(type(wsClient) == type.number){
+			this.ws = ..webdriver.jsonrpc();
+			this.ws.connect(wsClient);
+		}else{
+			error("请指定ws对象或者ws连接的URL");
+		}
+	};
+	
+	scrollPageBottom = function(){
+		..win.delay(1000);
+		var scrollToEnd = `(async function scrollPage() {
+    		return new Promise(async (resolve) => {
+        		var distance = 800; 
+        		var count = 0;
+        		window.scrollTo(0, 0);
+        		window.scrollTo(0, 0);
+        		var scroll = async () => {
+            		var lastScrollTop = document.documentElement.scrollTop;
+            		window.scrollBy(lastScrollTop, distance);
+            		await new Promise(r => setTimeout(r, 500)); 
+            		var newScrollTop = document.documentElement.scrollTop;
+            		var scrollHeight = document.body.scrollHeight;
+            		console.log(lastScrollTop, newScrollTop, scrollHeight);
+            		if(lastScrollTop === newScrollTop) count += 1;
+            		if ((lastScrollTop === newScrollTop && newScrollTop/scrollHeight > 0.8) || count > 2) {
+                		resolve(); 
+            		} else {
+                		await scroll(); 
+            		}
+        		};
+        		await scroll();
+    		});
+		})();`;
+		this.runJsCode(scrollToEnd);
+		..win.delay(3000);
+		var result,err =  this.runJsCode("document.documentElement.scrollTop/document.body.scrollHeight > 0.8");
+		return result;
+	};
+	
+	runJsCode = function(code){
+		var params = {
+			"expression": code,
+			"awaitPromise": true,
+			"returnByValue": true
+		}
+		var result,err = this.ws.send("Runtime.evaluate", params);
+		return parseValue(result),err;
+	}
+	
+	getOuterHTML = function(){
+		var params = {
+			"expression":"document.body.outerHTML",
+			"awaitPromise": true,
+			"returnByValue": true
+		}
+		return this.ws.send("Runtime.evaluate", params);
+	};
+	
+	getOuterMHTML = function(){
+		return owner.ws.send("Page.captureSnapshot", {});
+	};
+	
+	getPdf = function(){
+		var params = {
+			"transferMode": 'ReturnAsBase64',
+			"printBackground": true
+		}
+		return owner.ws.send("Page.printToPDF", params);
+	};
+	
+	@_metaProperty;
+}
+namespace hpcdp{
+    parseValue = function(result){
+		if(!result ) return;
+		if(result["result"]) result = result["result"];
+		if(result["type"]){
+			return result.value;
+		}elseif(result["data"]){
+			return result.data;
+		}else{
+			return result;
+		}
+	}
+	
+	_metaProperty = ..util.metaProperty( 
+    	outerHTML = {
+			_get = function(){
+				return owner.getOuterHTML();
+			};
+			
+		};
+		
+		outerMHTML = {
+			_get = function(){
+				return owner.getOuterMHTML();
+			};
+			
+		};
+		
+		pdf = {
+			_get = function(){
+				return owner.getPdf()
+			}	
+		};
+    )
+}
+
+/**intellisense()
+cdpdriver.hpcdp(.(wsClient) = 使用hpsocket的cdp协议
+cdpdriver.hpcdp() = !cdpdriverHpcdpObj.
+!cdpdriverHpcdpObj.getOuterHTML() = 获取网页html
+!cdpdriverHpcdpObj.getOuterMHTML() = 获取网页mhtml
+!cdpdriverHpcdpObj.getPdf() = 获取网页pdf
+!cdpdriverHpcdpObj.outerHTML = 获取网页html
+!cdpdriverHpcdpObj.outerMHTML = 获取网页mhtml
+!cdpdriverHpcdpObj.pdf = 获取网页pdf
+end intellisense**/

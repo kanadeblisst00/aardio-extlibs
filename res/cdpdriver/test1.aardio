@@ -1,0 +1,48 @@
+import cdpdriver;
+import web.view;
+import win.ui;
+import console
+import crypt.bin;
+/*DSG{{*/
+var winform = win.form(text="cdp协议";right=759;bottom=469)
+winform.add()
+/*}}*/
+
+var initWebView = function(){
+	var cmdArgs = `--remote-debugging-port=29999`;
+	winform.webView = web.view(winform,,cmdArgs);
+	if(!_STUDIO_INVOKED) winform.webView.enableDevTools(false);
+	winform.show();
+	
+	winform.stateTable = {
+		pageReady=null;//页面加载完成
+	}
+	var ws = winform.webView.openRemoteDebugging();
+	var cdpClient = cdpdriver(ws);
+	// 启用Page事件
+	ws.Page.enable();
+	// Page.domContentEventFired和Page.loadEventFired事件触发表示页面加载完成
+	ws.on("Page.domContentEventFired",function(param){
+		winform.stateTable.pageReady = true;
+    })
+	ws.on("Page.loadEventFired",function(param){
+		winform.stateTable.pageReady = true;
+    })
+	winform.stateTable.pageReady = null;
+	var url = "https://mp.weixin.qq.com/s/Nik8fBF3hxH5FPMGNx3JFw";
+	winform.webView.go(url);
+	win.wait(lambda() winform.stateTable.pageReady, winform.hwnd, 15000, 50);  
+	win.delay(1000) 
+	if(winform.stateTable.pageReady){
+		cdpClient.scrollPageBottom();
+	    var mhtml = cdpClient.outerMHTML;
+	    string.save("测试.mhtml", mhtml)
+	    var pdf = cdpClient.pdf;
+	    string.save("测试.pdf", crypt.bin.decodeBase64(pdf));
+	}
+}
+
+initWebView()
+
+winform.show();
+win.loopMessage();

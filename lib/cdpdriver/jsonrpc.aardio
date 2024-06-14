@@ -1,0 +1,214 @@
+﻿import hpsocket.httpClient;
+import thread.table;
+import web.json;
+import inet.http;
+import inet.url;
+import win.guid;
+namespace cdpdriver;
+	
+class jsonrpc{
+	ctor(){
+		this.guid = tostring(..win.guid.create());
+		this.msgCallData = ..thread.table("jsonrpc_msgCallData"++this.guid);
+		this.connectedFlags = "connectedFlags" ++ this.guid;
+		this.hpHttpClient = ..hpsocket.httpClient();
+		this.id = 0;
+		..table.gc(this,"close");
+	};
+	
+	close = function(){
+		this.hpHttpClient.stop();
+		this.hpHttpClient = null;
+	};
+	
+	connect = function(port){
+		// https://github.com/ldcsaa/HP-Socket/blob/4a0ba66bf9b45aba70820a6fa6f6e598d4ce7078/Windows/Include/HPSocket/HPTypeDef.h#L108
+		// 0(正在启动) 1(已经启动) 2(正在停止) 3(已经停止) 
+		if(this.hpHttpClient){
+			if(this.hpHttpClient.getState() == 1) return;
+		}
+		var wsUrl,id = getFirstDebuggingPageWsUrl(port);
+		if(!wsUrl) error("给定的端口无法获取调试接口!");
+		this.connectWsUrl(wsUrl);
+	};
+	
+	connectWsUrl = function(wsUrl){
+		var iUrl = ..inet.url.split(wsUrl);
+		this.hpHttpClient.threadGlobal = {
+			wsUrl=iUrl.path;
+			msgCallData=this.msgCallData;
+			connectedFlags=this.connectedFlags;
+			guid =this.guid;
+		}
+		//监听线程被创建后触发
+		this.hpHttpClient.onThreadCreated = function(){}
+		//监听线程退出前触发此事件
+		this.hpHttpClient.onThreadEnd = function(){}
+		//允许升级为WebSocket协议
+		this.hpHttpClient.onUpgrade = onUpgrade;
+ 		//接收到WebSocket请求头
+		this.hpHttpClient.onWsMessageHeader = onWsMessageHeader;
+		//接收到WebSocket请求数据
+		this.hpHttpClient.onWsMessageBody = onWsMessageBody;
+		//WebSocket请求数据接收完成
+		this.hpHttpClient.onWsMessageComplete = onWsMessageComplete;
+		this.hpHttpClient.onConnect = onConnect;
+		this.hpHttpClient.onClose = onClose;
+		this.hpHttpClient.start("localhost",iUrl.port);
+		if(!this.waitConnected()) error("连接失败")
+	};
+	
+	waitConnected = function(timeout=10000){
+		return ..win.wait(function(){
+			if(..thread.get(this.connectedFlags)) return true;
+		},,timeout,500)
+	};
+	
+	send = function(method, params, timeout=5000){
+		this.id += 1;
+		var msg = {
+			id=this.id;
+			method=method;
+			params=params;
+		};
+		this.hpHttpClient.sendWsMessage(..web.json.stringify(msg));
+		while(timeout > 0){
+			var data = this.msgCallData[tostring(this.id)];
+			if(data){
+				this.msgCallData[tostring(this.id)] = null;
+				return data.result, data.error;
+			}
+			..win.delay(50);
+			timeout -= 50;
+		}
+	};
+	
+	on = function(event,func){
+		..thread.set(event+this.guid, func);
+	};
+	
+}
+namespace jsonrpc{
+	getDebuggingInfo = function(port){
+		var http = ..inet.http();
+		http.disableCache();
+		
+		var json = http.get(..string.format("http://localhost:%d/json", port));
+		http.close();
+	
+		var info =  ..web.json.tryParse(json) : {};
+		for(i=1;#info;1){
+			v = info[i];
+			if( v.devtoolsFrontendUrl ){
+				v.devtoolsFrontendUrl =  ..string.format("http://localhost:%d%s", port,v.devtoolsFrontendUrl);
+			} 
+		} 
+		return info;
+	};
+	
+	getDebuggingPages = function(port){ 
+		var info = getDebuggingInfo(port); 
+		var pages = {};
+		
+		for(i=1;#info;1){
+			var v = info[i];
+			if( v.type !="page" ) continue;
+			if( !v.webSocketDebuggerUrl ) continue; 
+			..table.push(pages,v);
+		} 
+		
+		return pages;
+	};
+	
+	waitDebuggingPages = function(port, timeout=10000){
+		..win.wait(function(){
+			var pages = getDebuggingPages(port);
+			if(#pages) return true;
+		},,timeout,500)
+		
+	}
+	
+	getFirstDebuggingPageWsUrl = function(port){
+		var pages = getDebuggingPages(port); 
+		for i,v in pages{
+			return v.webSocketDebuggerUrl,v.id;
+		} 
+	};
+	
+	onUpgrade = function(hpHttpClient,connId,upgradeType){
+		if(upgradeType!=1) return -1;
+		
+		if( ! hpHttpClient.checkWsUpgradeResponse() )
+			return -1;//验证密钥错误
+		thread.set(connectedFlags, true);
+	}
+
+	onWsMessageBody = function(hpHttpClient,connId,pData,len){ 
+		hpHttpClient.appendString(pData,len);
+	};
+	
+	onConnect = function(hpHttpClient){
+		hpHttpClient.sendWsUpgradeRequest(wsUrl);
+	};
+	
+	onClose = function(hpHttpClient,connId,enOperation,errCode){
+		hpHttpClient.reallocString(0);
+	};
+
+	onWsMessageHeader = function(hpHttpClient,connId,final,reserved,opCode,mask,bodyLen){ 
+		hpHttpClient.reallocString(bodyLen);//初始化缓冲区
+	};
+	
+    onWsMessageComplete = function(hpHttpClient){
+		import web.json;
+		import console;
+		
+		global.onError = function( err,over ){ 
+		    if(!over){
+		        import debug;
+		        var stack = debug.traceback(,"调用栈",3);
+		        console.dump(err, stack);
+		    }
+		    
+		    if( _STUDIO_INVOKED ) return err; 
+		}
+		var msg = hpHttpClient.getString(); 
+		hpHttpClient.reallocString(0);
+		var data,err = web.json.tryParse(msg);
+		if( type(data) != "table"){
+			console.dump(msg);
+			return;
+		}
+		if(data.method){
+			var callName = data.method+guid;
+			var event = thread.get(callName);
+			if(event){
+				thread.call(callName,{guid=guid},data.params);
+			}
+		}elseif(data.id){
+			msgCallData[tostring(data.id)] = data;
+		}elseif(data.error){
+			console.dump(msg);
+		}
+	};
+    
+	
+}
+
+/**intellisense()
+cdpdriver.jsonrpc(.() = 使用hpsocket封装的jsonrpc协议
+cdpdriver.jsonrpc() = !cdpdriverJsonrpcObj.
+!cdpdriverJsonrpcObj.connect(.(port) = 连接remote-debugging-port指定的端口
+!cdpdriverJsonrpcObj.close() = 关闭ws连接
+!cdpdriverJsonrpcObj.connectWsUrl(.(wsUrl) = 连接ws链接
+!cdpdriverJsonrpcObj.waitConnected() = 等待连接成功
+!cdpdriverJsonrpcObj.send(.(method, params) = 想对方发送请求
+!cdpdriverJsonrpcObj.on(.(event,func) = 设置事件回调函数
+end intellisense**/
+
+/**intellisense(cdpdriver.jsonrpc)
+getDebuggingInfo(.(port) = 获取指定端口的调试信息
+getDebuggingPages(.(port) = 从指定端口获取浏览器所有页面信息
+waitDebuggingPages(.(port) = 等待页面
+getFirstDebuggingPageWsUrl(.(port) = 获取调试端口的第一个页面
+end intellisense**/

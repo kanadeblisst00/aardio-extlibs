@@ -1,0 +1,16 @@
+﻿
+namespace hpsocket;
+
+libInfo = {
+    "version": "1.0.0.1",
+    "author": "kanadeblisst",
+    "description": "aardio官方hpsocket库更新了下github的dll"
+}
+
+if(!::HPSocket)
+	::HPSocket = ..raw.loadDll($"~\lib\hpsocket\.dll\HPSocket4C_U.dll","HPSocket4C_U.dll")
+
+
+/**intellisense(::)
+::HPSocket = HPSocket dll模块对象
+end intellisense**/

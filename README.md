@@ -16,6 +16,8 @@
 - kirequests: 符合Python requests模块风格的http请求库
 - ChakraCore: 一个微软开源的js引擎
 - kicrypt: aes,des加解密
+- hpsocket: aardio官方扩展库里的hpsocket，只是更新了下dll
+- cdpdriver: 简易的实现了cdp协议，之后慢慢补充
 
 #### 目录结构
 

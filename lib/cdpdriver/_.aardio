@@ -1,0 +1,163 @@
+﻿import web.socket.chrome;
+import util.metaProperty;
+	
+class cdpdriver{
+	ctor(wsClient,winform){
+		if(wsClient === null) error("请指定ws对象或者ws连接的URL");
+		elseif(type(wsClient) == type.table){
+			this.ws = wsClient; 
+		}elseif(type(wsClient) == type.string){
+			if(!..string.startWith(wsClient,"ws")) error("请指定websockets链接");
+			else{
+				this.ws = ..web.socket.chrome();
+				this.ws.connect(wsClient);
+			}
+		}elseif(type(wsClient) == type.number){
+			this.ws = ..web.socket.chrome();
+			this.ws.connectFirstDebuggingPage(wsClient);
+		}else{
+			error("请指定ws对象或者ws连接的URL");
+		}
+		this._form = winform;
+	};
+	
+	callWait = function(method,params,timeout,interval){
+		if(!this.ws) return;
+		var done = null;
+		var t = ..string.split(method,".");
+		var func = this.ws;
+		for(i=1;#t;1){
+			func = func[t[i]];
+		}
+		var result;
+		func(params).end = function(r,err){
+			if(!err) {
+				done = true;
+				result = r;
+			}
+		};
+		..win.wait(lambda() done,this._form ? this._form.hwnd,timeout:15000,interval);
+		return self.parseValue(result);
+	}
+	
+	scrollPageBottom = function(){
+		..win.delay(1000);
+		var scrollToEnd = `(async function scrollPage() {
+    		return new Promise(async (resolve) => {
+        		var distance = 500; 
+        		var count = 0;
+        		window.scrollTo(0, 0);
+        		window.scrollTo(0, 0);
+        		var scroll = async () => {
+            		var lastScrollTop = document.documentElement.scrollTop;
+            		window.scrollBy(lastScrollTop, distance);
+            		await new Promise(r => setTimeout(r, 500)); 
+            		var newScrollTop = document.documentElement.scrollTop;
+            		var scrollHeight = document.body.scrollHeight;
+            		console.log(lastScrollTop, newScrollTop, scrollHeight);
+            		if(lastScrollTop === newScrollTop) count += 1;
+            		if ((lastScrollTop === newScrollTop && newScrollTop/scrollHeight > 0.8) || count > 2) {
+                		resolve(); 
+            		} else {
+                		await scroll(); 
+            		}
+        		};
+        		await scroll();
+    		});
+		})();`;
+		var params = {
+			"expression": scrollToEnd,
+			"awaitPromise": true,
+			"returnByValue": true
+		}
+		this.callWait("Runtime.evaluate", params);
+		var thisObj = this;
+		
+		..win.wait(function(){
+			var r = thisObj.callWait("Runtime.evaluate", {
+				expression="document.documentElement.scrollTop/document.body.scrollHeight > 0.8";
+				awaitPromise=true;
+				returnByValue=true
+			});
+			return r;
+		},,15000,500)
+	}
+	
+	getOuterHTML = function(){
+		var params = {
+			"expression":"document.body.outerHTML",
+			"awaitPromise": true,
+			"returnByValue": true
+		}
+		return this.callWait("Runtime.evaluate", params);
+	};
+	
+	getOuterMHTML = function(){
+		var mhtml = this.callWait("Page.captureSnapshot", {});
+		return mhtml;
+	};
+	
+	getPdf = function(){
+		var params = {
+			"transferMode": 'ReturnAsBase64',
+			"printBackground": true
+		}
+		var pdfBin = this.callWait("Page.printToPDF", params);
+		return pdfBin;
+	};
+	
+	@_metaProperty;
+}
+
+namespace cdpdriver{
+	libInfo = {
+    	"version": "1.0.0.1",
+    	"author": "kanadeblisst",
+    	"description": "封装cdp协议控制浏览器"
+	}
+	
+	parseValue = function(result){
+		if(!result ) return;
+		if(result["result"]) result = result["result"];
+		if(result["type"] && result["type"] == "string"){
+			return result.value;
+		}elseif(result["data"]){
+			return result.data;
+		}else{
+			return result;
+		}
+	}
+	
+	_metaProperty = ..util.metaProperty( 
+    	outerHTML = {
+			_get = function(){
+				return owner.getOuterHTML();
+			};
+			
+		};
+		
+		outerMHTML = {
+			_get = function(){
+				return owner.getOuterMHTML();
+			};
+			
+		};
+		
+		pdf = {
+			_get = function(){
+				return owner.getPdf();
+			}	
+		};
+    )	
+}
+
+/**intellisense()
+cdpdriver(.(wsClient, winform) = 使用web.socket.chrome的cdp协议
+cdpdriver() = !cdpdriverObj.
+!cdpdriverObj.getOuterHTML() = 获取网页html
+!cdpdriverObj.getOuterMHTML() = 获取网页mhtml
+!cdpdriverObj.getPdf() = 获取网页pdf
+!cdpdriverObj.outerHTML = 获取网页html
+!cdpdriverObj.outerMHTML = 获取网页mhtml
+!cdpdriverObj.pdf = 获取网页pdf
+end intellisense**/

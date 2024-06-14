@@ -1,0 +1,75 @@
+import win.ui;
+import web.view;
+/*DSG{{*/
+mainForm = win.form(text="hpsocket cdp协议";right=757;bottom=467)
+mainForm.add()
+/*}}*/
+
+var threadMain = function(debugPort){
+	import win;
+	import cdpdriver.hpcdp;
+	import cdpdriver.jsonrpc;
+	import kilogging;
+	
+	var logger = kilogging();
+	..cdpdriver.jsonrpc.waitDebuggingPages(debugPort);
+	var wsClient = ..cdpdriver.jsonrpc();
+	wsClient.connect(debugPort);
+	wsClient.send("Page.enable");
+	wsClient.on("Page.domContentEventFired", function(){
+		..thread.set("pageReady" + owner.guid, true);
+	})
+	wsClient.on("Page.loadEventFired", function(){
+		..thread.set("pageReady" + owner.guid, true);
+	})
+	var cdpClient = ..cdpdriver.hpcdp(wsClient);
+	var url = "https://mp.weixin.qq.com/s/Nik8fBF3hxH5FPMGNx3JFw";
+	var pageReadyFlag = "pageReady" + wsClient.guid;
+	..thread.set(pageReadyFlag, null);
+	logger.info("开始下载 (%s) pdf和html", url);
+	wsClient.send("Page.navigate",{"url":url})
+	win.wait(function(){
+		return thread.get(pageReadyFlag);
+	},, 10000, 100);
+	if(!thread.get(pageReadyFlag)) {
+		logger.info("页面(%s)访问失败", url);
+		return;
+	}
+	cdpClient.scrollPageBottom();
+	// 计算网页图片的数量
+	var imgCount = cdpClient.runJsCode('document.querySelectorAll("#img-content img").length;')
+	// 如果获取数量失败，则默认是40
+	imgCount := 40;
+	// 每张图片会多等待300毫秒
+	..win.delay(imgCount * 300);
+	var mhtmlData = cdpClient.getOuterMHTML();
+	var mhtml = mhtmlData ? mhtmlData.data;
+	var pdfData = cdpClient.getPdf();
+	var pdf = pdfData ? pdfData.data;
+	logger.info("获取到的文件大小，pdf(%s), mhtml(%s)",tostring(#pdf), tostring(#mhtml));
+	if(pdf) {
+		var pdfBytes = ..crypt.bin.decodeBase64(pdf);
+		..string.save("测试.pdf", pdfBytes);
+		logger.info("保存pdf成功，路径：%s", io.fullpath("测试.pdf"));
+	}
+	if(mhtml) {
+		..string.save("测试.mhtml", mhtml);
+		logger.info("保存mhtml成功，路径：%s", io.fullpath("测试.mhtml"));
+	}	
+}
+
+
+
+var initWebView = function(){
+	var cmdArgs = `--remote-debugging-port=29999`;
+	mainForm.webView = web.view(mainForm,,cmdArgs);
+	mainForm.show();
+	
+	var debugPort = mainForm.webView.remoteDebuggingPort;
+	thread.invoke(threadMain,debugPort)	
+}
+
+initWebView()
+
+mainForm.show();
+return win.loopMessage();

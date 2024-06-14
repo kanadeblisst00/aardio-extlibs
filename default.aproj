@@ -2,12 +2,17 @@
 <project ver="10" name="publishExtlibs" libEmbed="true" icon="..." ui="win" output="publishExtlibs.exe" CompanyName="单位名称" FileDescription="publishExtlibs" LegalCopyright="Copyright (C) 作者 2024" ProductName="publishExtlibs" InternalName="publishExtlibs" FileVersion="0.0.0.1" ProductVersion="0.0.0.1" publishDir="/dist/" dstrip="false" local="false" ignored="false">
 	<file name="main.aardio" path="main.aardio" comment="main.aardio"/>
 	<folder name="资源文件" path="res" embed="true" local="false" ignored="false">
-		<folder name="ChakraCore" path="res\ChakraCore" comment="res\ChakraCore" local="false" embed="false" ignored="false">
+		<folder name="cdpdriver" path="res\cdpdriver" comment="res\cdpdriver" local="false" embed="false" ignored="false">
+			<file name="test1.aardio" path="res\cdpdriver\test1.aardio" comment="res\cdpdriver\test1.aardio"/>
+			<file name="test2.aardio" path="res\cdpdriver\test2.aardio" comment="res\cdpdriver\test2.aardio"/>
+		</folder>
+		<folder name="ChakraCore" path="res\ChakraCore" comment="res\ChakraCore">
 			<file name="test.aardio" path="res\ChakraCore\test.aardio" comment="res\ChakraCore\test.aardio"/>
 			<file name="test1.aardio" path="res\ChakraCore\test1.aardio" comment="res\ChakraCore\test1.aardio"/>
 			<file name="test2.aardio" path="res\ChakraCore\test2.aardio" comment="res\ChakraCore\test2.aardio"/>
 			<file name="test3.aardio" path="res\ChakraCore\test3.aardio" comment="res\ChakraCore\test3.aardio"/>
 			<file name="youdao.aardio" path="res\ChakraCore\youdao.aardio" comment="res\ChakraCore\youdao.aardio"/>
+			<file name="有道翻译.js" path="res\ChakraCore\有道翻译.js" comment="res\ChakraCore\有道翻译.js"/>
 		</folder>
 		<folder name="FrpcManager" path="res\FrpcManager" comment="res\FrpcManager">
 			<file name="config.ini" path="res\FrpcManager\config.ini" comment="res\FrpcManager\config.ini"/>
@@ -35,7 +40,7 @@
 			<file name="uft8.txt" path="res\kichardet\uft8.txt" comment="res\kichardet\uft8.txt"/>
 			<file name="utf16le.txt" path="res\kichardet\utf16le.txt" comment="res\kichardet\utf16le.txt"/>
 		</folder>
-		<folder name="kicrypt" path="res\kicrypt" comment="res\kicrypt" local="false" embed="false" ignored="false">
+		<folder name="kicrypt" path="res\kicrypt" comment="res\kicrypt">
 			<file name="testaes.aardio" path="res\kicrypt\testaes.aardio" comment="res\kicrypt\testaes.aardio"/>
 			<file name="testdes.aardio" path="res\kicrypt\testdes.aardio" comment="res\kicrypt\testdes.aardio"/>
 		</folder>
